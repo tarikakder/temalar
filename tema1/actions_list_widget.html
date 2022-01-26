@@ -1,0 +1,22 @@
+{if $actions_list}
+<div class="Box actions_list_box">
+	<div class="Box-header">
+    <a href="javascript:void(0);"><span>{$mod_row.mod_name}</span></a>
+  </div>		
+	<div class="Box-content">
+    <div class="Carousel-wrapper">
+      <div class="Carousel" {$literal1}data-slick='{literal}{{/literal}"slidesToShow":10, "dots": false{literal}}{/literal}'{$literal2}>
+        {include file="actions_list_widget_content.html"}
+      </div>
+
+        <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="CyFbd" data-user="SaraSoueidan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/SaraSoueidan/pen/CyFbd">
+  CSS3 Testimonials Slider</a> by Sara Soueidan (<a href="https://codepen.io/SaraSoueidan">@SaraSoueidan</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+        </p>
+        <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+    </div>
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}
