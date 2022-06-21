@@ -1,0 +1,33 @@
+<form action="{$smarty.const.HTTP_HOST}">
+  <input type="hidden" id="http_url" value="{$smarty.const.HTTP_URL}">
+  <input type="hidden" id="https_url" value="{$smarty.const.HTTPS_URL}">
+  <input type="hidden" id="label_add_to_cart" value="{$LANG.label_add_to_cart}">
+  <input type="hidden" id="label_adding" value="{$LANG.label_adding}">
+  <input type="hidden" id="label_added" value="{$LANG.label_added}">
+  <input type="hidden" id="user_discount" value="{$smarty.session.userDiscount|intval}">
+  <input type="hidden" id="user_discount_type" value="{$smarty.session.userDiscountType}">
+  {if $config.facebook_pixel_id}
+  <input type="hidden" id="facebook_pixel_id" value="{$config.facebook_pixel_id}"  />
+  <input type="hidden" id="facebook_session_id" value="{$smarty.session.facebook_session_id}"  />
+  <input type="hidden" id="facebook_event_id" value="{$smarty.session.facebook_event_id}"  />
+  {/if}  
+  {if !$config.no_special_discount}
+  <input type="hidden" id="prd_id_discount_url" value="{create_link p=Products get_special_price=1}">
+  {/if}
+  <input type="hidden" id="csrf_token" value="{$smarty.session.csrf_token}"  />
+  {if $category_path}
+  {foreach from=$category_path item=items}
+    {foreach from=$items item=item}
+    <input type="hidden" name="ctg_path" class="ctg_path_items" value="{$item.ctg_id}">
+    {/foreach}
+  {/foreach}
+  {/if}
+  {foreach from=$cur_values item=item key=key}<input type="hidden" id="cur_{$key}" value="{$item}">{/foreach}
+  {if $smarty.session.cur_code and $config.enable_cur_convert}<input type="hidden" id="cur_convert" value="{$smarty.session.cur_code}">{/if}
+  
+  <div style="display:none;"> 
+    {if $home}<div class="splash_banner">{banner name="splash"}</div>{/if}  
+    <div id="dummy_elm"></div><div id="label_close">{$LANG.label_close}</div><div class="button_adding_to_cart"></div><div class="button_added_to_cart"></div></div>		
+  </div>
+  
+</form>

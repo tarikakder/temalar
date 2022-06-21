@@ -1,0 +1,140 @@
+<div class="custom_payment_form">
+  {if $smarty.get.result ne 'success'}
+  <form action="{create_link transfer=get}" id="payment_form" method="post" data-bin-url="{create_link p=Installments}">
+    <div class="ord_form_box ord_payment_cc_form">
+    	<h2>{$LANG.label_cc_info}</h2>
+      <div class="form_table">
+        <div class="form_table_cc_info">
+          <div class="error">{$error.general}</div>
+
+
+          {if $order_row}
+          <div class="form_row">
+            <label for="amount"><span id="label_ord_ccowner">{$LANG.label_total_amount}</span> : </label>
+            <div class="input-group">
+              {$order_row.ord_grand_total}
+              {$order_row.ord_currency_code}
+            </div>
+          </div>
+          {else}
+          <div class="error">{$error.amount}</div>
+          <div class="form_row">
+          	<label for="amount"><span id="label_ord_ccowner">{$LANG.label_total_amount}</span> : </label>
+            <div class="input-group">
+              <input required="required" onchange="calcAmount($(this).val())" autocomplete="off" class="form-control" type="text" name="amount" id="amount" maxlength="64" size="6" value="{$smarty.post.amount|escape}"  />
+              <select required="required" class="form-control" name="currency" id="currency">{html_options options=$select_options.currencies selected=$smarty.post.currency|escape}</select>
+            </div>
+          </div>
+          {/if}
+          
+          
+          <div class="error">{$error.ord_ccowner}</div>
+          <div class="form_row">
+          	<label for="ord_ccowner"><span id="label_ord_ccowner">{$LANG.label_ord_ccowner}</span> : </label>
+          	<input required="required" autocomplete="off" class="form-control inp_text" type="text" name="ord_ccowner" id="ord_ccowner" maxlength="64" value="{$smarty.post.ord_ccowner|escape}"  />
+          </div>
+
+          <div class="error">{$error.ord_ccno}</div>
+          <div class="form_row">
+          	<label for="ord_ccno"><span id="label_ord_ccno">{$LANG.label_ord_ccno}</span> : </label>
+          	<input required="required" autocomplete="off" class="form-control inp_text" type="text" name="ord_ccno" id="ord_ccno" maxlength="16" {if $config.cc_bin_filter}onkeyup="ccChange(this)"{/if} value="{$smarty.post.ord_ccno|escape}"  />
+          </div>
+
+
+          <div class="error">{$error.ord_ccexpdate}</div>
+          <div class="form_row">  
+          	<label for="ord_ccexpdate_m"><span id="label_ord_ccexpdate">{$LANG.label_ord_ccexpdate}</span> : </label>
+            <div class="row">
+              <div class="col-sm">
+              <select required="required" class="form-control inp_select" name="ord_ccexpdate[m]" id="ord_ccexpdate_m">{html_options options=$select_options.months selected=$smarty.post.ord_ccexpdate.m|escape}</select>
+              </div>
+              <div class="col-sm">
+                <select required="required" class="form-control inp_select" name="ord_ccexpdate[y]" id="ord_ccexpdate_y">{html_options options=$select_options.years selected=$smarty.post.ord_ccexpdate.y|escape}</select>
+              </div> 
+            </div> 
+          </div>
+
+        	<div class="error">{$error.ord_cvc}</div>
+        	<div class="form_row">
+        		<label for="ord_cvc"><span id="label_ord_cvc">{$LANG.label_ord_cvc}</span> : </label>
+        		<input required="required" autocomplete="off" class="form-control inp_text" type="text" name="ord_cvc" id="ord_cvc" maxlength="4" size="3"  onkeypress="return Only_Integer(event);" value="{$smarty.post.ord_cvc|display_text}"  />
+        		<small>{$LANG.label_cvc_desc}</small>
+        		{*<div class="cvc_img" style="display:none;"><img src="{$smarty.const.HTTP_HOST}i/cvv.png" alt="cvc" /></div>*}
+
+        	</div>
+
+          {if $vpos_type_select_enabled}
+          <div class="form_row">
+          	<select onchange="$('.vpos_type_container').hide();$('.vpos_type_container_'+$(this).val()).show();" class="form-control inp_select" name="vpos_type_select" id="vpos_type_select">{html_options options=$select_options.vpos_types selected=$smarty.post.vpos_type_select|default:'3d'}</select>
+          </div>
+          {else}
+          <input type="hidden" name="vpos_type" id="vpos_type" value="{$vpos_type}" />
+          {/if}
+        	
+        	<!--<div class="form_row form_row_trn_description">
+        		<label for="trn_description"><span id="label_trn_description">{$LANG.label_trn_description}</span> : </label>
+        		<textarea name="trn_description" id="trn_description" cols="40" rows="6" class="form-control inp_textarea"></textarea>
+        	</div>-->
+           {if $row.terms}       
+            {if $error.cfg_terms_and_conds}<div class="invalid-feedback">{$error.cfg_terms_and_conds}</div>{/if}
+            {foreach from=$row.terms item=term_item key=k}
+            <div class="form-group form-check cfg_terms_and_conds">
+              <input required="required" class="form-check-input" type="checkbox" name="cfg_terms_and_conds[{$term_item.pag_id}]" id="cfg_terms_and_conds{$term_item.pag_id}" {if $smarty.post.cfg_terms_and_conds}checked="checked"{/if} value="1" />
+              <label class="form-check-label myPopupModal1ButtonM" data-toggle="modal" data-target="#termsPopupModal{$k}" style="text-align: left; cursor:pointer">						
+                {$LANG.label_confirm_terms_and_conds|sprintf:$term_item.pag_name}
+              </label>
+            </div>    
+            {/foreach}
+          {/if}         
+       
+          
+          <div class="form_row form_row_button">
+            <input type="submit" class="btn btn-orange payment_button" name="payment" id="payment" value="{$LANG.label_payment}" />
+          </div>
+        </div>
+
+        <div class="inst_container">
+        	{foreach from=$inst_banks item=vpos_items key=vpos_type}	
+        		{include file="payment_form_installments.html"}
+        	{/foreach}
+        </div>
+      </div>
+    </div>
+  </form>
+  {/if}
+</div>
+<script>
+  function calcAmount(val){
+  	val=parseFloat(val);
+  	$('.calc-data').each(function(i,item){
+          //var inst = parseFloat($(this).data('amount'));
+  		var ratio = parseFloat($(this).data('ratio'));
+  		//var inst_val = Math.round(inst*val*100)/100;
+  		var ratio_val = Math.round(ratio*val*100)/100;
+          var number = parseFloat($(this).data('number'));	
+  		if(number){
+  			var inst_val = parseFloat(ratio_val/number);
+  			$(this).find('.calc-data-inst label').html(inst_val.formatMoney(2,".",","));
+  			$(this).find('.calc-data-total label').html(ratio_val.formatMoney(2,".",","));
+  		}
+  	});
+  }
+  function ccChange(obj){
+  		var bin=$(obj).val().substr(0,6);		
+  		if(bin.length==6){
+  		
+  			$.ajax({
+  			   type: "GET",
+  			   data: "vpos_type="+$("#vpos_type").val()+"&amount="+$("#amount").val()+"&bin="+bin,
+  			   url: $("#payment_form").data("bin-url"),			   
+  			   cache: false,
+  			   success: function(msg){ 
+  				   //alert(msg);
+  					$(".inst_container").html(msg);		
+
+  			   }
+  			 });
+  		 }
+  }
+</script>
+{include file="terms_popup.html"}   

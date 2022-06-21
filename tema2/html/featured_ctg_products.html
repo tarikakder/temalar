@@ -1,0 +1,35 @@
+{literal}
+<style>
+	.ctg_featured_header{
+		font-size: 26px;
+	}
+	.ctg_featured_thumb{
+		margin: 10px 10px;
+		border:1px solid #ccc;
+		padding: 3px;
+	}
+	.ctg_featured_first{
+		margin:10px;
+		padding: 5px;
+		border:1px solid #ccc;
+	}
+</style>
+{/literal}
+
+{foreach from=$featured_ctg_products item=item name=ctg_featured}
+{if $smarty.foreach.ctg_featured.first}
+<div class="ctg_featured_first">
+<table width="100%">
+	<tr> 
+		<td><img src="{$item.images.c}" width="200" alt=""/></td>
+		<td>
+			<div class="ctg_featured_header">{$item.prd_name}</div>
+			<div>{$item.prd_description}</div>
+		</td>
+	</tr>
+</table>
+</div>	
+{else}
+<img class="ctg_featured_thumb" src="{$item.images.a}" width="65" alt=""/>
+{/if}
+{/foreach}

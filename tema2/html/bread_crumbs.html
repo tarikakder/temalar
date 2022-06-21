@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+	<ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+		{assign var=items value=$bread_crumbs.0}
+		{foreach from=$items item=item key=key name=breadcrumbs}
+			{assign var=k value=$k+1}
+			{if $k gt 0}
+				<li class="breadcrumb-item{if $smarty.foreach.breadcrumbs.last} active{/if}" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<a itemprop="item" href="{$item.link}">
+						<span itemprop="name">{$item.label}</span>
+					</a>
+					<meta itemprop="position" content="{$k}" />
+				</li>
+			{/if}
+		{/foreach}
+	</ul>
+</nav>

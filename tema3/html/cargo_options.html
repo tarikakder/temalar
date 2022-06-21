@@ -1,0 +1,36 @@
+{if !$cart_contents.all_digital}
+  {if $shipping_options}
+    <div class="ord_form_box select_cargo">	
+      <div class="ord_form_box_header"><span>{$LANG.label_ord_cargo_info}</span></div>
+      
+      <div class="ord_form_box_content">
+        <div class="error">{$error.ord_cargo_id}</div>
+        
+        <div class="select_cargo_wrapper">
+        {foreach from=$shipping_options item=item}
+          <label for="ord_cargo_id{$item.crg_id}" {if $row.ord_cargo_id eq $item.crg_id or (!$row.ord_cargo_id and $item.crg_default)}class="dy_selected"{/if}>
+            {if $item.image}
+            <div class="select_cargo_image">
+              <img src="{$item.image.a}" alt="">
+            </div>
+            {/if}
+            <div class="select_cargo_content">
+              <input type="radio" name="ord_cargo_id" id="ord_cargo_id{$item.crg_id}" {if $row.ord_cargo_id eq $item.crg_id or (!$row.ord_cargo_id and $item.crg_default)}checked{/if} value="{$item.crg_id}" data-price="{$item.total}" onChange="$('.select_cargo label').removeClass('dy_selected');$(this).parents('label').toggleClass('dy_selected');$(this).updatePrice()">	
+              &nbsp;&nbsp;
+              <span class="crg_name">{$item.crg_name}</span>
+
+              {if $item.total eq '0'}
+              <span class="badge badge-danger badge-pill crg_price">{$LANG.label_for_free}</span>
+              {else}
+              <span class="badge badge-danger badge-pill crg_price">+ {$item.total|price_format4:$cart_contents.cur_code}</span>
+              {/if}
+            </div>
+          </label>
+        {/foreach}
+        </div>
+      </div>
+    </div>
+  {elseif $smarty.get.type}
+    <div class="no_cargo">{$LANG.label_no_cargo}</div>
+  {/if}
+{/if}

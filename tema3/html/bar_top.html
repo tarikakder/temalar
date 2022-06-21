@@ -1,0 +1,61 @@
+<div class="Header-top">
+	<div class="container">
+
+	<div class="Header-top-menu">
+		{menu name="top"}
+	</div>
+	
+	<div class="user_menu">
+		<ul>
+			{if !isUserLogin()}
+      
+    
+          {if $config.register_type eq "k"}
+          <li>
+            <a href="{$smarty.const.HTTP_HOST}register?adr=1" rel="nofollow">
+              <span>{$LANG.label_register_k}</span>
+            </a>
+          </li>
+          {elseif $config.register_type eq "kb"}            
+          <li>
+            <a href="{$smarty.const.HTTP_HOST}register?adr=1" rel="nofollow">
+              <span>{$LANG.label_register_k}</span>
+            </a>
+          </li>
+          <li>
+            <a href="{$smarty.const.HTTP_HOST}register" rel="nofollow">
+              <span>{$LANG.label_register}</span>
+            </a>
+          </li>
+          {else}  {* $config.register_type eq "b" *}						
+          <li>
+            <a href="{$smarty.const.HTTP_HOST}register" rel="nofollow">
+              <span>{$LANG.label_register}</span>
+            </a>
+          </li>            
+          {/if}
+            
+
+      
+      
+			<li>
+				<a href="{$smarty.const.HTTP_HOST}login" rel="nofollow">
+					<span>{$LANG.label_login}</span>
+				</a>
+			</li>
+			{/if}
+
+			{if $available_langs|@count gt 1}
+		  <div class="form-group Header-top-lang">
+			  <select class="form-control form-control-sm" id="ctg_id">
+			  	<option value="">{$LANG.label_lang_select}</option>
+			  	{foreach from=$available_langs key=k item=item}
+					<option value="{$k}">{$item}</option>
+					{/foreach}
+			  </select>
+			</div>
+			{/if}
+		</ul>
+	</div>
+	</div>
+</div>

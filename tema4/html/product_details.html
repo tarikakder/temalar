@@ -1,0 +1,19 @@
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type} box_prd_detail">
+{if !$mod_item.mod_parent_id}
+	<div class="Box-header"><a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a></div>
+{/if}	
+	<div class="Box-content">
+		{if $prd_description}
+		<div class="wysiwyg prd_description{if $row.pub_copy_protected eq 'y'} noContext{/if}">		
+			{$prd_description}		
+		</div>
+		{/if}
+								
+		{if $mod_row.display_tags and $row.tags}
+		<div class="prd_tags">
+			{foreach from=$row.tags item=item}{if $item}<a href="{$smarty.const.HTTP_HOST}tag/{$item|create_search_field_tag}.html">{$item}</a>{/if}{/foreach}
+		</div>
+		{/if}
+	</div>
+	<div class="Box-footer"></div>
+</div>	

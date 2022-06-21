@@ -1,0 +1,78 @@
+<div class="list prd_list">
+	{if $recordset}
+	<div class="prd_list_container_box">
+		<div class="prd_list_container">
+			<h1 class="contentHeader prdListHeader">{$contentHeader}</h1>
+			
+			{if $current_ctg_row.image}
+			<div class="ctg_image">
+				<img src="{$current_ctg_row.image.a}" alt="{$current_ctg_row.ctg_seo_title}">
+			</div>
+			{/if}
+
+			{if $pager.page eq 1}
+				{if $list_description}
+				<div class="wysiwyg list_description">
+					{$list_description}
+				</div>
+				{/if}
+			{/if}
+
+			<div class="prd_list_settings">
+				<form action="{create_link}" method="get" id="prd_filter">
+					{$hidden_values_prpm|default:$hidden_values}
+					{if $show_sort_options}
+					<div class="sort_options">
+						<div class="form-group rec_per_page">
+							<select title="{$LANG.label_rec_per_page}" onchange="$('#prd_filter').submit();" class="form-control" name="rec_per_page">
+								{html_options options=$select_options.rec_per_page selected=$smarty.get.rec_per_page|default:$smarty.const.REC_PER_PAGE}
+							</select>
+						</div>
+						<div class="form-group">
+							<select title="{$LANG.label_sort}" onchange="$('#prd_filter').submit();" class="form-control" name="sort_type">
+								{html_options options=$LANG.arr_sort_types selected=$smarty.get.sort_type}
+							</select>
+						</div>
+					</div>
+					{elseif $show_periods}
+					<div class="sort_options">
+						<div class="form-group">
+							<select onchange="$('#prd_filter').submit();" class="form-control" name="period">
+								{html_options options=$select_options.periods selected=$smarty.get.period|default:$period}
+							</select>
+						</div>
+					</div>
+					{/if}
+				</form>
+
+				<a id="ChangeFilters" class="btn btn-sm btn-orange">
+					<i class="la la-filter"></i>
+				</a>
+			</div>
+
+			{if $layout_style.layout eq '111'}
+			{assign var=col_count value=$tpl_config.prdlist_colcount|default:"4"}
+			{else}
+			{assign var=col_count value=$tpl_config.prdlist_colcount|default:"5"}
+			{/if}
+			<ul class="grid grid-{$col_count}">
+			{include file="products_view_sublist.html" sublist_products=$recordset col_count=$col_count image_size=$tpl_config.prdlist_img_size|default:"b"}
+			</ul>
+			{include file='pager.html'}
+
+		</div>
+	</div>
+	{else}
+	<div class="no_product_found">
+		<div>
+			{$LANG.message_no_product_found}
+		</div>
+		<div>
+			<a href="#" onclick="$('.prd_search_form').toggle()">{$LANG.label_advanced_search}</a>
+		</div>
+	</div>
+	{include file='products_search_form.html'}
+	{/if}
+
+	{include file='products_list_rich_snippets.html'}
+</div>

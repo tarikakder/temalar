@@ -1,0 +1,47 @@
+{if $mod_row.mod_display_type eq 'b'}
+	{** biyografi **}
+	{if $wrt_row.wrt_description}
+	<div class="Box wrt_box">
+		<div class="Box-header"><a href="{$wrt_row.link}">{$wrt_row.wrt_name}</a></div>
+		<div class="Box-content">
+				{if $wrt_row.wrt_photos.a}<a href="{$wrt_row.link}"><img src="{$wrt_row.wrt_photos.a}" width="110" height="110" alt="{$wrt_row.wrt_name|escape}" class="wrt_photo" /></a>{/if}
+				
+				{if $wrt_row.wrt_description}		
+				<div class="wrt_description">
+					<div class="wrt_spot wrt_spot_height" id="wrt_spot_{$mod_row.mod_id}">
+					{$wrt_row.wrt_description}
+					
+					<a class="more-toggle" href="#" onclick="event.preventDefault();$('.wrt_spot').toggleClass('wrt_spot_height');$(this).find('.la').toggleClass('la-angle-down').toggleClass('la-angle-up');"><span class="la la-angle-down"></span></a>
+					
+					</div>
+					
+					
+				</div>
+				{/if}
+			
+		</div>
+	</div>
+	{/if}
+
+{else}
+	{** popular writers **}
+	{if $items_list}
+	<div class="Box writers_box">
+		<div class="Box-header"><a href="{$mod_item.link}">{$mod_item.mod_name}</a></div>
+		<div class="Box-content">
+	
+		{foreach from=$items_list item=item key=k}	
+				<div class="side_item"> 
+				<a href="{$item.link}" title="{$item.wrt_name|display_text}">{$item.wrt_name|display_text}</a>
+				</div>			
+		{/foreach}
+	
+		</div>
+		<div class="Box-footer">
+			<div class="Box-footer-more">
+				<a class="btn btn-light" href="{create_link p=Writers}">{$LANG.click_for_more}</a>
+			</div>
+		</div>
+	</div>
+	{/if}
+{/if}

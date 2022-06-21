@@ -1,0 +1,7 @@
+<div id="top_pages">
+<a href="{create_link p=Products point_catalog=1}">{$LANG.label_point_catalog}</a>&nbsp;|&nbsp;	
+{foreach from=$toppages_list item=item key=key}
+<a href="{$item.link}">{$item.pag_name}</a>&nbsp;|&nbsp;		
+{/foreach}	
+<a href="{create_link p=Crm}">{$LANG.label_crm}</a>
+</div>

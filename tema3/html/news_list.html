@@ -1,0 +1,28 @@
+<div class="Box news_box">
+  <div class="news_list {$news_ctg_row.nwc_css_class}">
+  	<h1 class="contentHeader nwsListHeader">{$contentHeader|escape}</h1>
+
+    {if $pager.data_count>0}
+    <div class="Box-content">
+      {foreach from=$recordset item=item key=k}
+      <div class="nws_item">
+      	{if $item.image}
+        <div class="nws_image">
+          <a href="{$item.link}">
+            <img src="{$item.image.a}" border="0" alt="{$item.nws_title|display_text}">
+          </a>
+        </div>
+        {/if}
+
+      	<div class="nws_info">
+          <a class="nws_title" href="{$item.link}">{$item.nws_title|escape}</a>
+          <span class="nws_spot">{$item.nws_spot|truncate:200|strip_tags}</span>
+        </div>
+      </div>
+      {/foreach}
+    </div>
+    {/if}
+
+    {include file='pager.html'}
+  </div>
+</div>

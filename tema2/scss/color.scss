@@ -1,0 +1,77 @@
+body,html,h1,h2,h3,h4,h5,h6{
+  color: #333;
+}
+
+/* list defaults*/
+.list_table .table-header-row .table-cell{
+  background-color: #efefef;
+}
+.list_table .table-row:nth-child(odd){
+  background-color: #f8f8f8;
+}
+.list_table .table-row:nth-child(odd){
+  background-color: #f8f8f8;
+}
+.list_table .table-cell{  
+  border-color: #ddd;
+}
+
+.top_menu ul li a:hover{
+  color: #000;  
+}
+
+.user_menu ul li .login_top_box{
+  background-color: #d7d7d7;  
+}
+a.login_facebook,
+.user_menu ul li .login_top_row a.login_facebook{ 
+  background-color: #3b579d;
+  color: #fff;
+}
+a.login_twitter,
+.user_menu ul li .login_top_row a.login_twitter{  
+  background-color: #00aced;
+  color: #fff;
+}
+a.login_google,
+.user_menu ul li .login_top_row a.login_google{ 
+  background-color: #d94734;
+  color: #fff;
+}
+
+.user_menu ul.user_menu_in li ul{
+  background-color: #d7d7d7;  
+}
+
+.ui-autocomplete {
+  background-color: #fff;
+  border-color: #333;
+}
+.ui-autocomplete li a:hover{
+  color: #333;
+}
+
+.prd_pairs_list .prd_pairs .price_box .price_sale,
+.box_prd_pairs .prd_pairs .price_box .price_sale{
+  color: #ff0000;
+}
+
+
+.orders_form .select_payment_type label{
+  border-color: #ccc;
+}
+.orders_form .select_payment_type label:hover,
+.orders_form .select_payment_type label.dy_selected{  
+  color:  #888; /*box-shadow-color*/
+}
+.orders_form .select_cargo label{
+  border-color: #ccc;
+}
+.orders_form .select_cargo label:hover,
+.orders_form .select_cargo label.dy_selected{ 
+  color:  #888; /*box-shadow-color*/
+}
+
+.orders_form .ord_installment_box .inst_options .dy_selected{
+  background-color: #efefef;
+}

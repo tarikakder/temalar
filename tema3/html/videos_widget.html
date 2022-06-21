@@ -1,0 +1,25 @@
+<div class="Box videos_box">
+	<div class="Box-header"><a href="{create_link p=Videos ctg_id=$mod_item.mod_ctg_id}">{$mod_item.mod_name}</a></div>
+		<div class="Box-content">
+		
+
+		
+		{foreach from=$videos_list item=item key=k}
+		
+		<div class="vid_item">
+			<div class="item_image vid_image">
+			{if $item.image.a}
+			<a href="{$item.link}"><img src="{$item.image.a}" alt="{$item.vid_title|escape}" /></a>
+			{/if}
+			</div>
+			<div class="item_date vid_date">{$item.vid_insert_date|dt_format}</div>	
+			<div class="item_title vid_title"><a href="{create_link p=Videos view=$item.vid_id}">{$item.vid_title|display_text}</a></div>
+			
+		</div>
+		{/foreach}
+		<div class="clear"></div>
+	
+	
+
+	</div>
+</div>

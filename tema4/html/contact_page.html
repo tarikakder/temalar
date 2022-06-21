@@ -1,0 +1,19 @@
+<div class="contact_page">
+  <h1>{$LANG.label_contact_info}</h1>
+  <div class="box_p">
+    <h2>{$config.cfg_firm_name}</h2>
+    <div><b>{$LANG.label_cfg_address}</b>: {$config.cfg_address}</div>
+    <div><b>{$LANG.label_cfg_phone}</b>: {$config.cfg_phone1}</div>
+    <div><b>{$LANG.label_cfg_phone}</b>: {$config.cfg_phone2}</div>
+    <div><b>{$LANG.label_cfg_fax}</b>: {$config.cfg_fax}</div>
+    <div><b>{$LANG.label_cfg_email}</b>: {$config.cfg_email}</div>
+  </div>
+
+  <h1>{$LANG.label_bank_accounts}</h1>
+  <div class="box_p">
+  <h3>{$config.cfg_firm_title}</h3>
+    {foreach from=$bank_accounts item=item}
+    {$item.bnk_name}&nbsp;{$item.bac_branch} ({$item.bac_branch_no})&nbsp;-&nbsp;{$item.bac_account_no}&nbsp;<br>
+    {/foreach}
+  </div>
+</div>

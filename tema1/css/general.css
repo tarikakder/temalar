@@ -1,0 +1,393 @@
+@charset "UTF-8";
+/* line 3, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+body, html {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5em;
+  background: #F5F5F5;
+}
+
+/* line 10, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 16, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 21, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+ul {
+  margin-bottom: 0;
+}
+
+/* line 25, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+li {
+  list-style: none;
+}
+
+/* line 29, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* line 34, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* line 39, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+h3 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+/* line 44, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+h4 {
+  font-size: 1.17em;
+  margin-bottom: 0.5em;
+}
+
+/* line 49, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.container-page.container-fluid {
+  padding: 0;
+}
+
+/* line 53, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* line 59, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.container .container {
+  padding: 0;
+}
+
+/* line 63, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+sup, sub {
+  position: static;
+  font-size: inherit;
+  margin-left: 1px;
+}
+
+/* line 69, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.breadcrumb {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* line 75, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+/* line 80, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.breadcrumb-item.active a {
+  color: #FF3D00;
+}
+
+/* line 84, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.breadcrumb-item + .breadcrumb-item:before {
+  content: '>';
+}
+
+@media screen and (max-width: 768px) {
+  /* line 91, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+  .breadcrumb {
+    display: none;
+  }
+}
+
+/* line 96, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.form-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+/* line 102, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.pagination {
+  justify-content: center;
+}
+
+/* line 105, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.pagination .page-item .page-link {
+  color: #FF3D00;
+  font-size: 0.9em;
+  border: 0;
+}
+
+/* line 110, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.pagination .page-item .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 61, 0, 0.25);
+}
+
+/* line 115, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.pagination .page-item.active .page-link {
+  background: #FF3D00;
+  border-color: #FF3D00;
+  color: #fff;
+}
+
+/* line 122, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.alert {
+  border: none;
+}
+
+/* line 125, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.alert-orange {
+  background: #ff774d;
+  color: #fff;
+}
+
+/* line 131, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+a.btn:not([href]) {
+  color: #fff;
+}
+
+/* line 136, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.btn-orange {
+  color: #fff;
+  background-color: #FF3D00;
+  border-color: #FF3D00;
+}
+
+/* line 141, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.btn-orange:hover, .btn-orange:focus {
+  color: #fff;
+  background-color: #f03900;
+  border-color: #f03900;
+}
+
+/* line 147, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.btn-orange:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 61, 0, 0.5);
+}
+
+/* line 151, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.btn-orange:not(:disabled):not(.disabled).active, .btn-orange:not(:disabled):not(.disabled):active, .show > .btn-orange.dropdown-toggle {
+  color: #fff;
+  background-color: #e03600;
+  border-color: #e03600;
+}
+
+/* line 157, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.btn-orange:not(:disabled):not(.disabled).active:focus, .btn-orange:not(:disabled):not(.disabled):active:focus, .show > .btn-orange.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 61, 0, 0.5);
+}
+
+/* line 163, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* line 168, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.show-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 173, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+  .show-mobile {
+    display: block;
+  }
+}
+
+/* line 178, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.table {
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* line 182, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.table th {
+  border-top: 0;
+}
+
+/* line 185, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.table th .form-check {
+  position: relative;
+  top: -8px;
+  left: 5px;
+}
+
+/* line 192, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.table td {
+  border-top: 0;
+}
+
+/* line 195, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.table td .form-check {
+  position: relative;
+  left: 5px;
+}
+
+/* line 203, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+textarea.form-control {
+  min-height: 150px;
+  max-height: 300px;
+}
+
+/* line 208, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.grecaptcha-badge {
+  bottom: 100px !important;
+}
+
+/* line 212, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.alert:empty {
+  display: none;
+}
+
+/* line 216, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 222, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading-wrapper {
+  display: flex;
+  padding-top: 10px;
+}
+
+/* line 227, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #FF3D00;
+  border-radius: 50%;
+  animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #FF3D00 transparent transparent transparent;
+}
+
+/* line 238, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+/* line 242, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+/* line 246, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.loading div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* line 261, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+  .pagination {
+    font-size: 0.8em;
+  }
+}
+
+/* wysiwyg */
+/* line 268, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+/* line 274, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg b, .wysiwyg strong {
+  font-weight: bold;
+}
+
+/* line 278, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg em, .wysiwyg i {
+  font-style: italic;
+}
+
+/* line 282, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg ol, .wysiwyg ul {
+  padding: 0.3em 0 0.3em 2em;
+}
+
+/* line 286, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg ul li {
+  list-style: disc outside none;
+  padding-left: 0.1em;
+}
+
+/* line 291, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.wysiwyg ol li {
+  list-style: decimal outside none;
+  padding-left: 0.1em;
+}
+
+/* line 297, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.invalid-feedback {
+  display: block;
+}
+
+/* default css göz atılacak */
+/* line 302, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.ui-grid-content {
+  width: 100%;
+}
+
+/* line 306, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.rsp-show-538 {
+  display: none;
+}
+
+/* line 309, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.prd_img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 315, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.banner_img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+/* line 322, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.error_header {
+  color: #FF0000;
+  font-weight: bold;
+  padding: 0.5em 0em;
+}
+
+/* line 328, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.error {
+  color: #FF0000;
+}
+
+/* line 332, ../kanmazteknoloji/temalar/tema1/scss/general.scss */
+.Carousel-banner {
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=general.css.map */

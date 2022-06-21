@@ -1,0 +1,36 @@
+<div class="prd_pairs_list">
+
+	<h1 class="contentHeader prdSearchHeader">{$contentHeader|display_text}</h1>
+
+{if $pager.data_count>0}
+	{foreach from=$recordset item=item key=key}
+		<div class="prd_pairs">
+		
+		
+			<span class="pair_images">
+				<a href="{$item.link}" title="{$item.prd_name|display_text}"><img class="item_image" src="{$item.images.a}" title="{$item.prd_name|display_text}" alt="{$item.prd_name|display_text}" /></a>
+				<span class="fa fa-plus"></span>					
+				<a href="{$item.item.link}" title="{$item.item.prd_name|display_text}"><img class="item_image" src="{$item.item.images.a}" title="{$item.item.prd_name|display_text}" alt="{$item.item.prd_name|display_text}" /></a>
+			</span>
+			
+		
+			<span class="price_box">
+				<span class="price price_list">{$item.price_list|price_format} {$item.cur_code}</span> 
+				<span class="price price_sale">{$item.final_price|price_format} {$item.cur_code}</span>
+			</span>
+			
+			
+			<span class="actions">
+				<a data-prd-id="{$item.item.prd_id}" class="button button_sm button_add_to_cart" onclick="$(this).next('.pair_item').addToCart();"><span class="button-text">{$LANG.label_add_to_cart}</span></a>
+				<input type="hidden" class="pair_item" data-prd-id="{$item.prd_id}" />
+			</span>	
+			
+			
+		</div>
+	{/foreach}
+	
+{/if}
+
+{include file='pager.html'}
+
+</div>

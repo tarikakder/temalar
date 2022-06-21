@@ -1,0 +1,24 @@
+{if $products}
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type}">
+  {if $mod_item.show_title}
+  	<div class="Box-header">
+      <a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>
+    </div>
+  {/if}
+	<div class="Box-content">
+    <div class="Carousel-wrapper">
+      <div class="Carousel Carousel-slider" data-slick='{literal}{{/literal}"dots": false, "slidesToShow": {$col_count}{literal}}{/literal}'>
+        {include file="products_view_sublist.html" sublist_products=$products col_count=100 image_size=$tpl_config.gallery_img_size|default:"a" slider=1}
+      </div>
+    </div>
+	</div>
+	
+	<div class="Box-footer">
+    {if $mod_item.link}
+    <div class="Box-footer-more">
+      <a class="btn btn-orange" href="{$mod_item.link|default:'javascript:void(0);'}">{$LANG.label_click_for_more}</a>
+    </div>
+    {/if} 
+  </div>
+</div>
+{/if}

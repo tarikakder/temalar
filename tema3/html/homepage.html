@@ -1,0 +1,7 @@
+{foreach from=$modules_list.mid item=mod_item key=key name=mod}
+	<div class="mod_container {$mod_item.mod_css_class}" id="mod_container_{$mod_item.mod_id}" {$mod_item.mod_attributes}>
+    <div class="container">
+      {$mod_item.content}
+    </div>
+  </div>
+{/foreach}

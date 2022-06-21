@@ -1,0 +1,73 @@
+<div class="bg-light p-2 ">
+
+{include file="afil_menu.html"}
+
+<h1>{$LANG.label_afil_data}</h1>
+
+<form action="{create_link}" method="get" class="filter_form form-inline" id="afil_filter_form">
+{foreach from=$smarty.get key=key item=val}
+{if $key ne 'q'}<input type="hidden" value="{$val}" name="{$key}" />{/if}
+{/foreach}
+	
+<select class="form-control inp_select" name="d" onchange="$('#afil_filter_form').submit();"><option value="-1">{$LANG.label_all}</option>{html_options options=$select_options.dates selected=$d}</select>
+{if $data_types|@count>1}
+<select class="form-control inp_select" name="type" id="type" onchange="$('#afil_filter_form').submit();"><option value="">{$LANG.label_all}</option>{html_options options=$data_types selected=$smarty.get.type|escape}</select>
+{/if}
+
+<select class="form-control inp_select" name="afd_status" id="afd_status" onchange="$('#afil_filter_form').submit()">
+	<option value="">{$LANG.label_show_all}</option>{html_options options=$LANG.arr_afil_status selected=$smarty.get.afd_status}
+</select>
+
+</form>
+
+
+
+<form action="{create_link transfer=get}" method="post" name="list_frm" class="list_form">
+{if $pager.data_count>0}
+<div class="ui-grid-content  table-block list_table">
+	<div class="table-row table-header-row rsp-hide-538">
+
+		<div class="table-cell">{$LANG.label_afd_item_code}</div>
+		<div class="table-cell">{$LANG.label_afd_ip}</div>
+		<div class="table-cell">{$LANG.label_afd_date}</div>
+		<div class="table-cell">{$LANG.label_afd_status}</div>
+		<div class="table-cell" style="text-align:right">{$LANG.label_afd_commision}</div>
+
+	</div>
+	{foreach from=$recordset item=item key=k}
+	<div class="table-row table-body-row {cycle values='odd,even'}">
+		
+				
+				
+		<div class="table-cell">{$item.afd_item_code|display_text} {if $item.order}{$item.order.ord_mmb_name}{/if}</div>
+		<div class="table-cell">{$item.afd_ip|display_text}</div>
+		<div class="table-cell">{$item.afd_date|display_text}</div>
+		<div class="table-cell">{$LANG.arr_afil_status[$item.afd_status]}</div>
+		<div class="table-cell" style="text-align:right">{$item.afd_commision|price_format} {$smarty.const.CURRENCY_CODE}</div>
+	
+		
+				
+		
+	
+	</div>
+	{/foreach}
+
+	<div class="table-row table-header-row rsp-hide-538">
+		<div class="table-cell"></div>
+		<div class="table-cell"></div>
+		<div class="table-cell"></div>
+		<div class="table-cell" style="text-align:right"></div>
+		<div class="table-cell" style="text-align:right">{$total_commision|price_format} {$smarty.const.CURRENCY_CODE}</div>
+		
+		
+	</div>
+
+</div>
+{else}
+<div class="afil_no_record">{$LANG.no_record_found}</div>
+{/if}
+</form>
+
+{include file='pager.html'}
+
+</div>

@@ -1,0 +1,5 @@
+{foreach from=$modules_list.left item=mod_item key=key name=mod}
+	{if $mod_item.content}
+	<div class="mod_container {$mod_item.mod_css_class}" id="mod_container_{$mod_item.mod_id}" {$mod_item.mod_attributes}>{$mod_item.content}</div>
+	{/if}	
+{/foreach}

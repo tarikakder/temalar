@@ -1,0 +1,44 @@
+<div id="container_cart_list_small">
+	{if $smarty.get.popup}
+	<span class="cart_variables">
+		<input type="hidden" class="cart_prd_count" value="{$cart_contents.products_count|intval}">
+		<input type="hidden" class="cart_prd_total" value="{$cart_contents.total_amount|price_format}">
+		<input type="hidden" class="cart_cur_code" value="{$cart_contents.cur_code}">
+		<input type="hidden" class="cart_prd_exists" value="{$smarty.get.cart_prd_exists|intval}">
+		<span style="display: none;" class="cart_prd_total_str">{$cart_contents.total_amount|price_format4:$cart_contents.cur_code}</span>
+	</span>
+	{/if}
+
+	{if $cart_contents.products}
+	<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form">
+		<div class="cart_list_small">
+			{foreach from=$cart_contents.products item=item key=k}
+			<div class="cart_list_small_item">
+				<a href="{create_link p=Products view=$item.prd_id}">{$item.crt_quantity} x {$item.prd_name|truncate:25}</a>
+				
+				{if $item.crt_point eq 'y'}
+					{$item.total_points} {$LANG.label_point}
+				{else}
+					{$item.total_price|price_format} {$item.cur_code}
+				{/if}
+			</div>
+			{/foreach}
+
+			<div class="cart_list_small_bottom">
+				<span>{$LANG.label_total}:</span>
+				{if $cart_contents.point_shop_exists && $cart_contents.price_shop_exists}
+				<span>{$cart_contents.total_amount|price_format} {$cart_contents.cur_code}</span> + <span>{$cart_contents.total_point_amount} {$LANG.label_point}</span>
+				{elseif $cart_contents.price_shop_exists}
+				<span>{$cart_contents.total_amount|price_format} {$cart_contents.cur_code}</span>
+				{elseif $cart_contents.point_shop_exists}
+				<span>{$cart_contents.total_point_amount} {$LANG.label_point}</span>
+				{/if}
+			</div>
+
+			<input type="button" class="btn btn-dark btn-sm button_checkout" value="{$LANG.label_checkout}" onclick="window.location='{create_link p=Orders edit=-1 https=1}'">
+		</div>
+	</form>
+	{else}
+	{$LANG.label_cart_is_empty}
+	{/if}
+</div>

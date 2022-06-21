@@ -1,0 +1,78 @@
+{assign var=ban_first_letter value=$row.ban_title|substr:0:1}
+{if $row.bng_name eq 'social' or $row.bng_name eq 'social_footer'}
+  {foreach from=$row.sub_banners item=item}
+    {if $item.src}
+      {if $item.ban_link}
+        <a href="{$item.ban_link}" target="_blank" rel="nofollow">
+          <img class="banner_img banner_{$row.bng_name}" alt="{$item.ban_title|default:$item.src.a}" src="{$item.src.a}" width="{$item.ban_width|default:$row.bng_width}" height="{$item.ban_height|default:$row.bng_height}">
+        </a>
+      {else}
+        <img class="banner_img banner_{$row.bng_name}" alt="{$item.ban_title|default:$item.src.a}" src="{$item.src.a}" width="{$item.ban_width|default:$row.bng_width}" height="{$item.ban_height|default:$row.bng_height}">
+      {/if}
+    {/if}
+  {/foreach}
+{elseif $row.sub_banners and ($ban_first_letter eq '1' or $ban_first_letter eq '2' or $ban_first_letter eq '3' or $ban_first_letter eq '4' or $ban_first_letter eq '5')}
+  <div class="banner-multiple grid grid-{$ban_first_letter}">
+  {foreach from=$row.sub_banners item=sub_row key=k}
+    {if $sub_row.src}
+      {if $sub_row.ban_link}<a {if $sub_row.ban_target ne '' and $sub_row.ban_target ne '_self'}target="{$sub_row.ban_target|default:'_self'}"{/if} href="{$sub_row.ban_link}">
+      <span class="banner_img_box banner_img_box{$k}">
+        <img class="banner_img banner_img{$k}" alt="{$sub_row.ban_title|default:$sub_row.src.a}" src="{$sub_row.src.a}" width="{$sub_row.ban_width|default:$sub_row.bng_width}" height="{$sub_row.ban_height|default:$sub_row.bng_height}" />
+      </span>
+      </a>
+      {else}
+      <span class="banner_img_box banner_img_box{$k}">
+        <img class="banner_img banner_img{$k}" alt="{$sub_row.ban_title|default:$sub_row.src.a}" src="{$sub_row.src.a}" width="{$sub_row.ban_width|default:$sub_row.bng_width}" height="{$sub_row.ban_height|default:$sub_row.bng_height}" />
+      </span>
+      {/if}
+    {/if}
+  {/foreach}
+  </div>
+{elseif $row.ban_type eq 'slide'}
+  <div class="Carousel-wrapper">
+    <div class="Carousel Carousel-banner" data-slick='{literal}{"slidesToShow": 1}{/literal}'>
+      {foreach from=$row.sub_banners item=item}
+        {if $item.src}
+          <div class="Carousel-item">
+            <div class="Carousel-item-textbox">
+              <div class="container">
+                <div class="Carousel-caption"> 
+                  <h3 class="animate fadeInDown">{$item.ban_title}</h3>
+                  <div class="animate fadeInUp">{$item.ban_description}</div>
+                  {if !($item.ban_link eq '/')}
+                  {assign var="ban_link" value=$item.ban_link|split:":"}
+                  <a href="{$ban_link[1]}" class="btn btn-orange animate fadeInUp">
+                    {$ban_link[0]}
+                  </a>
+                  {/if}
+                </div>
+              </div>
+            </div>
+            <a {if $item.ban_target ne '' and $item.ban_target ne '_self'}target="{$item.ban_target|default:'_self'}"{/if} href="{$item.ban_link|default:'#'}">
+              <img alt="{$item.ban_title|default:$item.src.a}" src="{$item.src.a}" width="{$item.ban_width|default:$row.bng_width}" height="{$item.ban_height|default:$row.bng_height}">
+            </a>
+          </div>
+        {/if}
+      {/foreach}
+    </div>
+  </div>
+{elseif $row.ban_type eq 'image'}
+  {if $row.src}
+    {if $row.ban_link}
+      <a {if $row.ban_target ne '' and $row.ban_target ne '_self'}target="{$row.ban_target|default:'_self'}"{/if} href="{$row.ban_link}">
+      {if $row.bng_name eq 'splash'}
+        <img class="banner_img" alt="{$row.ban_title|default:$row.src.a}" src="{$row.src.a}" width="{$row.ban_width|default:$row.bng_width}" height="{$row.ban_height|default:$row.bng_height}" />
+      {else}
+        <img class="banner_img" alt="{$row.ban_title|default:$row.src.a}" src="{$row.src.a}" width="{$row.ban_width|default:$row.bng_width}"  height="{$row.ban_height|default:$row.bng_height}" />
+      {/if}
+      </a>
+    {else}
+      {if $row.bng_name eq 'splash'}
+      <img class="banner_img" alt="{$row.ban_title|default:$row.src.a}" src="{$row.src.a}" width="{$row.ban_width|default:$row.bng_width}" height="{$row.ban_height|default:$row.bng_height}" />
+      {else}
+      <img class="banner_img" alt="{$row.ban_title|default:$row.src.a}" src="{$row.src.a}" width="{$row.ban_width|default:$row.bng_width}"  height="{$row.ban_height|default:$row.bng_height}" />
+      {/if}
+
+    {/if}
+  {/if}
+{/if}

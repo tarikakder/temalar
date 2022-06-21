@@ -1,0 +1,246 @@
+<span class="cart_variables">
+	<input type="hidden" class="cart_prd_count" value="{$cart_contents.products_count|intval}" />
+	<input type="hidden" class="cart_prd_total" value="{$cart_contents.total_amount|price_format}" />
+	<input type="hidden" id="big_cart_list" value="1" />
+</span>
+
+<div class="cart_list" id="container_cart_list_big">
+	{include file="order_steps.html" ord_step_selected="cart"}
+
+	{if defined("CartExcel") and $smarty.const.CartExcel}
+	<div class="cart_excel_buttons mt-3 d-flex justify-content-center">
+		<a class="btn btn-light mx-2 button_upload" href="{create_link p='CartExcel'}"><i class="fa fa-file-excel-o"></i> {$LANG.label_cart_excel_upload}</a>
+		<a class="btn btn-light mx-2 button_download" href="{create_link p='Cart' xls=1}"><i class="fa fa-file-excel-o"></i> {$LANG.label_cart_excel_download}</a>
+	</div>
+	{/if}
+
+	{if $cargo_free_min_amount} <div class="alert alert-warning cargo-free-msg">{$LANG.cargo_discount_text_free|sprintf:$cargo_free_min_amount:$cart_contents.cur_code}</div>{/if}
+
+	{if $cart_contents.prd_digital_exists}
+	<div class="alert alert-warning cart-digital-warn">{$LANG.label_cart_digital_warning}</div>
+	{/if}
+
+	<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form mt-3">
+		{if !$config.cfg_order_out_of_stock and $cart_contents.no_stock}
+		<div class="alert {if $page_message_type eq 'success'}alert-success{else}alert-danger{/if}">
+			{$LANG.label_no_stock_general}
+		</div>
+		{/if}
+
+		{if $cart_contents.products_count > 0}
+		<table class="table cart_list_table table-bordered">
+			<thead class="rsp-hide-538">
+			<th class="rsp-hide-538">
+				<div class="form-group form-check">
+					<input class="form-check-input" type="checkbox" name="checkall" id="checkall" onclick="$('.toggle').prop('checked',this.checked)">
+				</div>
+			</th>
+			<th>
+				&nbsp;
+			</th>
+			<th>
+				{$LANG.label_prd_name}
+			</th>
+			<th class="rsp-hide-538">
+				{$LANG.label_crt_price}
+			</th>
+			<th>
+				{$LANG.label_crt_quantity}
+			</th>
+			<th>
+				{$LANG.label_total_price}
+			</th>
+			</thead>
+			<tbody>
+			{foreach from=$cart_contents.products item=item key=k}
+			<tr class="cart-items" data-prd-id="{$item.prd_id}" data-prd-name="{$item.prd_name|escape}" data-barcode="{$item.prd_barcode}" data-quantity="{$item.crt_quantity}" data-final-price="{$item.prd_final_price}" data-total-price="{$item.total_price}">
+				<td class="rsp-hide-538">
+					<div class="form-group form-check">
+						<input class="form-check-input toggle" type="checkbox" name="delete[]" id="delete{$k}" value="{$item.crt_id}">
+					</div>
+				</td>
+				<td>
+					{if $item.prd_id>0 and $item.images.a}
+					<a href="{create_link p=Products view=$item.prd_id}">
+						<img class="prd_image" src="{$item.images.a}" alt="{$item.prd_name|escape}">
+					</a>
+					{/if}
+				</td>
+				{assign var=final_price value= $item.prd_final_price/$item.tax_rate}
+				<td>
+					<div class="crt_prd_name">
+						<a class="prd_name" href="{create_link p=Products view=$item.prd_id}">
+							{if !$config.cfg_order_out_of_stock and $item.no_stock}
+							<span class="required_star">&nbsp;*&nbsp;</span>
+							{/if}
+							{$item.prd_name|display_text}
+						</a>
+						{if $item.prd_discount_rate>0}<span class="dsc_appiled">{$LANG.label_prd_discount_applied|sprintf:$item.prd_discount_rate}</span>{/if}
+						{if $item.opt_string}<br/><div class="prd_opt_list">{$item.opt_string|nl2br}</div>{/if}
+						{if $item.variant_string}<br/><div class="prd_opt_list">{$item.variant_string|nl2br}</div>{/if}
+					</div>
+
+					{if $item.crt_unit_id gt 0}
+					<div class="quantity_total rsp-538">
+						<span class="rsp-show-538">
+						{$LANG.label_crt_quantity} : <input class="form-control d-inline-block ml-2 quantity" min="1" size="2" type="number" value="{$item.crt_unit_quantity|display_text}" name="quantity_rsp[{$item.crt_id}]" />
+						<input name="bulk_update_rsp" type="submit" class="btn btn-sm button_cart_update" value="{$LANG.button_update}">
+						{$LANG.label_total_price} : {$item.total_price|price_format4:$item.cur_code}</span>
+					</div>
+					{else}
+					<div class="quantity_total rsp-538">
+						<span class="rsp-show-538">
+						{$LANG.label_crt_quantity} : <input class="form-control d-inline-block ml-2 quantity" min="1" size="2" type="number" value="{$item.crt_quantity|display_text}" name="quantity_rsp[{$item.crt_id}]" />
+						<input name="bulk_update_rsp"  type="submit" class="btn btn-sm button_cart_update" value="{$LANG.button_update}">
+						{$LANG.label_total_price} : {$item.total_price|price_format4:$item.cur_code}</span>
+					</div>
+					{/if}
+
+					<div class="buttons">
+						<a class="btn btn-light btn-sm add_to_fav_link" href="{create_link p=Favorites add=$item.prd_id fav_type=prd cart=1}">{$LANG.label_add_to_favorites}</a>
+						<a class="btn btn-light btn-sm del_link" href="{create_link p=Cart del=$item.crt_id}" >{$LANG.general_delete}</a>
+					</div>
+				</td>
+
+				<td class="rsp-hide-538">
+					{assign var=final_price value= $item.prd_final_price/$item.tax_rate}
+					{$final_price|price_format4:$item.cur_code} + <span class="kdvVal">%{($item.tax_rate-1)*100} KDV</span><br>
+
+					<span id="cardUsd">{$final_price/$cur_values.USD}</span>&nbsp;$ + <span class="kdvVal">%{($item.tax_rate-1)*100} KDV</span>
+					
+				</td>
+
+				{if $item.crt_unit_id gt 0}
+				<td class="rsp-hide-538">
+				<td class="rsp-hide-538">
+					{if $item.prd_id>0}
+					<input class="inp_text quantity" min="1" size="2" type="number" value="{$item.crt_unit_quantity|display_text}" name="quantity[{$item.crt_id}]" />
+					{if $item.crt_unit.unt_name} {$item.crt_unit.unt_name}{/if}
+					<br/>
+					<input name="bulk_update"  type="submit" class="button button_sm button_cart_update" value="{$LANG.button_update}" />
+					{else}{$item.crt_quantity|display_text}{if $item.crt_unit.unt_name} {$item.crt_unit.unt_name}{/if}{/if}
+				</td>
+				{else}
+				<td width="100" class="rsp-hide-538">
+					<div class="d-flex flex-column align-items-center">
+						{if $item.prd_id>0}
+						<input class="form-control quantity" min="1" size="2" type="number" value="{$item.crt_quantity|display_text}" name="quantity[{$item.crt_id}]">
+						<input name="bulk_update" type="submit" class="btn btn-sm btn-light mt-2 button_cart_update" value="{$LANG.button_update}">
+						{else}{$item.crt_quantity|display_text}{/if}
+					</div>
+				</td>
+				{/if}
+				<td class="rsp-hide-538">
+					{assign var=total_price value= $item.total_price/$item.tax_rate}
+					{$total_price|price_format4:$item.cur_code} + <span class="kdvVal">%{($item.tax_rate-1)*100} KDV</span><br>
+					<span id="cardUsd">{$total_price/$cur_values.USD}</span>&nbsp;$ + <span class="kdvVal">%{($item.tax_rate-1)*100} KDV</span>
+				</td>
+			</tr>
+			{/foreach}
+			</tbody>
+		</table>
+
+		<div>
+			{if $config.vat}
+			<div class="d-flex">
+				<span>{$LANG.label_total_tax} : </span>
+				<b>{$cart_contents.total_tax|price_format4:$cart_contents.cur_code}</b>
+			</div>
+			{/if}
+
+			<div class="d-flex align-items-center">
+				<input type="submit" name="del" id="del" class="btn btn-danger btn-sm button_delete button_cart_delete" value="{$LANG.label_delete}">
+
+				<div class="ml-auto">
+					<div class="float-left" >
+					<div class="float-left"><span>{$LANG.label_total_products}:&nbsp;</span></div>
+					<div class="float-right">
+						<p class="text-right">
+							{assign var=total_point_amount value= $cart_contents.total_point_amount-$cart_contents.total_tax}
+							{assign var=total_amount value= $cart_contents.total_amount-$cart_contents.total_tax}
+
+							{if $cart_contents.point_shop_exists && $cart_contents.price_shop_exists}
+							<b>{$cart_contents.total_amount|price_format4:$cart_contents.cur_code} + <span>KDV</span></b><br>
+								<span id="cardUsd">{$cart_contents.total_amount/$cur_values.USD}</span>&nbsp;$ + <span>KDV</span> + <b>{$total_point_amount} {$LANG.label_point} + <span>KDV</span></b><br>
+							<span id="cardUsd">{$total_point_amount/$cur_values.USD}</span>&nbsp;$ + <span>KDV</span>
+							{elseif $cart_contents.price_shop_exists}
+							<b>{$total_amount|price_format4:$cart_contents.cur_code} + <span>KDV</span></b><br>
+								<span id="cardUsd">{$total_amount/$cur_values.USD}</span>&nbsp;$ + <span>KDV</span>
+							{elseif $cart_contents.point_shop_exists}
+							<b>{$total_point_amount} {$LANG.label_point} + <span>KDV</span></b><br>
+								<span id="cardUsd">{$total_point_amount/$cur_values.USD}</span>&nbsp;$ + <span>KDV</span>
+							{/if}
+						</p>
+					</div>
+					</div>
+					<div class="float-left ml-3" >
+						<div class="float-left">
+						<span>Toplam KDV:&nbsp;</span>
+						</div>
+						<div class="float-right">
+						<p class="text-right">
+							<b>{$cart_contents.total_tax|price_format4:$cart_contents.cur_code}</b><br>
+							<span id="cardUsd">{$cart_contents.total_tax/$cur_values.USD}</span>&nbsp;$
+						</p>
+				        </div>
+					</div>
+					<div class="float-left ml-3" >
+	<div class="float-left">
+		<span>Toplam Tutar:&nbsp;</span>
+	</div>
+	<div class="float-right">
+		<p class="text-right">
+			<b>{$cart_contents.total_amount|price_format4:$cart_contents.cur_code}</b><br>
+			<span id="cardUsd">{$cart_contents.total_amount/$cur_values.USD}</span>&nbsp;$
+		</p>
+	</div>
+</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-end mt-3">
+			<div class="cart-buttons">
+				<div class="form-group">
+					<a class="btn btn-sm btn-dark button_continue_shopping" href="{$smarty.const.HTTP_HOST}">
+						<span class="">{$LANG.label_continue_shopping}</span>
+					</a>
+					{if defined("QUOTES_ENABLED") and $smarty.const.QUOTES_ENABLED}
+					<a class="btn btn-sm btn-orange button_create_quote" href="{create_link p=Quotes create_quote=1}">
+						<span class="">{$LANG.create_quote}</span>
+					</a>
+					{/if}
+					<input name="checkout" type="submit" class="btn btn-sm btn-orange button_checkout" value="{$LANG.label_checkout}">
+				</div>
+			</div>
+		</div>
+
+		{else}
+		<div class="alert alert-danger mt-4">{$LANG.label_no_items_found}</div>
+		{/if}
+	</form>
+
+	{if $smarty.const.COUPON_ENABLED}
+	{if $cart_contents.products_count > 0}
+	<div class="coupon_box mt-4">
+		<form action="{create_link transfer=get popup=0}" method="post">
+			{include file="coupons_list_order.html"}
+			{$LANG.label_coupon_code}<br/>
+
+			<div class="form-inline mt-2">
+				<div class="form-group mr-2">
+					<input type="text" placeholder="{$LANG.label_cop_code}" class="form-control form-control-sm" id="coupon_code" name="coupon_code" value="" maxlength="32" size="15">
+				</div>
+				<input name="apply" type="submit" class="btn btn-dark btn-sm button_apply button_coupon_apply" value="{$LANG.button_apply}" />
+			</div>
+		</form>
+	</div>
+	{/if}
+	{/if}
+
+	<br/>
+
+</div>

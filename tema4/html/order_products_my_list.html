@@ -1,0 +1,57 @@
+<div class="Account">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader ordListHeader">{$contentHeader|display_text}</h1>
+
+			<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form">
+				{if $recordset}
+				<table class="table table-bordered list_table">
+					<thead>
+						<tr>
+							<th width="150"></th>
+							<th>
+							{$LANG.label_orp_prd_name}
+							</th>
+							<th style="text-align: center;">
+							{$LANG.label_orp_status}
+							</th>
+						</tr>		
+					</thead>
+					<tbody>
+					{foreach from=$recordset item=item key=k}
+						<tr>
+							<td>
+								{if $item.images.a}
+									<a href="{create_link p=Products view=$item.prd_id}">
+										<img style="width: 100%;" src="{$item.images.a}" alt="" />
+									</a>
+								{/if}
+							</td>
+							<td>
+								<a href="{create_link p=Products view=$item.orp_prd_id}">{$item.orp_prd_name|display_text}</a>
+								{if $item.orp_pro_id>0}<br/><div class="prd_opt_list">{$item.orp_pro_string|nl2br}</div>{/if}
+							</td>
+							<td style="text-align: center;">
+								{if $item.orp_download_link or $item.orp_ticket}
+									<a class="ord_download_link" href="{create_link p=Orders download=1 order_id=$item.orp_order_id item_id=$item.orp_id}">{$LANG.label_download}</a>
+								{else}
+									{if $item.orp_prd_id>0}{$item.ors_name}{/if}
+								{/if}
+							</td>
+						</tr>
+					{/foreach}
+					</tbody>
+				</table>
+        
+        {include file="pager.html"}
+        
+				{/if}
+			</form>
+		</div>
+	</div>
+</div>

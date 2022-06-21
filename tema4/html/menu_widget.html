@@ -1,0 +1,40 @@
+{if $menu}
+
+	<div class="Box box_menu">
+	<div class="Box-header"><a href="javascript:void(0);">{$mod_row.mod_name}</a></div>
+	<div class="Box-content menu_content">
+
+		
+		{if $menu.menu_items}
+			<ul>
+			{foreach from=$menu.menu_items item=item key=key}
+				<li><a href="{$item.men_link}" {if $item.men_target ne '' and $item.men_target ne '_self'}target="{$item.men_target|default:'_self'}"{/if}>{if $item.image}<img alt="{$item.men_name}" src="{$item.image.a}" />{else}<span><i class="la la-angle-right"></i> {$item.men_name}</span>{/if}</a>
+				{if $item.subs}
+						<ul>
+							{foreach from=$item.subs item=item2 key=key2 name=mainmenuloop2}
+								<li><a href="{$item2.men_link}" {if $item2.men_target ne '' and $item2.men_target ne '_self'}target="{$item2.men_target|default:'_self'}"{/if}>{if $item2.image}<img alt="{$item2.men_name}" src="{$item2.image.a}" />{else}<span><i class="la la-angle-right"></i> {$item2.men_name}</span>{/if}</a>
+								
+									{if $item2.subs}
+										<ul>
+											{foreach from=$item2.subs item=item3 key=key3 name=mainmenuloop3}
+												<li><a href="{$item3.men_link}"  {if $item3.men_target ne '' and $item3.men_target ne '_self'}target="{$item3.men_target|default:'_self'}"{/if}>{if $item3.image}<img alt="{$item3.men_name}" src="{$item3.image.a}" />{else}<span><i class="la la-angle-right"></i> {$item3.men_name}</span>{/if}</a></li>
+											{/foreach}			
+										</ul>
+									{/if}						
+								
+								</li>
+							{/foreach}			
+						</ul>
+					{/if}
+				</li>			
+			{/foreach}		
+			</ul>
+		{/if}
+
+
+	
+	</div>
+	<div class="Box-footer"></div>
+	</div>	
+	
+{/if}

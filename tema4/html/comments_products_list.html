@@ -1,0 +1,82 @@
+<div class="Box box_comments">
+{if !$mod_item.mod_parent_id}
+	<div class="Box-header">
+		<a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}  ({$comments_list|@count})</a>
+	</div>
+{/if}
+	<div class="Box-content">
+    
+    {if $prd_row}
+		<a class="btn btn-orange btn-sm button_add_comment" href="javascript:void(0);" onclick="$('.comment_form_container').loadPage('{create_link p=Comments popup=1 edit=-1 prd_id=$prd_row.prd_id no_common=1}');">
+			<span>{$LANG.label_add_comment}</span>
+		</a>
+    {/if}
+    
+		<div class="comment_form_container my-3"></div>
+
+		{if $comments_list}
+    <div class="comments_container" data-comment-count="{$comments_list|@count}">
+		{foreach from=$comments_list item=item key=k}
+		<div class="cmt_item">
+			<div class="cmt_item_top">
+				<span>{$item.com_name|display_text}</span>
+
+				<div class="cmt_item_top_items">
+        {*
+					<div class="cmt_item_like">
+						{if isUserLogin()}
+						<span class="like_dislike like" onclick="$('#comment_box{$item.com_id}').loadPage('{create_link save=1 p=Votes vote_value=2 item_id=$item.com_id item_type=cmt}');">
+							<span class="la la-thumbs-up" title="{$LANG.label_I_like_this}"></span>
+						</span>
+						<span class="like_dislike dislike" onclick="$('#comment_box{$item.com_id}').loadPage('{create_link save=1 p=Votes vote_value=1 item_id=$item.com_id item_type=cmt}');">
+							<span class="la la-thumbs-down" title="{$LANG.label_I_dont_like_this}"></span>
+						</span>
+			      {else}
+			      <span class="like_dislike like" onclick="window.location='{create_link p=Login return_url=$smarty.const.CURRENT_URL|escape|url_encrypt}'">
+			      	<span class="la la-thumbs-up" title="{$LANG.label_I_like_this}"></span>
+			      </span>
+						<span class="like_dislike dislike" onclick="window.location='{create_link p=Login return_url=$smarty.const.CURRENT_URL|escape|url_encrypt}'">
+							<span class="la la-thumbs-down" title="{$LANG.label_I_dont_like_this}"></span>
+						</span>		
+			      {/if}
+						
+						<span id="comment_box{$item.com_id}">
+							{if $item.com_like_count>0}<span class="tlike">{$LANG.label_liked|sprintf:$item.com_like_count}</span>{/if}
+							{if $item.com_dislike_count>0}<span class="tdislike">{$LANG.label_disliked|sprintf:$item.com_dislike_count}</span>{/if}
+						</span>
+					</div>
+*}
+					<div class="cmt_item_clock">
+						<i class="la la-clock"></i> {$item.com_insert_date|dt_format}
+					</div>
+				</div>
+			</div>
+      
+      <div class="vote_section">
+        <div class="vote_img">
+          {section loop=6 start=1 name=stars}
+          <span class="vote_items {if $item.com_vote gte $smarty.section.stars.index}dy_selected{/if}">	
+            <span class="la la-star "></span>
+          </span>
+          {/section}
+          {$item.com_vote}/5  
+        </div>
+      </div>
+      
+			<div class="cmt_text">{$item.com_comment|display_text}</div>
+
+		</div>
+		{/foreach}
+		</div>
+		{else}
+		<div class="mt-3">{$LANG.label_no_comments}</div>
+		{/if}
+		
+		{if $tpl_config.facebook_comments}
+		<script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/facebook_comments.js?v={$cache_rev}"></script>		
+		<div class="fb-comments" data-href="{$smarty.const.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-num-posts="10" data-width="700" style="padding:10px;"></div>	
+		{/if}	
+
+	</div>
+	<div class="Box-footer"></div>
+</div>

@@ -1,0 +1,38 @@
+{if $afil_products}
+<style>
+	{literal}
+	body,html{margin:0px;padding:0px;border:0px;}
+	#mgktp_afil_container{ margin:0px; padding:0px; font-size: 12px; background-color: #fff; font-family: Arial; border: 1px solid #ccc; position:relative; width: 718px; height:88px; overflow: hidden;}
+	#mgktp_afil_container .mgktp_afil_box{ float:left; width:118px; height: 76px;}
+	#mgktp_afil_container .mgktp_afil_logo{  display:block; top:0px; right;0px; height:12px; vertical-align:middle; line-height:12px;text-decoration:none; text-align:right; background-color: #ccc; font-size: 10px; color: #333; }
+	#mgktp_afil_container .mgktp_afil_name, #mgktp_afil_container a.mgktp_afil_name:visited{ color: 000; display: block; font-size:12px; padding:0px; margin: 0px 0px; text-decoration:none;}
+	#mgktp_afil_container .mgktp_afil_final_price{ color: #ff0000; font-size: 12px;}
+	#mgktp_afil_container .mgktp_afil_price_cancelled{ text-decoration: line-through;font-size: 12px;}
+	#mgktp_afil_container .mgktp_afil_img img{ border:0px; margin:3px 3px 3px 2px; height: 70px; width: 45px;}
+	
+	{/literal}
+</style>
+<div id="mgktp_afil_container">
+	<a class="mgktp_afil_logo" href="{$smarty.const.HTTP_HOST}">{$config.cfg_site_name}</a>	
+{foreach from=$afil_products item=item key=k}
+	<div class="mgktp_afil_box">
+		<table class="table table-bordered" width="100%" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+			<td width="50" valign="top">
+				<div class="mgktp_afil_img">{if $item.images}<a title="{$item.prd_name|display_text}" href="{$item.link}"><img border="0" src="{$item.images.a}" alt="{$item.prd_name|display_text}" title="{$item.prd_name|display_text}" /></a>{/if}</div>
+			</td>
+			<td width="70" valign="top">	
+				<div class="mgktp_afil_prd_info">
+					<a class="mgktp_afil_name" href="{$item.link}">{$item.prd_name|truncate:26|display_text}</a>							
+					<div class="mgktp_afil_price_cancelled">{if $item.prd_discount_rate>0}{$item.prd_price|price_format} {$item.cur_code}{/if}</div>
+					<div class="mgktp_afil_final_price">{$item.prd_final_price|price_format} {$item.cur_code}</div>		
+				</div>
+			
+			</td>
+			</tr>
+		</table>
+	</div>
+{/foreach}
+	
+</div>
+{/if}

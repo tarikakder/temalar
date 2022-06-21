@@ -1,0 +1,61 @@
+<div class="frm share_form mt-3">
+	{if $success}
+		<div class="alert alert-success">{$message}</div>
+	{else}
+		<div>
+			{if $error}
+			<div class="alert alert-danger">{$LANG.validation_general}</div>
+			{/if}
+			
+			<form action="{create_link transfer=get}" data-container=".result_box" method="post" onsubmit="return $(this).loadPageSubmit();">
+				<input type="hidden" name="shr_item_id" id="shr_item_id" value="{$row.shr_item_id|escape}" />
+				<input type="hidden" name="shr_url" id="shr_url" value="{$row.shr_url}" />
+				
+				<div class="form_table share_form">
+					<div class="error">{$error.shr_name}</div>
+					<div class="form-group">
+						<label for="mmb_name">{$LANG.label_mmb_name} <span class="required_star">*</span> : </label>	
+						<input class="form-control" placeholder="{$LANG.label_mmb_name}" required="required" {if $smarty.session.userID}readonly{/if} type="text" name="shr_name" id="shr_name" value="{$row.shr_name|escape}" />
+					</div>
+					
+					<div class="error">{$error.shr_from_email}</div>
+					<div class="form-group">
+						<label for="shr_from_email">{$LANG.label_mmb_email} <span class="required_star">*</span> : </label>	
+						<input class="form-control" placeholder="{$LANG.label_mmb_email}" required="required" {if $smarty.session.userID}readonly{/if} type="text" name="shr_from_email" id="shr_from_email" value="{$row.shr_from_email|escape}" />
+					</div>
+					
+					<div class="error">{$error.shr_to_email}</div>
+					<div class="form-group">
+						<label for="shr_to_email">{$LANG.label_to_email} <span class="required_star">*</span> : </label>	
+						<input class="form-control" type="text" name="shr_to_email" id="shr_to_email" value="{$row.shr_to_email|escape}" />
+					</div>
+
+					<div class="error">{$error.shr_message}</div>
+					<div class="form-group">
+						<label for="shr_message">{$LANG.label_shr_message} <span class="required_star">*</span> : </label>	
+						<textarea class="form-control" rows="6" name="shr_message" id="shr_message">{$row.shr_message|escape}</textarea>
+					</div>
+				
+					<div class="form-group">
+						<span>
+							<a href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">{$LANG.label_refresh_captcha}</a>
+						</span>
+					</div>
+					<div class="form-group">
+						<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="">
+					</div>
+					<div class="error">{$error.captcha_string}</div>
+					<div class="form-group f1orm_row_captcha">
+						<span>{$LANG.label_captcha_string}</span>
+					</div>
+					<div class="form-group">
+						<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+					</div>
+					<div class="form-group">
+						<input class="btn btn-dark btn-sm button_save" type="submit" name="save" id="save" value="{$LANG.button_send}"/>&nbsp;	
+					</div>
+				</div>
+			</form>
+		</div> 
+	{/if}
+</div>

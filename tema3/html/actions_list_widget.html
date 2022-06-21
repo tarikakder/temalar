@@ -1,0 +1,15 @@
+{if $actions_list}
+<div class="Box actions_list_box">
+	<div class="Box-header">
+    <a href="javascript:void(0);"><span>{$mod_row.mod_name}</span></a>
+  </div>		
+	<div class="Box-content">
+    <div class="Carousel-wrapper">
+      <div class="Carousel" {$literal1}data-slick='{literal}{{/literal}"slidesToShow":10, "dots": false{literal}}{/literal}'{$literal2}>
+        {include file="actions_list_widget_content.html"}
+      </div>
+    </div>
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

@@ -1,0 +1,108 @@
+<div class="view">
+
+	{if $smarty.get.processing}		
+    <div class="order-cc-processing" 
+    data-get-status-url="{create_link p=Transactions get_status=$smarty.get.processing status_message=1}" 
+    data-success-url="{create_link p=Orders view=$row.ord_id completed=1}"
+    data-fail-url="{create_link p=Orders edit=$row.ord_id}">
+    </div>
+        
+	{elseif $smarty.get.completed}
+		{include file="order_steps.html" ord_step_selected="completed"}
+
+		{* google conversion code lari vb yerlerde kullanilmak uzere ihtiyac duyulabilecek degerleri buraya ekliyoruz.*} 
+		{* urun bilgileri de order_products_list.html de var *}
+		<div class="completed-order-info" 
+			data-ord-code="{$row.ord_code|escape}" 
+			data-ord-grand-total="{$row.ord_grand_total|escape}" 
+			data-ord-shipping-total="{$row.ord_shipping_total|escape}">
+		</div>
+	{else}
+		<h1 class="contentHeader ordViewHeader">{$contentHeader|display_text}</h1>
+	{/if}
+		
+	{if !$row}
+		{include file="order_search.html"}
+	{else}
+
+		{if $smarty.get.completed}
+			{if $config.cfg_order_complete_script}{$config.cfg_order_complete_script}{/if}
+		{/if}
+
+		<div class="mt-2">
+			<div class="ord_header">{$LANG.label_ord_code}</div>
+			<div>{$row.ord_code|escape}</div>
+		</div>
+
+		{if $row.ors_name}
+		<div class="mt-2">
+			<div class="ord_header">{$LANG.label_ord_status}</div>
+			<div>{$row.ors_name|escape}</div>
+		</div>
+		{/if}
+
+		{if $row.ord_payment_type eq 'mo' and $row.ord_paid_amount lt $row.ord_grand_total}
+		<div class="mt-2">
+			<div class="ord_header">{$LANG.label_ord_bank_account_id}</div>    
+      <div class="d-flex flex-sm-row flex-column">  
+        {if $row.bank_account.qr.a}
+        <div class="bac_image"><img src="{$row.bank_account.qr.a}" alt="{$row.bank_account.bac_iban|escape}" /></div>
+        {/if}      
+        <div>
+          {$row.bnk_name}{if $row.bac_owner}<br/>{$row.bac_owner|escape}{/if}<br/>	
+          {$LANG.label_bac_iban}: {if $row.bac_iban}<b>{$row.bac_iban|escape}</b>{/if} {$item.bac_account_type}<br/>
+          {$LANG.label_total_amount} : {$row.ord_grand_total|price_format} {$cart_contents.cur_code}<br/>
+          <div class="alert alert-warning mt-2">{$LANG.info_bank_account|sprintf:$row.bac_owner:$row.ord_code}</div>
+          
+          {*{if $row.ord_paid_amount lt $row.ord_grand_total and $row.ord_payment_type ne 'pr' and $row.ord_payment_type ne 'prc'}&nbsp;&nbsp;<a class="button" href="{create_link p=Orders payment=$row.ord_id}"><span class="">{$LANG.label_make_payment}</span></a>{/if}*}
+        </div>
+      </div>
+		</div>
+		{/if}
+
+		{if $row.ord_cargo_ref_no}
+		<div class="mt-2">
+			<div class="ord_header">{$row.crg_name}</div>
+			<div class="ord_cargo_ref">{$LANG.label_ord_cargo_ref_no}: {$row.ord_cargo_ref_no|escape}</div>
+			{if $row.crg_url}<a href="{$row.crg_url}" style="color:#0000ff;" target="_blank">({$LANG.label_click_cargo_ref})</a>{/if}
+		</div>
+		{/if}
+
+		<div class="orders_info_wrapper mt-2">
+			<div class="orders_info_item">
+				<div class="ord_header">{$LANG.label_billing_info}</div>
+				<p>
+					<b>{if $row.ord_billing_firm_name}{$row.ord_billing_firm_name|escape}{else}{$row.ord_billing_name|escape}{/if}</b><br/>
+					{$row.ord_billing_address|escape}<br/>
+					{$row.ord_billing_postalcode|escape} {$row.ord_billing_town|escape} / {$row.ord_billing_city|escape} / {$row.ord_billing_country|escape}<br/>
+					{$row.ord_billing_phone|escape}<br/>			
+					{$row.ord_billing_tax_office|escape} {$row.ord_billing_tax_number|escape}
+				</p>
+			</div>
+			{if !$row.all_digital}
+			<div class="orders_info_item">
+				<div class="ord_header">{$LANG.label_shipping_info}</div>
+				<p>
+					<b>{$row.ord_shipping_name|escape}</b><br/>
+					{$row.ord_shipping_address|escape}<br/>
+					{$row.ord_shipping_postalcode|escape} {$row.ord_shipping_town|escape} / {$row.ord_shipping_city|escape} / {$row.ord_shipping_country|escape}<br/>
+					{$row.ord_shipping_phone|escape}<br/>			
+				</p>
+			</div>
+			{/if}
+		</div>
+
+		<div class="mt-2">
+			<div class="ord_header">{$LANG.label_order_products}</div>
+			{*Bu alan şu an için sadece toptanasya da çalışıyor*}
+			{if defined("memberOrderExport") and $smarty.const.memberOrderExport}
+			<div class="ord_export_desc"><a href="{create_link p=Orders export=$smarty.get.view}">{$LANG.label_ord_export_desc}</a></div>
+			{/if}
+			{include file='order_products_list.html'}
+		</div>
+		
+		{if $row.ord_total_points>0}
+		<div class=""><div class="ord_header">{$LANG.label_ord_total_points}</div>{$row.ord_total_points|escape}</div>
+		{/if}
+	{/if}
+</div>

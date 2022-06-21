@@ -1,0 +1,109 @@
+<div class="member_nav list-group {$members_menu_class}">
+	<a class="list-group-item list-group-item-action user_menu_mmb {if $smarty.get.p eq 'Members'} active{/if}" href="{create_link p='Members'}">{$LANG.label_member_info}</a>
+
+	<a class="list-group-item list-group-item-action user_menu_pref {if $smarty.get.p eq 'MemberPreferences'} active{/if}" href="{create_link p='MemberPreferences'}">{$LANG.label_my_preferences}</a>
+
+	<a class="list-group-item list-group-item-action user_menu_adr {if $smarty.get.p eq 'Address'} active{/if}" href="{create_link p='Address'}">{$LANG.label_address}</a>
+
+	<a class="list-group-item list-group-item-action user_menu_fav{if $smarty.get.p eq 'Favorites'} active{/if}" href="{create_link p='Favorites'}">{$LANG.label_my_favorites}</a>
+
+	{if $config.cfg_enable_comments}
+	<a class="list-group-item list-group-item-action user_menu_comments {if $smarty.get.p eq 'Comments'} active{/if}" href="{create_link p='Comments'}">{$LANG.label_my_comments}</a>
+	{/if}
+	
+	{if !$config.cfg_catalog_mode}
+		{if defined('ext_EbookStealth') and $smarty.const.ext_EbookStealth}
+		<a class="list-group-item list-group-item-action user_menu_orp {if $smarty.get.p eq 'OrderProducts'} active{/if}" href="{create_link p='OrderProducts'}">Satın Aldıklarım</a>
+		{/if}
+
+		<a class="list-group-item list-group-item-action user_menu_orders {if $smarty.get.p eq 'Orders'} active{/if}" href="{create_link p='Orders'}">{$LANG.label_my_orders}</a>
+
+		<a class="list-group-item list-group-item-action user_menu_cart {if $smarty.get.p eq 'Cart'} active{/if}" href="{create_link p='Cart'}">{$LANG.label_my_cart}</a>
+
+		<a class="list-group-item list-group-item-action user_menu_points {if $smarty.get.p eq 'MemberPoints'} active{/if}" href="{create_link p='MemberPoints'}">{$LANG.label_member_points}</a>
+		
+		{if $smarty.const.COUPON_ENABLED}
+		<a class="list-group-item list-group-item-action user_menu_coupons {if $smarty.get.p eq 'Coupons'} active{/if}" href="{create_link p='Coupons'}">{$LANG.label_coupons}</a>
+		{/if}
+		{if defined("QUOTES_ENABLED") and $smarty.const.QUOTES_ENABLED}
+		<a class="list-group-item list-group-item-action user_menu_act {if $smarty.get.p eq 'Quotes'} active{/if}" href="{create_link p='Quotes'}">{$LANG.my_quotes}</a>
+		{/if}		
+		{if defined("RESELLER_ENABLED") and $smarty.const.RESELLER_ENABLED}
+		<a class="list-group-item list-group-item-action user_menu_act {if $smarty.get.p eq 'AccountActivity'} active{/if}" href="{create_link p='AccountActivity'}">{$LANG.label_account_activity}</a>
+		{/if}
+	{/if}
+	
+	{if defined("AFIL_ENABLED") and $smarty.const.AFIL_ENABLED}
+		<a class="list-group-item list-group-item-action user_menu_afil {if $smarty.get.p eq 'AfilData'} active{/if}" href="{create_link p='AfilData'}">{$LANG.label_afil}</a>
+	{/if}
+	
+  
+  
+	<a class="list-group-item list-group-item-action user_menu_logout" href="{create_link p='Logout'}">{$LANG.label_logout}</a>
+</div>
+
+<div class="member_nav_mobile">
+	<select onchange="selectMemberMenu(this)" class="form-control">
+		<option {if $smarty.get.p eq 'Members'} selected{/if} value="{create_link p='Members'}">
+			{$LANG.label_member_info}
+		</option>
+		<option {if $smarty.get.p eq 'MemberPreferences'} selected{/if} value="{create_link p='MemberPreferences'}">
+			{$LANG.label_my_preferences}
+		</option>
+
+		<option {if $smarty.get.p eq 'Address'} selected{/if} value="{create_link p='Address'}">
+			{$LANG.label_address}
+		</option>
+
+		<option {if $smarty.get.p eq 'Favorites'} selected{/if} value="{create_link p='Favorites'}">
+			{$LANG.label_my_favorites}
+		</option>
+
+		{if $config.cfg_enable_comments}
+		<option {if $smarty.get.p eq 'Comments'} selected{/if} value="{create_link p='Comments'}">
+			{$LANG.label_my_comments}
+		</option>
+		{/if}
+
+		{if !$config.cfg_catalog_mode}
+		<option {if $smarty.get.p eq 'Orders'} selected{/if} value="{create_link p='Orders'}">
+			{$LANG.label_my_orders}
+		</option>
+
+		<option {if $smarty.get.p eq 'Cart'} selected{/if} value="{create_link p='Cart'}">
+			{$LANG.label_my_cart}
+		</option>
+
+		<option {if $smarty.get.p eq 'MemberPoints'} selected{/if} value="{create_link p='MemberPoints'}">
+			{$LANG.label_member_points}
+		</option>
+
+		{if $smarty.const.COUPON_ENABLED}
+		<option {if $smarty.get.p eq 'Coupons'} selected{/if} value="{create_link p='Coupons'}">
+			{$LANG.label_coupons}
+		</option>
+		{/if}
+		{if defined("QUOTES_ENABLED") and $smarty.const.QUOTES_ENABLED}
+		<option {if $smarty.get.p eq 'Quotes'} selected{/if} value="{create_link p='Quotes'}">
+			{$LANG.my_quotes}
+		</option>
+		{/if}		
+		{if defined("RESELLER_ENABLED") and $smarty.const.RESELLER_ENABLED}
+		<option {if $smarty.get.p eq 'AccountActivity'} selected{/if} value="{create_link p='AccountActivity'}">
+			{$LANG.label_account_activity}
+		</option>
+		{/if}
+		{/if}
+
+		{if defined("AFIL_ENABLED") and $smarty.const.AFIL_ENABLED}
+			<option {if $smarty.get.p eq 'AfilData'} selected{/if} value="{create_link p='AfilData'}">
+				{$LANG.label_afil}
+			</option>
+		{/if}
+
+		<option value="{create_link p='Logout'}">
+			{$LANG.label_logout}
+		</option>
+
+	</select>
+</div>

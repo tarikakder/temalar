@@ -1,0 +1,52 @@
+<div class="list cart_excel_match_list">
+  <h1 class="contentHeader">{$contentHeader|display_text}</h1>
+
+  <form action="{create_link transfer=get}" method="post" class="edit_form">
+    <input type="hidden" name="items" value="{$items_str}" />
+    <input type="hidden" name="quantities" value="{$quantities_str}" />
+    
+    {if $result_products.matched}
+  	<h2>{$LANG.label_cart_excel_matched}</h2>
+  	<table class="table list_table">
+  		<thead>
+  			<th>{$LANG.label_prd_barcode}</th>
+  			<th>{$LANG.label_prd_name}</th>
+  			<th>{$LANG.label_crt_quantity}</th>
+  		</thead>
+      <tbody>
+      {foreach from=$result_products.matched item=item}
+  		<tr>
+  			<td>{$item.prd_row.prd_barcode}</td>
+  			<td>
+          <a href="{create_link p=Products view=$item.prd_row.prd_id}" target="_blank">{$item.prd_row.prd_name}</a>
+        </td>
+  			<td>{$item.quantity}</td>
+  		</tr>
+      {/foreach}
+      </tbody>
+  	</table>
+    
+    <div>
+      <input type="submit" name="add" class="btn btn-dark" value="{$LANG.label_add_to_cart}">
+    </div>
+    {/if}
+    
+    {if $result_products.unmatched}
+  	<h2>{$LANG.label_cart_excel_unmatched}</h2>
+  	<table class="table list_table">
+  		<thead>
+  			<th>{$LANG.label_prd_barcode}</th>
+  			<th>{$LANG.label_crt_quantity}</th>
+  		</thead>
+      <tbody>
+        {foreach from=$result_products.unmatched item=item}
+    		<tr>
+    			<td>{$item.barcode}</td>
+    			<td>{$item.quantity}</td>
+    		</tr>
+        {/foreach}
+      </tbody>		
+  	</table>  
+    {/if}
+  </form>
+</div>

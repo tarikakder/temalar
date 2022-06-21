@@ -1,0 +1,78 @@
+<div class="Account">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader adrListHeader">{$contentHeader|display_text}</h1>
+
+			<p>
+				{$LANG.msg_coupon_usage}
+			</p>
+
+			<div class="coupon_box mt-3">
+				<form action="{create_link transfer=get}" method="post" class="edit_form" id="coupons_form">
+					<input type="hidden" id="cop_id" name="cop_id" value="{$row.cop_id}">
+					{if $error.cop_code}<div class="error">{$error.cop_code}</div>{/if}
+					{$LANG.label_coupon_code}
+
+					<div class="form-inline mt-2">
+						<div class="form-group mr-2">
+							<input class="required form-control" required="required" placeholder="{$LANG.label_cop_code}" type="text" name="cop_code" id="cop_code" maxlength="32" size="10" value="{$row.cop_code}">
+						</div>
+						<input class="btn btn-dark button_add button_coupon_add" type="submit" name="save" id="save" value="{$LANG.button_add}">
+					</div>
+				</form>
+			</div> 
+			
+			{if $pager.data_count>0}
+			<table class="table table-bordered">
+				<thead class="rsp-hide-538">
+					<th>
+						{$LANG.label_cop_desc}
+					</th>
+
+					<th>
+						{$LANG.label_cop_condition}
+					</th>
+
+					<th>
+						{$LANG.label_cop_discount}
+					</th>
+
+					<th>
+						{$LANG.label_cop_exp_date}
+					</th>
+				</thead>
+				<tbody>
+				{foreach from=$recordset item=item key=k}
+				<tr>
+					<td>{$item.cop_desc}</td>
+					<td>
+						{$item.condition}
+						{if $item.cop_page}<span class="cop_conditions_link" onclick="mypopup('{create_link p=Coupons view=$item.cop_id popup=1}')">{$LANG.label_cop_other_condition}</a>{/if}
+					</td>
+
+					<td class=" table-cell table-cell-center">
+						<span class="rsp-show-538">{$LANG.label_cop_discount} : </span>
+						{if $item.cop_discount_rate>0}
+						%{$item.cop_discount_rate}
+						{else}
+						{$item.cop_discount|price_format4:$item.cur_code}
+						{/if}
+					</td>
+					<td>
+						<span class="rsp-show-538">{$LANG.label_cop_exp_date} : </span>{$item.cop_exp_date|dt_format}
+					</td>
+				</tr>
+				{/foreach}
+				</tbody>
+			</table>
+			{/if}
+
+			{include file='pager.html'}
+		</div>
+	</div>
+</div>

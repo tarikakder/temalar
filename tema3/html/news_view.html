@@ -1,0 +1,14 @@
+<div class="news_view" itemscope itemtype="https://schema.org/Article">
+	<h1 itemprop="name" class="contentHeader pageViewHeader">{$contentHeader|display_text}</h1>
+
+	<div class="wysiwyg">
+		<div class="nws_content">
+			<div class="nws_date" itemprop="datePublished">{$row.nws_insert_date}</div>
+			{if $row.image.a}
+				<img src="{$row.image.a}" class="rsp-image nws_view_image">
+			{/if}
+			<span class="nws_text" itemprop="description">{$row.nws_content}</span>
+			{include file='share_buttons.html'}
+		</div>
+	</div>
+</div>

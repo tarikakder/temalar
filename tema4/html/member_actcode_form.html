@@ -1,0 +1,51 @@
+<div class="Box">
+	<h1 class="contentHeader newPasswordHeader">{$contentHeader|display_text}</h1>
+	<form action="{create_link transfer=get}" method="post" class="validate_form">
+	<div class="form_table email_act_form">
+		<div class="error">{$error.mmb_email}</div>
+		<div class="form-group">
+			<input required="required" placeholder="{$LANG.label_mmb_email}" class="form-control email required" type="email" name="mmb_email" id="mmb_email" value="" />
+		</div>
+
+		{if $config.cfg_enable_register_captha}
+			{if $config.captcha_lib eq "recaptchav3"}
+			<!-- google recaptcha v3 -->
+			{else}
+				<div class="form-group">
+					<span>
+						<a href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">
+						{$LANG.label_refresh_captcha}
+						</a>
+					</span>
+				</div>
+				<div class="form-group">
+					<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="" />
+				</div>
+				<div class="error">{$error.captcha_string}</div>
+				<div class="form-group form_row_captcha">
+					<span>{$LANG.label_captcha_string}</span>
+				</div>
+				<div class="form-group">
+					<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+				</div>
+			{/if}
+		{/if}
+		
+		<input type="hidden" name="act_send" id="act_send" value="1">
+		<input type="submit" class="btn btn-orange btn-sm" value="{$LANG.button_send}">
+	</div>
+	</form>
+</div>
+
+{if $config.cfg_enable_register_captha && $config.captcha_lib eq "recaptchav3"}
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy"></script>
+{literal}
+<script type="text/javascript">
+	grecaptcha.ready(function() {
+    grecaptcha.execute('6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy', {action: 'homepage'}).then(function(token) {
+      document.getElementById("token").value = token;
+    });
+  });
+</script>
+{/literal}
+{/if}

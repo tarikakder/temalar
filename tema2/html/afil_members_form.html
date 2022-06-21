@@ -1,0 +1,101 @@
+<div class="frm">
+
+	
+{include file="afil_menu.html"}
+
+
+<h1>{$LANG.label_afil_account}</h1>
+
+
+{if $error}
+<div class="error_header">{$LANG.validation_general}</div>
+{/if}
+
+<form action="{create_link transfer=get register=0}" method="post" class="edit_form validate_form afil_members_form" id="afil_members_form">
+<input type="hidden" id="afl_id" name="afl_id" value="{$row.afl_id}" />
+<table class="table table-bordered">
+	
+
+<tr>
+	
+	<td>{$LANG.label_afl_website}</td>	
+	
+	<td>
+    <div class="error">{$error.afl_website}</div>
+    <input class="required form-control inp_text" type="text" name="afl_website" id="afl_website" maxlength="255" size="30" value="{$row.afl_website}"  />
+  
+  </td>
+	
+</tr>
+	
+<tr>
+	
+  <td>{$LANG.label_afl_phone}</td>	
+	<td>
+    <div class="error">{$error.afl_phone}</div>
+    <input class="required form-control inp_text" type="text" name="afl_phone" id="afl_phone" maxlength="20" size="20" value="{$row.afl_phone}"  />
+  </td>
+	
+</tr>
+	
+<tr>
+	
+	<td>{$LANG.label_afl_cellhphone}</td>
+	
+	
+	<td>
+    <div class="error">{$error.afl_cellhphone}</div>
+    <input class="required form-control inp_text" type="text" name="afl_cellhphone" id="afl_cellhphone" maxlength="20" size="20" value="{$row.afl_cellhphone}"  />
+  </td>
+	
+</div>
+	
+<tr>
+	
+	<td>{$LANG.label_afl_address}</td>
+	
+	
+	<td>
+    <div class="error">{$error.afl_address}</div>
+    <textarea class="required form-control inp_textarea" name="afl_address" rows="5" cols="40" id="afl_address">{$row.afl_address}</textarea>
+  </td>
+	
+</tr>
+	
+<tr>
+	
+	<td>{$LANG.label_afl_iban}</td>
+	
+	
+	<td>
+    <div class="error">{$error.afl_iban}</div>
+    <input class="required form-control inp_text" type="text" name="afl_iban" id="afl_iban" maxlength="100" size="30" value="{$row.afl_iban}"  />
+  </td>
+	
+</tr>
+	
+{if !$row.afl_id && $config.afil_cfg_terms_and_conds>0}
+<tr>
+  <td></td>
+  <td>
+	<div class="terms_container">
+		{$row.terms_page.pag_content}
+	</div>
+
+	<div class="error">{$error.afil_cfg_terms_and_conds}</div>			
+	<input class="inp_checkbox" type="checkbox" name="afil_cfg_terms_and_conds" id="afil_cfg_terms_and_conds" {if $smarty.post.afil_cfg_terms_and_conds}checked="checked"{/if} value="1" />
+	<label for="afil_cfg_terms_and_conds"><a href="javascript: return;" >{$LANG.label_confirm_afil_terms_and_conds}</a></label>
+	</td>	
+</tr>
+{/if}
+
+<tr>
+	<td></td>
+	<td><input class="btn btn-primary button" type="submit" name="save" id="save" value="{$LANG.button_save}"/></td>	
+	
+	
+</tr>
+
+</table>
+</form>
+</div>

@@ -1,0 +1,156 @@
+<div class="frm orders_form" data-cart-total="{$cart_contents.total_amount_cb}">
+	{include file="order_steps.html" ord_step_selected="info"}
+
+	<div id="orders_form_data_post" data-post="{if $smarty.post or $row.ord_mmb_email}1{else}0{/if}"></div>
+	
+	{if $error}
+	<div class="error_header">{$LANG.validation_general}</div>
+  {if $error.general}<div class="error">{$error.general}</div>{/if}
+  
+  {foreach from=$error item=item key=key}
+    {if $key ne 'general'}
+    <div class="error">{$item}</div>
+    {/if}
+  {/foreach}  
+	{/if}
+	<form action="{create_link p=Orders https=1}" method="post" class="edit_form">
+		<input type="hidden" id="order_cart" value="1" />
+		<input id="mo_discount" name="mo_discount" type="hidden" value="{$mo_discount}" />
+		<input id="shipping_cost" name="shipping_cost" type="hidden" value="{$row.ord_shipping_total}" />
+		<input id="cart_total" name="cart_total" type="hidden" value="{$cart_contents.total_amount}" />
+		<input id="total_amount" name="total_amount" type="hidden" value="{$row.ord_grand_total-$row.ord_payment_price}" />
+
+		<div class="orders_form_wrapper">
+    
+      {if $smarty.get.billing_adr_id}
+        <input id="billing_adr_id" name="billing_adr_id" type="hidden" value="{$smarty.get.billing_adr_id}" />    
+      {else}
+			<div class="orders_form_item">
+				<div id="adr_select_div"><div></div></div>
+
+				<div class="ord_form_box">
+					<div class="ord_form_box_header">
+						<span>{$LANG.label_billing_address}</span>
+					</div>
+					
+					{if $select_options.addresses.b}
+					<div class="adr_select mb-3">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" id="bl_adr_id-1" name="bl_adr_id" value="-1" onclick="$('#container_bl_adr').loadPage('{create_link p=Address https=1 load=-1}')" {if $row.bl_adr_id eq -1 or !$row.adr_id}checked{/if}>
+							<label class="form-check-label" for="bl_adr_id-1">&nbsp;{$LANG.label_new_address}</label>
+						</div>
+						{foreach from=$select_options.addresses.b item=item}
+						<div class="form-check">
+							<input class="form-check-input" type="radio" id="bl_adr_id{$item.adr_id}" name="bl_adr_id" value="{$item.adr_id}" onclick="$('#container_bl_adr').loadPage('{create_link p=Address https=1 load=$item.adr_id}')" {if $item.adr_id eq $row.bl_adr_id}checked{/if}>
+							<label class="form-check-label" for="bl_adr_id{$item.adr_id}">&nbsp;{$item.adr_title}</label>
+						</div>
+						{/foreach}
+					</div>
+					{/if}
+					
+					<div id="container_bl_adr">
+						{include file='order_billing_adr_form.html'}
+					</div>
+				</div>
+			</div>
+      {/if}
+      
+      {if $smarty.get.shipping_adr_id}
+        <input id="shipping_adr_id" name="shipping_adr_id" type="hidden" value="{$smarty.get.shipping_adr_id}" />    
+      {else}
+			{if !$cart_contents.all_digital}
+			<div class="orders_form_item">
+				<div id="ord_shipping_container" {if !$row.different_address}style="display:none;"{/if}>
+					<div class="ord_form_box">
+						<div class="ord_form_box_header" title="{$LANG.tooltip_select_new_or_old_address}">
+							<span>{$LANG.label_shipping_address}</span>
+						</div>						
+						{if $select_options.addresses.s}
+						<div class="adr_select mb-3">
+							<div class="form-check">
+								<input class="form-check-input" type="radio" id="sh_adr_id-1" name="sh_adr_id" value="-1" onclick="$('#container_sh_adr').loadPage('{create_link p=Address shipping=1 https=1 load=-1}')" {if $row.sh_adr_id eq -1 or !$row.adr_id}checked{/if}>
+								<label class="form-check-label" for="sh_adr_id-1">&nbsp;{$LANG.label_new_address}</label>
+							</div>
+							{foreach from=$select_options.addresses.s item=item}
+							<div class="form-check">
+								<input class="form-check-input" type="radio" id="sh_adr_id{$item.adr_id}" name="sh_adr_id" value="{$item.adr_id}" onclick="$('#container_sh_adr').loadPage('{create_link p=Address shipping=1 https=1 load=$item.adr_id}')" {if $item.adr_id eq $row.sh_adr_id}checked{/if}>
+								<label class="form-check-label" for="sh_adr_id{$item.adr_id}">&nbsp;{$item.adr_title}</label>
+							</div>
+							{/foreach}
+						</div>
+						{/if}
+						<div id="container_sh_adr">
+							{include file='order_shipping_adr_form.html'}
+						</div>
+					</div>
+				</div>
+
+				<div class="ord_form_box ord_shipping_note">
+					<div class="ord_form_box_header">
+						<span>{$LANG.label_ord_shipping_note}</span>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" name="ord_shipping_note" cols="25" rows="3" id="ord_shipping_note">{$row.ord_shipping_note|escape}</textarea>
+					</div>
+				</div>
+			</div>
+			{/if}
+      
+      {/if}
+      
+		</div>
+
+		<div class="ord_form_box payment_type">
+			<div class="ord_form_box_header">
+				<span>{$LANG.label_ord_payment_type}</span>
+			</div>
+			<div class="error">{$error.ord_payment_type}</div>
+			<div class="payment_type_wrapper">
+				{foreach from=$select_options.payment_types item=item}
+					<label for="ord_payment_type{$item.pop_code}" {if $row.ord_payment_type eq $item.pop_code}class="dy_selected"{/if}>
+						<input id="payment_discount_{$item.pop_code}" name="payment_discount" type="hidden" value="{$item.pop_discount}">
+						{if $item.pop_image}
+						<div class="payment_type_image">
+							<img src="{$item.images.a}" alt="">
+						</div>
+						{/if}
+						<div class="payment_type_top">
+							{if $item.enabled}
+							<input type="radio" id="ord_payment_type{$item.pop_code}" name="ord_payment_type" value="{$item.pop_code}" {if $row.ord_payment_type eq $item.pop_code}checked{/if} onclick="$('#pop_container').payOptions('{create_link p=PaymentOptions type=''}'+this.value,this,true)">
+							{else}
+							<input type="radio" id="ord_payment_type{$item.pop_code}" name="ord_payment_type" value="{$item.pop_code}" disabled>
+							{/if}
+							&nbsp;&nbsp;{$item.pop_name}
+							{if $item.pop_discount>0}
+								<span class="badge badge-danger badge-pill">%{$item.pop_discount|string_format:"%d"}</span>
+							{/if}
+						</div>
+						{if $item.pop_desc}<div class="pop_desc">{$item.pop_desc}</div>{/if}
+					</label>
+				{/foreach}
+			</div>
+		</div>
+
+		<div id="cargo_container">{include file='cargo_options.html'}</div>
+		<div id="pop_container">{if $pop_template}{include file=$pop_template}{/if}</div>
+
+		<div class="ord_form_box">
+			<div class="ord_form_box_header ord_note_trigger" onclick="$('.ord_note_container').toggle();" style="cursor:pointer">
+				<span>
+					<i class="la la-plus"></i> {$LANG.label_ord_note}
+				</span>
+			</div>
+			<div class="ord_fieldset ord_note_container">
+				<div class="error">{$error.ord_note}</div>
+				<div class="form-group">
+					<textarea class="form-control" cols="25" rows="5" name="ord_note" id="ord_note">{$row.ord_note|escape}</textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input class="btn btn-orange mr-2 button_next button_order_next" type="submit" name="save" id="save" value="{$LANG.button_next}">
+			<input class="btn btn-light button_cancel button_order_cancel" type="button" onclick="window.location='{create_link p=Cart}'" name="cancel" id="cancel" value="{$LANG.button_cancel}">
+		</div>
+	</form>
+</div>

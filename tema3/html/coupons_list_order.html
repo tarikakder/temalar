@@ -1,0 +1,47 @@
+{if $my_coupons}
+<h3>{$LANG.label_your_coupons}</h3>
+<table class="table table-bordered" style="font-size: 0.9em;">
+	<thead>
+		<th>&nbsp;</th>
+		<th>{$LANG.label_cop_desc}</th>
+		<th>{$LANG.label_cop_condition}</th>
+		<th>{$LANG.label_cop_discount}</th>
+		<th>{$LANG.label_cop_exp_date}</th>
+	</thead>
+	<tbody>
+	{foreach from=$my_coupons item=item key=k}
+		<tr>
+			<td>
+				<input {if $item.disabled}disabled="disabled"{/if} {if $smarty.session.cop_id eq $item.cop_id}checked="checked"{/if} type="radio" name="cop_id" value="{$item.cop_id}">
+			</td>
+			<td>
+				{$item.cop_desc}
+			</td>			
+			<td>		
+				{$LANG.label_cop_min_amount_desc|sprintf:$item.cop_min_amount}
+				{if $item.disabled}
+				<br/><span class="red">{$LANG.cop_required_amount|sprintf:$item.req_amount}</span>
+				{/if}
+				{if $item.cop_page}<span class="cop_conditions_link" onclick="mypopup('{create_link p=Coupons view=$item.cop_id popup=1}')">{$LANG.label_cop_other_condition}</a>{/if}
+			</td>	
+			<td>
+				<span class="rsp-show-538">{$LANG.label_cop_discount} : </span>
+				{if $item.cop_discount_rate>0}
+				%{$item.cop_discount_rate}
+				{else}
+				{$item.cop_discount|price_format} {$smarty.const.CURRENCY_CODE}
+				{/if}
+			</td>
+			<td>
+				<span class="rsp-show-538">{$LANG.label_cop_exp_date} : </span>
+				{$item.cop_exp_date|dt_format}
+			</td>
+		</tr>
+	{/foreach}
+	</tbody>
+</table>
+
+<input class="btn btn-sm btn-secondary" type="submit" name="apply" value="{$LANG.button_apply}" />
+<br><br>
+{/if}
+

@@ -1,0 +1,36 @@
+<div class="list bg-light p-2">
+
+
+	{include file="afil_menu.html"}
+
+
+<h1>{$LANG.label_afil_payments}</h1>
+
+<div align="left">
+	<h2>{$LANG.afil_current_balance} : {$afil_row.afl_balance} {$smarty.const.CURRENCY_CODE}</h2>
+{if $pager.data_count>0}
+<div class="table-responsive">
+<table class="table table-striped table-bordered">
+<tr>	
+	<td>
+    {$LANG.label_afp_date}
+	</td>	
+	<td>
+    {$LANG.label_afp_amount}
+	</td>	
+</tr>
+{foreach from=$recordset item=item key=k}
+<tr>
+	<td>{$item.afp_date|dt_format}</td>
+	<td>{$item.afp_amount|price_format} {$smarty.const.CURRENCY_CODE}</td>
+	
+</tr>
+{/foreach}
+</table>
+</div>
+{/if}
+</div>
+
+{include file='pager.html'}
+
+</div>

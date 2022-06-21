@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{literal}
+<style type="text/css">
+	body{
+		margin:0px;
+		background-color: #eee;
+	}
+	.offline{
+		background-color: #fff;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		color:#444; 
+		font-weight:bold;
+		width: 400px;
+		margin:150px auto;		
+		padding: 50px;
+		border: 10px solid #ddd;		
+		text-align:center;
+	}
+	.offlogo{
+		margin-bottom:20px;
+	}
+	.offlogo img{
+		max-width: 100%;
+	}
+</style>
+{/literal}
+</head>
+<body>
+<div class="offline" data-begin="{date('Y-m-d H:i:s')}" >
+
+		<div class="offlogo"><img src="{$config.logo_url}" alt="{$config.cfg_site_name}" /></div>
+
+		<div>{$config.cfg_offline_message}</div>
+</div>
+</body>
+</html>

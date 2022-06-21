@@ -1,0 +1,25 @@
+{if $poll}
+<div class="Box poll_box">
+	<div class="Box-header"><a href="javascript:void(0);">{$mod_item.mod_name}</a></div>
+	<div class="Box-content" id="poll_result_{$mod_item.mod_id}">
+
+		<div class="poll_title">{$poll.pol_title}</div>
+		<form action="{create_link p=Polls poll_id=$poll.pol_id popup=1 no_common=1}" id="poll_{$mod_item.mod_id}" method="post" class="edit_form" data-container="#poll_result_{$mod_item.mod_id}" onsubmit="return $(this).loadPageSubmit();return false;">
+			<input type="hidden" name="poll_option_id" id="poll_option_id" value="0" />
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="poll_options">
+				{foreach from=$poll.options item=subitem key=subk}
+				<tr>
+					<td align="center" width="10%"><input style="vertical-align: middle" onclick="$('#poll_{$mod_item.mod_id} #poll_option_id').val(this.value);" type="radio" name="poll_option" id="pol_option{$subitem.pop_id}" value="{$subitem.pop_id}" /></td>
+					<td align="left" width="90%"><label for="pol_option{$subitem.pop_id}">{$subitem.pop_name}</label></td>
+				</tr>
+				{/foreach}
+
+				<tr><td colspan="2"><span style="text-align:center"><input type="submit" class="button button_send button_send_poll" id="send_poll" name="send" value="{$LANG.button_send}" /></span></td></tr>
+				<tr><td colspan="2"><a href="{create_link p=Polls view=$poll.pol_id}">{$LANG.label_poll_results}</a></td></tr>
+			</table>
+		</form>
+
+	</div>
+	<div class="Box-footer"></div>	
+</div>
+{/if}

@@ -1,0 +1,17 @@
+{if $cur_list}
+<div class="Box box_currencies   ">
+	<div class="Box-header"><a href="{$mod_item.link|default:'javascript:void(0);'}"><span>{$mod_item.mod_name}</span></a></div>
+	<div class="Box-content">
+	
+		
+	{foreach from=$cur_list item=item key=key}
+	
+		<div>{$item.cur_code}&nbsp;&nbsp;:&nbsp;&nbsp; {$item.cur_value|price_format} {$cur_default.cur_code}</div>
+	
+	{/foreach}
+	
+	
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

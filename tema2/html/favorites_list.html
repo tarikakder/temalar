@@ -1,0 +1,76 @@
+<div class="list Account favorites_list">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader favListHeader">{$contentHeader|display_text}</h1>
+
+			<div class="fav-desc">{$LANG.label_fav_list_desc}</div>
+			<form action="{create_link}" method="get" id="list_filters">	
+				<input type="hidden" name="p" value="Favorites"/>
+				<div class="form-group">
+					<select name="fav_type" id="fav_type" class="form-control" onchange="$('#list_filters').submit();">
+						{html_options options=$select_options.fav_types selected=$fav_type}
+					</select>
+				</div>
+			</form>
+
+			<form action="{create_link p=Favorites}" method="post" name="list_frm" class="list_form">
+				{if $pager.data_count>0}
+				<table class="table table-bordered">
+					<thead>
+						<th width="30">
+							<div class="form-group form-check">
+								<input class="form-check-input" type="checkbox" name="checkall" id="checkall" onclick="$('.toggle').prop('checked',this.checked)">
+							</div>
+						</th>	
+						<th></th>
+						<th class="rsp-hide-538">
+							<a href="#">{$LANG.label_prd_name}</a>
+						</th>
+						<th>&nbsp;</th>
+					</thead>
+					<tbody>
+						{foreach from=$recordset item=item key=k}
+						<tr>
+							<td>
+								<div class="form-group form-check">
+									<input class="form-check-input toggle" type="checkbox" name="delete[]" id="delete{$k}" value="{$item.fav_id}">
+								</div>
+							</td>
+							<td>
+								{if $item.product and $item.product.images.a}
+								<a href="{create_link p=Products view=$item.prd_id}">
+									<img class="prd_image" src="{$item.product.images.a}" alt="{$item.prd_name|escape}">
+								</a>
+								{/if}
+								<div class="show-mobile mt-3" style="max-width: 150px;">
+									<br>
+									<a href="{$item.link}">{$item.item_name|display_text}</a>
+								</div>
+							</td>
+							<td class="rsp-hide-538">
+								<a href="{$item.link}">{$item.item_name|display_text}</a>
+							</td>
+							<td>
+								{if $fav_type eq 'prd' or $fav_type eq 'psl' or $fav_type eq 'pst'}
+								<a id="fav_list_{$item.fav_prd_id}" data-prd-id="{$item.fav_prd_id}" class="button_add_to_cart" href="javascript:void(0);">
+									{$LANG.label_add_to_cart}
+								</a>
+								{/if}
+							</td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+				<input type="submit" name="del" id="del" class="btn btn-danger button_delete button_fav_delete"  value="{$LANG.label_delete}"  />
+				{/if}
+			</form>
+
+			{include file='pager.html'}
+		</div>
+	</div>
+</div>

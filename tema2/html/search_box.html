@@ -1,0 +1,32 @@
+<div class="Search" data-error-text="{$LANG.message_min_3chars_to_search}">
+	<div class="Search-overlay"></div>
+	<div class="Search-container">
+		<i id="HeaderSearchClose" class="la la-close"></i>	
+		<form action="{create_link}" onsubmit="return checkSearchForm(this);">
+			<input type="hidden" name="p" value="Products" />
+			<input type="hidden" id="q_field_active" name="q_field_active" value="0" />
+
+			<div class="Search-content">
+				<div class="form-group form-group-select">
+				  <select class="form-control" id="ctg_id" name="ctg_id">
+				  	<option value="">{$LANG.search_all_ctg}</option>
+						{include_html file="ctg_main_options.html"}
+				  </select>
+				</div>
+				<div class="form-group form-group-search">
+				  <input data-container="form-group-search" type="text" name="q" id="qsearch" class="form-control" value="{$smarty.get.q|escape}" placeholder="{$LANG.search_box_text|escape}" autocomplete="off">
+					<button type="submit" class="btn" name="search">
+						<i class="la la-search"></i>
+					</button>
+					<div class="Search-autocomplete">
+						<div class="Search-autocomplete-content"></div>
+						<div class="Search-autocomplete-none">{$LANG.message_no_product_found_filter}</div>
+					</div>
+				</div>
+			</div>
+			<!--<a class="Search-detail" href="{create_link p=Products search_form=1}" rel="nofollow">{$LANG.label_advanced_search}</a>-->
+
+			<input type="hidden" id="q_field" name="q_field" value="" />
+		</form>
+	</div>
+</div>

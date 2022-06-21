@@ -1,0 +1,37 @@
+{* rich snippets *}
+<div itemscope itemtype="https://schema.org/Product" class="rich-snippets">
+	<div itemprop="sku">{$row.prd_barcode}</div>
+	<div itemprop="productID">{$row.prd_id}</div>
+	<img itemprop="image" width="300" height="300" src="{$row.images.b}"  alt="{$row.prd_name|escape}"  />
+  <div itemprop="url">{$row.link}</div>
+	<div itemprop="name">{$row.prd_name|escape} {$row.prd_top_title} {$row.prd_sub_title}</div>
+	{*<div itemprop="manufacturer">{$row.writers.0.wrt_name}</div>*} 
+	<div itemprop="brand">{$row.pub_name}</div>
+	
+	<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">		
+		<span itemprop="price">{$row.prd_final_price}</span>		
+		<span itemprop="priceCurrency" content="{$row.cur_code|cur_format}"></span>
+		{if !$config.cfg_order_out_of_stock and $row.prd_stock lte $row.prd_min_stock}			
+		<span itemprop="availability" content="https://schema.org/OutOfStock"></span>
+		{elseif $row.prd_sell eq 'n'}
+		<span itemprop="availability" content="https://schema.org/OutOfStock"></span>
+		{else}
+		<span itemprop="availability" content="https://schema.org/InStock"></span>
+		{/if}
+			
+	</div>
+	
+	<div itemprop="itemCondition" content="https://schema.org/NewCondition"></div>
+	<div itemprop="description">{$row.prd_description}</div>
+	
+	{if $row.prd_vote_count}
+	<div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">	    
+	  <span itemprop="bestRating" content="5"></span>  	
+	  <span itemprop="ratingValue" content="{$row.prd_vote_avg}"></span> 
+		<span itemprop="reviewCount" content="{$row.prd_vote_count}"></span>  
+    <span itemprop="ratingCount" content="{$row.prd_vote_count}"></span>
+	</div>
+	{/if}		
+	
+</div>
+{* rich snippets *}

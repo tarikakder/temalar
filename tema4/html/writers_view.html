@@ -1,0 +1,47 @@
+<div class="     product_list_writer">
+	{if $wrt_row.wrt_photo_a}
+		<img class="wrt_photo" align="left" src="{$wrt_row.wrt_photo_a}" title="{$wrt_row.wrt_name}" alt="{$wrt_row.wrt_name}" />
+	{/if}
+	{*<h3>{$wrt_row.wrt_name}</h3>*}
+	
+	{if $wrt_row.wrt_social_links_arr}	
+	<div class="wrt_social_links_list">
+		{$LANG.label_wrt_social_links}<br/> 
+		{foreach from=$wrt_row.wrt_social_links_arr item=item}				
+			<a href="{$item.link}" target="_blank"><img src="{$smarty.const.HTTP_HOST}i/w_icons/{$item.icon}.png" /></a>				
+		{/foreach}
+					
+	</div>
+	{/if}	
+	
+	{if $wrt_row.wrt_birthdate && $wrt_row.wrt_birthdate>'0000-00-00'}<p class="prd_view_wrt_birthdate">{$LANG.label_wrt_birthdate}: {$wrt_row.wrt_birthdate|dt_format}</p>{/if}
+	<p>{$wrt_row.wrt_description}</p>
+	<br/><br/>
+	{*
+	<p>
+		<h2>{$LANG.label_news}</h2>
+		{include file='news_list_tab.html'}			
+		
+	</p>
+	*}
+</div>
+
+<div class="    writers_view">
+{if $other_products.writers}
+<div class="Box box_mid boxmidsliderfull">
+	<div class="Box-header"><a href="{$wrt_row.link}"><span>{$LANG.label_writers_products|sprintf:$wrt_row.wrt_name}</span></a></div>
+		<div class="Box-content">
+<ul class="prd_view_midslider jcarousel-skin-midslidefull">
+	{foreach from=$other_products.writers item=item key=k}
+		{include file="products_view_sublist.html"}		
+	{/foreach}
+	</ul>
+<div class="clear"></div>
+<div class="clear"><a class="more_link" href="{$wrt_row.link}">{$LANG.click_for_more}</a></div>
+<div class="clear"></div>	
+	
+		</div>
+		<div class="Box-footer"></div>
+</div>
+{/if}
+</div>

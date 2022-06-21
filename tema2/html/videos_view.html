@@ -1,0 +1,35 @@
+<div class="   vid_view">
+
+	<h1 class="contentHeader videoViewHeader">{$contentHeader|display_text}</h1>
+
+	<div class="vid_player">
+	{*<script defer="defer" type="text/javascript" src="player/flowplayer-3.1.4.min.js"></script>*}
+	{if $row.vid_file}
+	
+		
+		<!-- player container-->
+		<a href="{$row.video_flv}" style="display:block;width:425px;height:300px;" id="player"></a>
+		
+		<!-- this script block will install Flowplayer inside previous A tag -->
+		<script language="JavaScript">
+			flowplayer("player", "player/flowplayer-3.1.5.swf");
+		</script>
+		
+	{else}
+		{$row.vid_embed_code}
+	{/if}
+	
+	</div>
+	
+	
+	<div class="vid_info">
+		{*<div class="item_title vid_title">{$row.vid_title}</div>*}
+		{if $row.vid_desc}
+		<div class="item_desc vid_desc">
+		{$row.vid_desc|display_text}
+		</div>
+		{/if}
+	</div>
+
+
+</div>

@@ -1,0 +1,214 @@
+@import 'variables';
+
+.Footer {
+  background: darken($color_gray, 10%);
+  color: #fff;
+
+  .container {
+    padding: 50px 20px;
+  }
+
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 30px;
+  }
+
+  &-content {
+    &-logo {
+      img {
+        max-width: 200px;
+        max-height: 60px;
+        object-fit: contain;
+      }
+    }
+
+    &-info {
+      margin: 20px 0;
+      font-size: 0.9em;
+    }
+
+    ul {
+      display: flex;
+
+      li {
+        margin-right: 10px;
+
+        a {
+          color: #fff;
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+
+  &-menu {
+    &>ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+
+      &>li {
+
+        &>a {
+          color: #fff;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+
+          li {
+            margin-bottom: 3px;
+
+            a {
+              color: #ccc;
+              font-size: 0.8em;
+
+              &:hover {
+                color: #eee;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-content {
+    font-size: 0.9em;
+  }
+
+  &-button {
+    background-color: $color_gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 0.3em;
+    border-radius: 50%;
+    z-index: 301;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+
+  &-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 301;
+    font-size: 3em;
+    background: #0dc143;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+    a {
+      color: #fff;
+      line-height: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      span {
+        font-size: 0.7em;
+      }
+    }
+  }
+
+  &-banner {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 20px;
+
+    img {
+      max-width: 350px;
+    }
+  }
+
+  &-bottom {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+
+    a {
+      color: #333;
+      font-size: 0.9em;
+    }
+  }
+
+  &-email {
+    background: #fff;
+    padding: 25px 0;
+  }
+
+  .etbis_code {
+    img {
+      width: 60px !important;
+      height: 75px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Footer {
+    &-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    &-menu {
+      ul {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    &-banner {
+      flex-direction: column;
+    }
+  }
+}
+
+.banner_cookie {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #666;
+  padding: 0.5em;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.8;
+  z-index: 500;
+  color: #fff;
+  display: none;
+
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    content: 'x';
+    cursor: pointer;
+    font-size: 1.2em;
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: underline;  
+    color: #fff;
+  }
+}

@@ -1,0 +1,5 @@
+{if $main_ctg_menu}
+{foreach from=$main_ctg_menu item=item}	
+	<option value="{$item.ctg_id}">{$item.ctg_name|escape|truncate:100}</option>
+{/foreach}
+{/if}

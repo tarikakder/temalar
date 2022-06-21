@@ -1,0 +1,10 @@
+<div class="p-3 bg-light">
+  <ul class="nav nav-pills justify-content-center">    
+    <li class="nav-item">
+      <a class="nav-link {if $folder eq 'inbox'}active{/if}" aria-current="page" href="{create_link transfer=get view=0 edit=0 folder=inbox}">{$LANG.label_msg_inbox}</a>
+    </li>    
+    <li class="nav-item">
+      <a class="nav-link {if $folder eq 'sent'}active{/if}" aria-current="page" href="{create_link transfer=get view=0 edit=0 folder=sent}">{$LANG.label_msg_sent}</a>
+    </li>
+  </ul>
+</div>

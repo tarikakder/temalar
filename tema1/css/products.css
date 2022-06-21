@@ -1,0 +1,1149 @@
+/* Product */
+/* line 4, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product {
+  height: 360px;
+  position: relative;
+  text-align: center;
+  transition: .3s all ease;
+}
+
+/* line 12, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product:hover .Product-image:before {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* line 16, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product:hover .Product-image .actions {
+  opacity: 1;
+  visibility: visible;
+  bottom: 10px;
+}
+
+/* line 24, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product .prd_img_items {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+/* line 30, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product .discount, .Product .new_icon {
+  width: fit-content;
+  margin-bottom: 5px;
+  color: #fff;
+  padding: 0 5px;
+  font-size: 0.65em;
+  z-index: 199;
+  line-height: 1.7em;
+}
+
+/* line 40, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product .discount {
+  background-color: #ff1744;
+  right: 10px;
+}
+
+/* line 45, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product .new_icon {
+  background-color: #1565c0;
+  left: 10px;
+  text-transform: uppercase;
+}
+
+/* line 51, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image {
+  height: 210px;
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+/* line 60, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image-wrapper {
+  grid-area: image;
+}
+
+/* line 64, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image:before {
+  content: '';
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: transparent;
+  transition: .3s all ease;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+/* line 78, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image > a {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 85, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image > a img.prd_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: .3s all ease;
+}
+
+/* line 93, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image .actions {
+  position: absolute;
+  left: 10px;
+  bottom: -30px;
+  width: calc(100% - 20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s all ease;
+  z-index: 205;
+}
+
+/* line 103, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image .actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 109, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image .prd_icons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 200;
+  padding: 5px;
+}
+
+/* line 119, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-image .prd_icons .prd_icon {
+  padding: 5px;
+}
+
+/* line 125, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content {
+  height: calc(100% - 210px);
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  text-align: center;
+  grid-area: content;
+}
+
+/* line 133, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .name {
+  overflow: hidden;
+  max-height: 50px;
+}
+
+/* line 137, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .name a {
+  white-space: pre-wrap;
+  font-size: 0.8em;
+  color: #343a40;
+}
+
+/* line 142, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .name a:hover {
+  text-decoration: none;
+}
+
+/* line 148, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* line 155, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box .discount {
+  margin-bottom: 0;
+  position: relative;
+  top: -2px;
+  border-radius: 3px;
+}
+
+/* line 161, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box .discount span {
+  font-size: 1.3em;
+}
+
+/* line 166, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* line 172, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box .price_list {
+  text-decoration: line-through;
+  font-size: 0.75em;
+  color: #777;
+  line-height: 1em;
+}
+
+/* line 179, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .price_box .price_sale {
+  font-size: 1.2em;
+  color: #ff1744;
+  font-weight: 500;
+}
+
+/* line 186, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .publisher, .Product-content .writer {
+  font-size: 0.75em;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+}
+
+/* line 192, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .publisher a, .Product-content .writer a {
+  color: #777;
+}
+
+/* line 198, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .writer a {
+  color: #777;
+}
+
+/* line 204, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product-content .publisher a {
+  color: #ff1744;
+}
+
+/* line 212, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_detail .Product {
+  height: 480px;
+}
+
+/* line 215, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_detail .Product .prd_spot {
+  font-size: 0.75em;
+  max-height: 110px;
+  overflow: hidden;
+  border-top: 1px solid #f5f5f5;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* line 225, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_detail .grid-6 {
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+}
+
+/* line 231, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_list li {
+  font-size: 0.9em;
+}
+
+/* line 234, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_list li:hover:before {
+  left: 0;
+}
+
+/* line 238, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_list li:before {
+  content: '>';
+  font-weight: bold;
+  color: #777;
+  position: relative;
+  left: -5px;
+  transition: .2s all ease;
+}
+
+/* line 250, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_image .Product {
+  height: auto;
+}
+
+/* line 256, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_slide_img .Product {
+  height: auto;
+}
+
+/* line 259, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_slide_img .Product-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* line 266, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .temp_discount,
+.Product .temp_discount,
+.Box--discount .temp_discount {
+  z-index: 102;
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* line 274, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .temp_discount span,
+.Product .temp_discount span,
+.Box--discount .temp_discount span {
+  display: inline;
+}
+
+/* line 278, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .temp_discount .discount_ended,
+.Product .temp_discount .discount_ended,
+.Box--discount .temp_discount .discount_ended {
+  display: none;
+}
+
+/* line 283, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product .temp_discount {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+  line-height: 1.5em;
+  display: none;
+}
+
+/* line 290, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--horizontal .Product .temp_discount {
+  display: flex;
+}
+
+/* line 295, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .Box-content {
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* line 299, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .Box-content > ul > li {
+  display: flex;
+  align-items: center;
+}
+
+/* line 305, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .Product {
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  height: 310px;
+}
+
+/* line 311, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .Product .name {
+  max-height: 20px;
+}
+
+/* line 315, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .Product .writer {
+  display: none;
+}
+
+/* line 321, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .prd_temp_discount_box .temp_discount {
+  position: relative;
+  display: flex;
+}
+
+/* line 325, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .prd_temp_discount_box .temp_discount .discount_continue {
+  width: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* line 335, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .prd_temp_discount_box .temp_discount .discount_continue span {
+  background: #F5F5F5;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  border-radius: 3px;
+}
+
+/* line 347, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box--discount .prd_temp_discount_box .temp_discount .discount_ended {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: -25px;
+  font-size: 0.9em;
+}
+
+/* line 358, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img {
+  height: auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* line 364, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* line 370, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-image:before {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.05));
+  transition: .3s all ease;
+}
+
+/* line 376, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img:hover .Product-image:before {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+}
+
+/* line 380, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 20px;
+  pointer-events: none;
+}
+
+/* line 391, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-content .name a {
+  color: #fff;
+}
+
+/* line 396, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-content .price.price_list {
+  color: #ddd;
+}
+
+/* line 400, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Product_list_img .Product-content .price.price_sale {
+  color: #fff;
+}
+
+/* line 407, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view {
+  position: relative;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  background: #fff;
+  padding: 20px;
+}
+
+/* line 414, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view_item:nth-of-type(2) {
+  padding-left: 30px;
+}
+
+/* line 418, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view_img_box {
+  position: relative;
+}
+
+/* line 422, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view_img_box a img {
+  border-radius: 3px;
+}
+
+/* line 428, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .Carousel-item a img {
+  width: auto;
+}
+
+/* line 432, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .share-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* line 438, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view h1.contentHeader {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #FF3D00;
+  font-weight: 400;
+  line-height: 1.3em;
+  font-size: 1.8em;
+}
+
+/* line 446, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view h1.contentHeader sup, .prd_view h1.contentHeader sub {
+  opacity: .7;
+}
+
+/* line 450, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view h1.contentHeader sup:after, .prd_view h1.contentHeader sub:before {
+  content: ' ';
+}
+
+/* line 454, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view h1.contentHeader .button_fav {
+  color: #777;
+  position: relative;
+  top: 2px;
+}
+
+/* line 459, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view h1.contentHeader .button_fav.active {
+  color: #ff1744;
+}
+
+/* line 465, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_brand_box {
+  display: flex;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+/* line 471, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .writers {
+  margin-right: 10px;
+}
+
+/* line 474, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .writers a {
+  color: #777;
+  font-size: 0.9em;
+}
+
+/* line 478, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .writers a:hover {
+  text-decoration: none;
+}
+
+/* line 484, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .writer {
+  color: #777;
+  font-size: 0.9em;
+}
+
+/* line 488, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .writer:hover {
+  text-decoration: none;
+}
+
+/* line 493, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .publisher {
+  font-size: 0.9em;
+}
+
+/* line 496, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .publisher:hover {
+  text-decoration: none;
+}
+
+/* line 501, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* line 506, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox .discount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ff1744;
+  color: #fff;
+  padding: 7px 5px 2px 5px;
+  line-height: 1.3em;
+  margin-right: 15px;
+  border-radius: 3px;
+}
+
+/* line 517, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox .discount_number {
+  font-size: 1.5em;
+}
+
+/* line 521, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox .discount_text {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin-top: 10px;
+}
+
+/* line 529, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox_content .list_price_row {
+  text-decoration: line-through;
+  color: #777;
+  font-weight: 400;
+}
+
+/* line 535, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .pricebox_content .sale_price_row {
+  font-size: 1.8em;
+  color: #ff1744;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+/* line 544, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_supply_time {
+  font-size: 0.8em;
+}
+
+/* line 548, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_options {
+  margin: 20px 0;
+}
+
+/* line 551, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_options_item {
+  font-size: 0.9em;
+}
+
+/* line 554, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_options_item select {
+  max-width: 150px;
+}
+
+/* line 560, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_button {
+  margin: 20px 0;
+}
+
+/* line 564, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_icons {
+  display: flex;
+  align-items: center;
+  grid-gap: 20px;
+  margin: 20px 0;
+}
+
+/* line 570, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_icons img {
+  max-height: 50px;
+  width: auto;
+}
+
+/* line 576, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .actions {
+  margin: 20px 0;
+}
+
+/* line 579, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .actions .add_cart {
+  display: flex;
+  align-items: center;
+}
+
+/* line 583, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .actions .add_cart .prd-quantity {
+  margin-right: 10px;
+  max-width: 60px;
+}
+
+/* line 588, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .actions .add_cart .form-group {
+  margin-bottom: 0;
+}
+
+/* line 594, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_view_actions {
+  margin: 20px 0;
+}
+
+/* line 598, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .new_icon {
+  width: fit-content;
+  color: #fff;
+  position: absolute;
+  margin-bottom: 5px;
+  padding: 0 5px;
+  font-size: 0.65em;
+  z-index: 198;
+  line-height: 1.7em;
+  top: 10px;
+  left: 10px;
+  background-color: #1565c0;
+  text-transform: uppercase;
+}
+
+/* line 613, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .cargo_paying {
+  margin: 10px 0;
+}
+
+/* line 616, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .cargo_paying span {
+  font-weight: 600;
+  font-size: 0.75em;
+  line-height: 1em;
+}
+
+/* line 623, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_view_price_row {
+  font-size: 0.8em;
+  color: #349e00;
+  font-weight: 600;
+}
+
+/* line 629, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_view_temp_discount_box {
+  margin-left: auto;
+}
+
+/* line 632, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_view_temp_discount_box .temp_discount {
+  position: relative;
+}
+
+/* line 635, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_view .prd_view_temp_discount_box .temp_discount .discount_ended {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: -25px;
+  font-size: 0.9em;
+}
+
+/* line 649, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+/* line 654, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_imgs {
+  display: flex;
+  align-items: center;
+}
+
+/* line 659, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_stats {
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+
+/* line 664, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_items {
+  font-size: 1em;
+}
+
+/* line 667, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_items .la {
+  color: #ffeecc;
+}
+
+/* line 670, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_items .la:hover {
+  color: #ffab00;
+}
+
+/* line 676, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_items.dy_selected .la {
+  color: #ffab00;
+}
+
+/* line 681, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_section .vote_items:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 689, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .prd_view {
+    grid-template-columns: 100%;
+    grid-gap: 20px;
+  }
+  /* line 694, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .prd_view_item:nth-of-type(2) {
+    padding: 0;
+  }
+}
+
+/* line 699, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_description {
+  font-size: 0.9em;
+}
+
+/* line 703, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+/* line 711, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_opt_list {
+  font-size: 0.9em;
+}
+
+/* line 715, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item {
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 720, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* line 726, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item_top {
+  display: flex;
+}
+
+/* line 729, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item_top_items {
+  display: flex;
+  grid-gap: 10px;
+}
+
+/* line 735, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item_like {
+  margin-left: 10px;
+  font-size: 0.9em;
+}
+
+/* line 740, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item_clock {
+  margin-left: auto;
+  font-size: 0.9em;
+}
+
+/* line 745, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.cmt_item .cmt_text {
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* line 751, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.comments_form {
+  margin-top: 10px;
+}
+
+/* line 755, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_documents {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 761, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_documents a {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+/* line 766, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_documents a .la {
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+/* line 773, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.vote_result {
+  font-size: 0.9em;
+}
+
+/* prd_details*/
+/* line 778, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_fields {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* line 783, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_fields_item {
+  margin: 2px 0;
+  display: flex;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  color: #555;
+}
+
+/* line 791, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_fields_label {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+/* line 796, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_fields_text {
+  font-weight: 800;
+}
+
+/* line 801, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst {
+  background-color: #FFF;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+/* line 807, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+/* line 813, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst-header {
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* line 819, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst table {
+  margin-bottom: 0;
+}
+
+/* line 823, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst th {
+  font-size: 0.85em;
+  color: #777;
+}
+
+/* line 828, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst td {
+  font-size: 0.9em;
+}
+
+/* line 833, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.inst_table_payment {
+  /*max-width: 500px;*/
+}
+
+/* prd_list*/
+/* line 838, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .sort_options {
+  margin: 0 0 1em 0;
+  display: flex;
+}
+
+/* line 842, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .sort_options .form-group {
+  max-width: 200px;
+  width: 100%;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+/* line 848, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .sort_options .form-group input, .prd_list .sort_options .form-group select {
+  font-size: 0.9em;
+}
+
+/* line 852, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .sort_options .form-group.rec_per_page {
+  max-width: 70px;
+}
+
+/* line 858, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+#ChangeFilters {
+  margin-bottom: 20px;
+  display: none;
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 865, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  #ChangeFilters {
+    display: inline-block;
+  }
+  /* line 869, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .inst-wrapper {
+    grid-template-columns: 1fr;
+  }
+  /* line 873, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .cmt_item_top {
+    flex-direction: column;
+  }
+  /* line 877, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .cmt_item_like {
+    margin-left: 0;
+  }
+  /* line 881, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .cmt_item_clock {
+    margin-left: 0;
+  }
+}
+
+/* filters*/
+/* line 887, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box {
+  padding: 0;
+}
+
+/* line 890, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box .Box-header {
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+/* line 897, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li {
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+/* line 902, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li > span {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* line 908, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul {
+  max-height: 200px;
+  overflow: auto;
+  height: auto;
+  font-size: 0.8em;
+}
+
+/* line 914, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* line 917, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* line 921, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* line 925, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* line 931, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul li {
+  display: flex;
+  margin: 5px 0;
+}
+
+/* line 935, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul li label {
+  margin-bottom: 0;
+}
+
+/* line 939, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.Box.ctg_filters_box form > ul > li ul li input {
+  margin-right: 8px;
+  position: relative;
+  top: 4px;
+}
+
+/* line 951, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .no_product_found {
+  font-size: 1em;
+  line-height: 1.6em;
+  padding: 10px;
+  padding-top: 0;
+  text-align: center;
+}
+
+/* line 959, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.prd_list .prd_search_form {
+  display: none;
+}
+
+/* line 963, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.box_prd_slide .Product {
+  margin: 0;
+}
+
+/* line 967, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.checkbox-labels {
+  display: flex;
+  flex-direction: column;
+}
+
+/* line 972, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.checkbox-labels label input {
+  margin-right: 5px;
+}
+
+/* line 978, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.feedback_form {
+  font-size: 0.9em;
+}
+
+/* line 981, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.feedback_form .form-group:first-of-type {
+  margin-bottom: 0;
+}
+
+/* line 986, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+.share_form {
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 991, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .box_prd_detail .Product {
+    height: 520px;
+    padding-bottom: 40px;
+  }
+  /* line 996, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .Product {
+    height: 400px;
+    padding-bottom: 40px;
+  }
+  /* line 1000, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .Product-image {
+    position: static;
+  }
+  /* line 1003, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .Product-image .actions {
+    opacity: 1;
+    visibility: visible;
+    bottom: 0;
+  }
+  /* line 1012, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .Product:hover .Product-image:before {
+    background: none;
+  }
+  /* line 1016, ../kanmazteknoloji/temalar/tema1/scss/products.scss */
+  .Product:hover .Product-image .actions {
+    bottom: 10px;
+  }
+}
+
+/*# sourceMappingURL=products.css.map */

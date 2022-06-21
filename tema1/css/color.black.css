@@ -1,0 +1,79 @@
+.Header-menu,
+.Cart-icon .dy_cart_prd_count,
+.pagination .page-item.active .page-link,
+.alert-orange,
+.btn-orange,
+.Carousel .slick-dots li.slick-active,
+.order_steps .ord_step_selected .ord_step_number,
+.member_nav a.active,
+.Product .list_number {
+  background-color: #000;
+}
+
+.Header-menu ul li ul {
+  background-color: #141414;
+}
+
+.breadcrumb .breadcrumb-item.active a,
+.pagination .page-item .page-link,
+.prd_view h1.contentHeader,
+.letter_bar .letter_items a.dy_selected {
+  color: #000;
+}
+
+.pagination .page-item .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0,.25);
+}
+
+.pagination .page-item.active .page-link,
+.btn-orange,
+.member_nav a.active,
+.Carousel .slick-dots li.slick-active {
+  border-color: #000;
+}
+
+.btn-orange:hover, .btn-orange:focus {
+  background-color: #222;
+  border-color: #222;
+}
+
+.btn-orange:focus,
+.btn-orange:not(:disabled):not(.disabled).active:focus,
+.btn-orange:not(:disabled):not(.disabled):active:focus,
+.show>.btn-orange.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,0,0,.5);
+}
+
+.btn-orange:not(:disabled):not(.disabled).active,
+.btn-orange:not(:disabled):not(.disabled):active,
+.show>.btn-orange.dropdown-toggle {
+  background-color: #222;
+  border-color: #222;
+}
+
+.loading div {
+  border: 2px solid #000;
+  border-color: #000 transparent transparent transparent;
+}
+
+.tabs_view .nav a.active {
+  border-bottom: 2px solid #000;
+}
+
+.order_steps .ord_step_number {
+  background-color: #222;
+}
+
+.Header-menu ul li:hover {
+  background-color: #222;
+}
+
+.Header-menu ul li ul li:hover {
+  background-color: #222;
+}
+
+@media screen and (max-width: 768px) {
+  .Header-menu .container {
+    background-color: #000;
+  }
+}

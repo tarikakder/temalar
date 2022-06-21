@@ -1,0 +1,37 @@
+<div class="Box Box--form ord_track">
+	<form action="{create_link p=Orders view_by_code=1}" method="post">
+		{if isUserLogin()}
+		<h4>
+			<a href="{create_link p=Orders}">{$LANG.label_my_orders} &raquo;</a>
+		</h4>
+		{/if}
+		<div>
+			<div class="form-group">
+				<div class="error">{$error.ord_code}</div>
+				{$LANG.label_ord_code}:
+				<input size="30" maxlength="64" required="required" class="form-control" type="text" name="ord_code" value="{$smarty.post.ord_code|display_text|default:$smarty.get.ord_code}">
+			</div>
+			<div class="form-group">
+				{$LANG.label_ord_email}:
+				<input class="form-control" size="30" maxlength="255" required="required" type="email" name="ord_email" value="{$smarty.post.ord_email|display_text|default:$smarty.session.userEmail}" />					
+			</div>
+
+			<div class="form-group">
+				<span>
+					<a href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">{$LANG.label_refresh_captcha}</a>
+				</span>
+			</div>
+			<div class="form-group">
+				<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="" />
+			</div>
+			<div class="error">{$error.captcha_string}</div>
+			<div class="form-group form_row_captcha">
+				<span>{$LANG.label_captcha_string}</span>
+			</div>
+			<div class="form-group">
+				<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+			</div>
+			<input type="submit" class="btn btn-dark button_search_order" name="ord_search" value="{$LANG.button_search}">
+		</div>
+	</form>
+</div>

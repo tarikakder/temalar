@@ -1,0 +1,107 @@
+<div class="ui-grid   bg-light p-2">	
+	
+<link href="{$smarty.const.SITE_PATH}js/colpick/css/colpick.css" type="text/css" rel="stylesheet"/>
+
+	
+
+
+	{include file="afil_menu.html"}
+  
+  
+  <h1>{$LANG.label_afil_banners}</h1>
+	<div class="clear"></div>
+
+		
+	<script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/afil.js?v={$cache_rev}"></script>
+ 
+
+
+
+<div class="">{$LANG.label_afil_banner_options}</div>
+
+<form id="afil_banner_options" class="afil_banner_options" data-afil-url="{$afil_url}">
+
+
+
+<table class="table table-bordered">
+	<tr>
+		<td>{$LANG.label_afil_category}</td>
+    <td>		
+      <select class="form-control inp_select afil_banner_option" id="mod_id" name="mod_id">{html_options options=$select_options.mods}</select>
+		</td>
+	</tr>	
+	<tr>
+		
+		<td>{$LANG.label_afil_size}</td>
+		<td>
+			<select class="form-control inp_select afil_banner_option" id="afil_banner_size" name="afil_banner_size">
+				{html_options options=$select_options.afil_banner_sizes}
+			</select>
+		</td>	
+		
+	</tr>	
+	<tr>
+		<td>{$LANG.label_afil_border_color}</td>
+    <td>
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="bcolor" id="bcolor" size="6" maxlength="6" value="CCCCCC" />
+    </td>
+  </tr>
+	<tr>
+		<td>{$LANG.label_afil_price_color}</td>		
+    <td>
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="pcolor" id="pcolor" size="6" maxlength="6" value="ff0000" />
+    </td>
+  </tr>	
+	<tr>
+		<td>{$LANG.label_afil_cprice_color}</td>		
+    <td>
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="ccolor" id="ccolor" size="6" maxlength="6" value="000000" />
+    </td>
+  </tr>
+	<tr>
+		<td>{$LANG.label_afil_name_color}</td>		
+    <td>
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="ncolor" id="ncolor" size="6" maxlength="6" value="333333" />
+    </td>
+  </tr>
+	<tr>
+		<td>{$LANG.label_afil_logo_color}</td>	
+    <td>    
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="lcolor" id="lcolor" size="6" maxlength="6" value="CCCCCC" />
+    </td>
+  </tr>	
+	<tr>
+		<td>{$LANG.label_afil_logo_bgcolor}</td>	
+    <td>  
+		<input class="form-control inp_text afil_banner_option color_picker" type="text" name="lbcolor" id="lbcolor" size="6" maxlength="6" value="333333" />
+    </td>
+  </tr>	
+				
+</table>
+
+<div class="alert alert-info mb-3">
+  <h3>{$LANG.label_copy_afil_code}</h3>
+  <textarea class=""form-control id="afil_code" onclick="$(this).select();" style="width:100%;">{$item.code|htmlspecialchars}</textarea >
+</div>
+
+<div style="display:none;">
+<div><input class="inp_text afil_banner_option" type="text" name="width" id="afil_width" size="3" maxlength="3" /></div>
+<div><input class="inp_text afil_banner_option" type="text" name="height" id="afil_height" size="3" maxlength="3" /></div>
+</div>
+</form>
+
+
+
+
+<div class="alert alert-info mb-3">
+  <h3>{$LANG.label_afil_preview}</h3>
+  <div id="afil_preview"></div>
+</div>
+
+<div class="alert alert-info mb-3  ">
+  <p>{$LANG.label_afil_link}</p>
+  <p>{$smarty.const.HTTP_HOST}afil.php?afil={$smarty.session.userID}</p>
+  <p>{$LANG.label_afil_link2|sprintf:$smarty.session.userID}</p>
+</div>
+<br/><br/>
+</div>

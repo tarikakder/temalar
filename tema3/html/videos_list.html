@@ -1,0 +1,23 @@
+<div class="ui-grid    vid_list">
+	<h1 class="contentHeader videoListHeader">{$contentHeader|display_text}</h1>
+
+
+<div class="vid_items">
+{foreach from=$recordset item=item key=k}
+<div class="vid_item">
+	<div class="item_image vid_image">
+	{if $item.image.a}
+	<a href="{$item.link}"><img src="{$item.image.a}" alt="{$item.vid_title|escape}" /></a>
+	{/if}
+	</div>
+	<div class="item_date vid_date">{$item.vid_insert_date|dt_format}</div>	
+	<div class="item_title vid_title"><a href="{create_link p=Videos view=$item.vid_id}">{$item.vid_title|display_text}</a></div>
+	<div class="item_desc vid_desc">{$item.vid_desc|display_text|truncate:250}</div>
+</div>
+{/foreach}
+</div>
+<div class="clear"></div>
+
+{include file='pager.html'}
+
+</div>

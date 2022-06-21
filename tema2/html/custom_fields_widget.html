@@ -1,0 +1,15 @@
+{if $fields_data}
+<div class="Box custom_fields_box">
+	{if !$mod_item.mod_parent_id}
+		<div class="Box-header"><a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a></div>
+	{/if}
+	<div class="Box-content">
+		<ul>
+		{foreach from=$fields_data item=item}
+		<li><a href="{$item.link}">{$item.opt_name} <span>({$item.c})</span></a></li>
+		{/foreach}
+		</ul>
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

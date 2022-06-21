@@ -1,0 +1,44 @@
+<div class="list Account comments_list">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader commentListHeader">{$contentHeader|display_text}</h1>
+
+			<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form">
+				{if $pager.data_count>0}
+				<table class="table table-bordered">
+					<tbody>
+						{foreach from=$recordset item=item key=k}
+						<tr>
+							<td width="30">
+								<div class="form-group form-check">
+									<input class="form-check-input" type="checkbox" name="delete[]" id="delete{$k}" value="{$item.com_id}">
+								</div>
+							</td>
+
+							<td>	
+								<div class="com_info">
+									{if $item.com_published}<span class="fa fa-check"></span>{/if} 
+									<span class="com_date">{$item.com_insert_date|dt_format}</span>
+									<a class="button_delete" href="{create_link p=Comments del=$item.com_id}" onclick="return confirm('{$LANG.general_confirm_delete}')">{$LANG.general_delete}</a>
+								</div>
+								<a class="comment_title" href="{create_link p=Products view=$item.com_item_id}">{$item.prd_name|display_text}</a>
+								<div class="comment_text">&quot;{$item.com_comment|display_text}&quot;</div>
+							</td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+				<div class="rsp-hide-538">	
+					<input type="submit" name="del" id="del" class="btn btn-danger button_fav_delete" value="{$LANG.label_delete}">
+				</div>{/if}
+			</form>
+
+			{include file='pager.html'}
+		</div>
+	</div>
+</div>

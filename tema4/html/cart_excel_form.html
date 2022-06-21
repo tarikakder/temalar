@@ -1,0 +1,46 @@
+<div class="frm Box Box--form cart_excel_form">
+	<h1 class="contentHeader pageViewHeader">{$contentHeader|display_text}</h1>
+
+	<form action="{create_link transfer=get}" method="post" class="d-flex flex-column edit_form" enctype="multipart/form-data">
+		<div class="d-flex flex-column mb-4 cart_excel_box">
+			<div class="form-group mb-2">
+				<div class="error">{$error.excel_file}</div>
+				<input class="inp_file" type="file" name="excel_file" id="excel_file">
+				<input class="btn btn-dark" type="submit" name="upload" id="upload" value="{$LANG.button_send}">
+			</div>
+			<span>{$LANG.label_cart_excel_max_file_size}: {$max_file_size}</span>
+			<span>{$LANG.label_cart_excel_max_prd_count}: {$max_prd_count}</span>
+		</div>
+
+		<h4 class="mb-2">{$LANG.label_cart_excel_sample}</h4>
+		<table class="table list_table" style="max-width: 350px;">
+			<thead>
+				<th></th>
+				<th>A</th>
+				<th>B</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>		
+					<td>{$LANG.label_prd_barcode}</td>
+					<td>{$LANG.label_crt_quantity}</td>
+				</tr>
+				<tr>
+					<td>2</td>		
+					<td>9789876543212</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>3</td>		
+					<td>9786549871234</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>4</td>		
+					<td>....</td>
+					<td>...</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>

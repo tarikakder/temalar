@@ -1,0 +1,74 @@
+{assign var=col_count value=$col_count|default:4}
+{assign var=image_size value=$image_size|default:"a"}
+{foreach from=$sublist_products item=item key=k name="prd_loop"}
+<li>
+<div class="Product Product_{$image_size} Product_{$item.prd_id}" data-prd-id="{$item.prd_id}">
+	
+	<div class="Product-image-wrapper">
+		<div class="Product-image image_{$image_size}">
+			<div class="prd_img_items">
+				{if $item.new}<div class="new_icon"><span>{$LANG.label_new}</span></div>{/if}
+				<div id="dscDiv" class="discount" data-discount="{$item.prd_discount_rate|intval}">%<span>{$row.prd_discount}</span></div>
+			</div>
+
+			{if $item.icons}
+				<div class="prd_icons">
+					{foreach from=$item.icons item=icon_item key=icon_key}
+						<div class="prd_icon prd_icon_{$icon_item.position}">
+							<img src="{$icon_item.icon_url}" width="16" height="16" alt="{$icon_item.position}">
+						</div>
+					{/foreach}
+				</div>
+			{/if}
+			
+			{if $item.images}
+			<a title="{$item.prd_name|escape}" class="tooltip-ajax" href="{$item.link}">
+				<img class="prd_img prd_img_{$mod_item.mod_id|default:'list'}_{$k}_{$item.prd_id}" width="100" height="100" src="{$item.images.$image_size}" alt="{$item.prd_name|escape}" title="{$item.prd_name|escape}">
+			</a>
+			{/if}
+
+			{if $config.cfg_show_cart_button and !$config.cfg_catalog_mode}
+      {if $generate_mode or !$config.hide_prices_for_guests or isUserLogin()}
+			<div class="actions">
+				{if !$config.cfg_order_out_of_stock and $item.prd_stock lte $item.prd_min_stock}
+				<span class="btn btn-dark btn-sm prd_no_sell_list disabled">{$LANG.label_prd_no_stock}</span>
+				{elseif $item.prd_sell eq 'n'}
+				<span class="btn btn-dark btn-sm prd_no_sell_list disabled">{$LANG.label_prd_no_sell_desc}</span>
+				{else}
+					{if $item.prd_option_count>0}
+					<a class="btn btn-dark btn-sm button_view_prd" href="{$item.link}">{$LANG.label_add_to_cart}</a>
+					{else}
+						{if $config.cfg_cart_multiple_add_list}
+							<input class="prd-quantity" size="1" maxlength="3" type="number" name="quantity" value="{$item.prd_min_quantity}" min="{$item.prd_min_quantity}" {if $item.prd_max_quantity gt 0}max="{$item.prd_max_quantity}"{/if}>
+						{/if}
+						<a data-prd-id="{$item.prd_id}" class="btn btn-dark btn-sm button_add_to_cart">
+							<span class="button-text">{$LANG.label_add_to_cart}</span>
+						</a>
+					{/if}
+				{/if}
+			</div>
+      {/if}
+			{/if}
+		</div>
+	</div>
+	<div class="Product-content">
+		<div class="name"><a data-tax-rate="{$item.tax_rate}" href="{$item.link}">{$item.prd_name|truncate:75|escape}</a></div>
+		{if $item.writers}<div class="writer"><a href="{$item.writers.0.link}">{$item.writers.0.wrt_name|escape}</a></div>{/if}		
+		{if $config.cfg_show_brand_on_lists}
+		<div class="publisher"><a href="{$item.pub_link}">{$item.pub_name|escape}</a></div>
+		{/if}
+
+    {if $generate_mode or !$config.hide_prices_for_guests or isUserLogin()}
+		<div class="price_box">
+			{assign var=final_price value= $item.prd_final_price/$item.tax_rate}
+			<div class="price_box_wrapper">
+				<span class="price price_list convert_cur" data-price="{$final_price}" data-cur-code="{$item.cur_code}">{if $item.prd_discount>0}{$final_price|price_format4:$item.cur_code}+KDV{/if}</span>
+			<span class="price price_sale convert_cur" data-price="{$final_price}" data-cur-code="{$item.cur_code}">{if $item.prd_special_price>0}{$final_price|price_format4:$item.cur_code}+KDV{else}{$final_price|price_format4:$item.cur_code}+KDV{/if}</span>
+			</div>
+		</div>
+    {/if}
+	</div>
+</div>
+</li>
+{/foreach}
+

@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "categories.css",
+	"sources": [
+		"../scss/categories.scss"
+	],
+	"sourcesContent": [
+		""
+	],
+	"names": [],
+	"mappings": ""
+}

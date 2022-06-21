@@ -1,0 +1,452 @@
+<!--<div class="Box categories_box">-->
+<!--	<div class="Box-header">-->
+<!--    <a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>-->
+<!--  </div>-->
+<!--	<div class="Box-content">-->
+<!--    {$ctg_menu}-->
+<!--	</div>-->
+<!--	-->
+<!--	<div class="Box-footer"></div>-->
+<!--</div>-->
+
+<!--<div class="Header-logo">-->
+<!--	<i id="HeaderMenuOpen" class="la la-bars"></i>-->
+<!--	<a href="{$smarty.const.HTTP_URL}">-->
+<!--		<img src="{$config.logo_url}" alt="{$config.cfg_site_name}">-->
+<!--	</a>-->
+<!--	<i id="HeaderSearchOpen" class="la la-search"></i>-->
+<!--</div>-->
+
+<link rel="stylesheet" href="/templates/knm-kartekiletisim/menu/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="/templates/knm-kartekiletisim/menu/css/style.css"> <!-- Resource style -->
+<script src="/templates/knm-kartekiletisim/menu/js/modernizr.js"></script> <!-- Modernizr -->
+
+<div class="cd-dropdown-wrapper">
+	<a id="allCtg" class="cd-dropdown-trigger" href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>
+	<nav class="cd-dropdown dropdown-is-active">
+		<h2>Title</h2>
+		<a href="#0" class="cd-close">Close</a>
+		<ul class="cd-dropdown-content">
+<!--			<li>-->
+<!--				<form class="cd-search">-->
+<!--					<input type="search" placeholder="Search...">-->
+<!--				</form>-->
+<!--			</li>-->
+			{$ctg_menu}
+<!--			<li class="has-children">-->
+<!--				<a href="#">Kategoriler</a>-->
+
+
+<!--&lt;!&ndash;				<ul class="cd-secondary-dropdown is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="go-back"><a href="#0">Menu</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="see-all"><a href="http://codyhouse.co/?p=748">All Clothing</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;						<a href="http://codyhouse.co/?p=748">Accessories</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;						<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="go-back"><a href="#0">Clothing</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="see-all"><a href="http://codyhouse.co/?p=748">All Accessories</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;								<a href="#0">Beanies</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;								<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="go-back"><a href="#0">Accessories</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="see-all"><a href="http://codyhouse.co/?p=748">All Benies</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Caps &amp; Hats</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Gifts</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Scarves &amp; Snoods</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;								<a href="#0">Caps &amp; Hats</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;								<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="go-back"><a href="#0">Accessories</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="see-all"><a href="http://codyhouse.co/?p=748">All Caps &amp; Hats</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Beanies</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Caps</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Hats</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Glasses</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Gloves</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Jewellery</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Scarves</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;						<a href="http://codyhouse.co/?p=748">Bottoms</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;						<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="go-back"><a href="#0">Clothing</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="see-all"><a href="http://codyhouse.co/?p=748">All Bottoms</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Casual Trousers</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;								<a href="#0">Jeans</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;								<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="go-back"><a href="#0">Bottoms</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="see-all"><a href="http://codyhouse.co/?p=748">All Jeans</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Ripped</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Skinny</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Slim</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Straight</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="#0">Leggings</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="#0">Shorts</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;						<a href="http://codyhouse.co/?p=748">Jackets</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;						<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="go-back"><a href="#0">Clothing</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="see-all"><a href="http://codyhouse.co/?p=748">All Jackets</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Blazers</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Bomber jackets</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Denim Jackets</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Duffle Coats</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Leather Jackets</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Parkas</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;						<a href="http://codyhouse.co/?p=748">Tops</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;						<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="go-back"><a href="#0">Clothing</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="see-all"><a href="http://codyhouse.co/?p=748">All Tops</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Cardigans</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Coats</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Polo Shirts</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Shirts</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="has-children">&ndash;&gt;-->
+<!--&lt;!&ndash;								<a href="#0">T-Shirts</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;								<ul class="is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="go-back"><a href="#0">Tops</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li class="see-all"><a href="http://codyhouse.co/?p=748">All T-shirts</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Plain</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Print</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Striped</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;									<li><a href="http://codyhouse.co/?p=748">Long sleeved</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;								</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;							</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li><a href="http://codyhouse.co/?p=748">Vests</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;						</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--&lt;!&ndash;				</ul> &lt;!&ndash; .cd-secondary-dropdown &ndash;&gt;&ndash;&gt;-->
+<!--			</li> &lt;!&ndash; .has-children &ndash;&gt;-->
+
+<!--			<li class="has-children">-->
+<!--				<a href="http://codyhouse.co/?p=748">Gallery</a>-->
+<!--				-->
+
+<!--&lt;!&ndash;				<ul class="cd-dropdown-gallery is-hidden">&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="go-back"><a href="#0">Menu</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="see-all"><a href="http://codyhouse.co/?p=748">Browse Gallery</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li>&ndash;&gt;-->
+<!--&lt;!&ndash;						<a class="cd-dropdown-item" href="http://codyhouse.co/?p=748">&ndash;&gt;-->
+<!--&lt;!&ndash;							<img src="img/img.png" alt="Product Image">&ndash;&gt;-->
+<!--&lt;!&ndash;							<h3>Product #1</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;						</a>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li>&ndash;&gt;-->
+<!--&lt;!&ndash;						<a class="cd-dropdown-item" href="http://codyhouse.co/?p=748">&ndash;&gt;-->
+<!--&lt;!&ndash;							<img src="img/img.png" alt="Product Image">&ndash;&gt;-->
+<!--&lt;!&ndash;							<h3>Product #2</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;						</a>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li>&ndash;&gt;-->
+<!--&lt;!&ndash;						<a class="cd-dropdown-item" href="http://codyhouse.co/?p=748">&ndash;&gt;-->
+<!--&lt;!&ndash;							<img src="img/img.png" alt="Product Image">&ndash;&gt;-->
+<!--&lt;!&ndash;							<h3>Product #3</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;						</a>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;					<li>&ndash;&gt;-->
+<!--&lt;!&ndash;						<a class="cd-dropdown-item" href="http://codyhouse.co/?p=748">&ndash;&gt;-->
+<!--&lt;!&ndash;							<img src="img/img.png" alt="Product Image">&ndash;&gt;-->
+<!--&lt;!&ndash;							<h3>Product #4</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;						</a>&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--&lt;!&ndash;				</ul> &lt;!&ndash; .cd-dropdown-gallery &ndash;&gt;&ndash;&gt;-->
+<!--			</li> &lt;!&ndash; .has-children &ndash;&gt;-->
+
+<!--			<li class="has-children">-->
+<!--				<a href="http://codyhouse.co/?p=748">Services</a>-->
+<!--				<ul class="cd-dropdown-icons is-hidden">-->
+<!--					<li class="go-back"><a href="#0">Menu</a></li>-->
+<!--					<li class="see-all"><a href="http://codyhouse.co/?p=748">Browse Services</a></li>-->
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-1" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #1</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-2" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #2</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-3" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #3</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-4" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #4</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-5" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #5</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-6" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #6</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-7" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #7</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-8" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #8</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-9" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #9</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-10" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #10</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-11" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #11</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--					<li>-->
+<!--						<a class="cd-dropdown-item item-12" href="http://codyhouse.co/?p=748">-->
+<!--							<h3>Service #12</h3>-->
+<!--							<p>This is the item description</p>-->
+<!--						</a>-->
+<!--					</li>-->
+
+<!--				</ul> &lt;!&ndash; .cd-dropdown-icons &ndash;&gt;-->
+<!--			</li> &lt;!&ndash; .has-children &ndash;&gt;-->
+
+<!--			<li class="cd-divider">Divider</li>-->
+
+<!--			<li><a href="http://codyhouse.co/?p=748">Page 1</a></li>-->
+<!--			<li><a href="http://codyhouse.co/?p=748">Page 2</a></li>-->
+<!--			<li><a href="http://codyhouse.co/?p=748">Page 3</a></li>-->
+		</ul> <!-- .cd-dropdown-content -->
+	</nav> <!-- .cd-dropdown -->
+</div>
+
+<script src="/templates/knm-kartekiletisim/menu/js/jquery-2.1.1.js"></script>
+<script src="/templates/knm-kartekiletisim/menu/js/jquery.menu-aim.js"></script> <!-- menu aim -->
+<script src="/templates/knm-kartekiletisim/menu/js/main.js"></script> <!-- Resource jQuery -->
+
+<script type="text/javascript">
+
+	var ctg0=document.getElementById("ctg_level0");
+	var ctg1=document.getElementById("ctg_level1");
+	var ctg2=document.getElementById("ctg_level2");
+	var ulTag=document.getElementsByTagName("ul");
+
+
+
+	ctg0.classList.add("cd-dropdown-content");
+
+	for(i=0; i<ulTag.length; i++){
+
+		if(ulTag[i].id == "ctg_level1" || ulTag[i].id == "ctg_level2"){
+			var el=ulTag[i].previousElementSibling;
+			el.classList.add("has-children");
+			el.classList.remove("move-out");
+			el.id="slctLi";
+			el.parentElement.classList.add("has-children");
+		}
+	}
+
+	// for(i=0; i<ulTag.length; i++){
+	// 	if(ulTag[i].previousElementSibling.getElementsByTagName("a")>0 ){
+	// 		ulTag[i].previousElementSibling.classList.add("has-children");
+	// 	}
+	// }
+
+	// for(i=0; i<ctg0.children.length; i++){
+	//
+	// 		ctg0.children[i].classList.add("has-children");
+	//
+	// 		if(ctg0.children[i].children.length>0){
+	//
+	// 			for(z=0; z<ctg0.children[i].children.length; z++){
+	// 				ctg0.children[i].children[z].classList.add("has-children");
+	// 			}
+	// 		}
+	//
+	// }
+
+	for(i=0; i<ctg1.length; i++){
+		ctg1[i].classList.add("cd-secondary-dropdown");
+		ctg1[i].classList.add("is-hidden");
+	}
+
+	// for(i=0; i<ctg1.children.length; i++){
+	// 		ctg1.children[i].classList.add("has-children");
+	//
+	//
+	// }
+
+	for(i=0; i<ctg2.length; i++){
+		ctg2[i].classList.add("cd-secondary-dropdown");
+		ctg2[i].classList.add("is-hidden");
+	}
+
+	// for(i=0; i<ctg2.children.length; i++){
+	//
+	// 		ctg2.children[i].classList.add("has-children");
+	//
+	//
+	// }
+
+	//
+	// for(i=0; i<document.getElementsByTagName("ul").length; i++){
+	// 	if(document.getElementsByTagName("ul")[i].id=="ctg_level2"){
+	// 		document.getElementsByTagName("ul")[i].style="display:none !important;";
+	// 		console.log("gizlendi");
+	// 	}
+	// }
+
+
+
+    ctg0.addEventListener("mouseover", menuClick);
+
+	function menuClick(){
+
+			// var move=document.getElementsByClassName("has-children");
+			//
+			// 	for (i=0; i<move.length; i++){
+			// 		move[i].classList.add("is-active");
+			// 		console.log("aktif");
+			// 	}
+
+			for(i=0; i<document.getElementsByTagName("ul").length; i++){
+				if(document.getElementsByTagName("ul")[i].id=="ctg_level2"){
+					document.getElementsByTagName("ul")[i].style="display:none;";
+					console.log("gizlendi");
+				}
+			}
+
+	}
+
+	document.getElementById("slctLi").addEventListener("mouseover",liHover);
+
+	function liHover(){
+		console.log(document.getElementById("slctLi").className);
+	}
+
+
+
+
+
+
+
+
+
+	ctg0.addEventListener("click", ctg0BtnClick);
+
+	function ctg0BtnClick(){
+		var move=document.getElementsByClassName("move-out");
+
+		for(i=0; i<move.length; i++){
+			move[i].classList.remove("move-out");
+		}
+
+	}
+
+
+
+	document.getElementById("allCtg").addEventListener("click", ctgBtnClick);
+
+	function ctgBtnClick(){
+
+		var fade=document.getElementsByClassName("is-hidden");
+
+		console.log(fade);
+
+		//if(fade!=null){
+			for (i=0; i<fade.length; i++){
+				console.log(fade[i].id);
+				//if(fade[i].id == "ctg_level1" || fade[i].id == "ctg_level2"){
+					fade[i].classList.remove("is-hidden");
+				//}
+			}
+		//}
+
+	}
+
+</script>
+
+<script>
+	$(document).ready(function(){
+		$(".has-children").hover(function(){
+			$(this).addClass("is-active");
+		});
+	});
+	$(document).ready(function(){
+		$(".has-children").hover(function(){
+			$(this).next().addClass("d-block");
+		});
+	});
+	$(document).ready(function(){
+		$(".has-children").mouseout(function(){
+				$(this).next().removeClass("d-block");
+		});
+	});
+	$(document).ready(function(){
+		$("#ctg_level1 ul").hover(function(){
+			$(this).addClass("d-block");
+		});
+	});
+
+
+</script>

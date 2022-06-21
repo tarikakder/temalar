@@ -1,0 +1,80 @@
+<div class="Box Box--form frm prd_search_form">
+	<h1 class="contentHeader prdListHeader">{$contentHeader}</h1>
+
+	{if $error}
+	<div class="error_header">{$LANG.validation_general}</div>
+	{/if}
+
+	<form action="{create_link}" method="get" class="edit_form">
+		<input type="hidden" name="p" value="Products" />
+		<div class="form_table prd_search_form text-left">
+			<div class="form-group">
+				<label for="ctg_id">{$LANG.label_ctg_name}</label>
+				<select onchange="loadComboBox('sub_ctg_id','{create_link p=Categories no_common=1 opts=''}'+this.value,this.value,'');" class="form-control" name="ctg_id" id="ctg_id">
+					<option value="">{$LANG.label_all}</option>
+					{html_options options=$select_options.categories selected=$row.ctg_id}
+				</select>
+			</div>
+			 
+			<div class="form-group">
+				<label for="sub_ctg_id">{$LANG.label_sub_ctg_name}</label>
+				<select class="form-control" name="sub_ctg_id" id="sub_ctg_id">
+					<option value="">{$LANG.label_all}</option>
+					{html_options options=$select_options.sub_categories selected=$row.sub_ctg_id}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="q">{$LANG.label_keyword}</label>
+				<input class="form-control" type="text" name="q" id="q" maxlength="255" value="{$row.q|display_text}">
+			</div>
+
+			<div class="form-group">
+				<label for="prd_name">{$LANG.label_prd_name}</label>
+				<input class="form-control" type="text" name="prd_name" id="prd_name" maxlength="255" value="{$row.prd_name|display_text}">
+			</div>
+
+			<div class="form-group">
+				<label for="prd_barcode">{$LANG.label_prd_barcode}</label>
+				<input class="form-control" type="text" name="prd_barcode" id="prd_barcode" maxlength="50" value="{$row.prd_barcode|display_text}">
+			</div>
+
+			{if $smarty.const.BOOK_MODE}
+			<div class="form-group">
+				<label for="wrt_name">{$LANG.label_wrt_name}</label>
+				<input class="form-control" type="text" name="wrt_name" id="wrt_name" maxlength="40" value="{$row.wrt_name|display_text}">
+			</div>
+			{/if}
+
+			<div class="form-group">
+				<label for="price1">{$LANG.label_prd_price_range}</label>
+				<div class="d-flex align-items-center">
+					<input class="form-control" type="text" name="price1" id="price1" maxlength="10" value="{$row.price1|display_text}">&nbsp;-&nbsp;
+					<input class="form-control" type="text" name="price2" id="price2" maxlength="10" value="{$row.price2|display_text}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="pub_id">{$LANG.label_pub_name}</label>
+				<select class="form-control" name="pub_id" id="pub_id">
+					<option value="">{$LANG.label_all}</option>
+					{html_options options=$select_options.publishers selected=$row.pub_id}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="prd_press_date">{$LANG.label_prd_press_date}</label>
+				<input class="form-control" type="text" name="prd_press_date" id="prd_press_date" maxlength="50" value="{$row.prd_press_date|display_text}">
+			</div>
+
+			<div class="form-group">
+				<label for="sort_type">{$LANG.label_sort}</label>
+				<select class="form-control" name="sort_type">
+					{html_options options=$LANG.arr_sort_types selected=$smarty.get.sort_type}
+				</select>
+			</div>
+			
+			<input class="btn btn-dark button_search button_prd_search" type="submit" name="search" id="search" value="{$LANG.button_search}"/>
+		</div>
+	</form>
+</div>

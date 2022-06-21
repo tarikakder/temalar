@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{$iso_lang_code}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$meta_tags.title|escape|default:$contentHeader}</title>
+<meta name="Description" content="{$meta_tags.description|escape|default:$contentHeader}" />
+<meta name="keywords" content="{$meta_tags.keywords|escape|default:$contentHeader}" />
+{if $no_index}
+<META NAME="ROBOTS" CONTENT="noindex, nofollow">
+{else}
+<meta name="robots" content="index, follow" />
+{/if}
+ 
+{if ($page_prd_view)}
+  <meta property="og:title" content="{$meta_tags.title|escape|default:$contentHeader}" />
+  <meta property="og:description" content="{$meta_tags.description|escape|default:$contentHeader}" />
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="{$row.link}" />
+  <meta property="og:site_name" content="{$smarty.const.HTTP_HOST}" />
+  <meta property="og:image" content="{$row.images.b}" />
+  {if $config.cfg_facebook_app_id}
+    <meta property="fb:app_id" content="{$config.cfg_facebook_app_id}" />
+  {/if}
+  <meta name="twitter:card" content="product">
+  <meta name="twitter:domain" content="{$smarty.const.HTTP_HOST}">
+  <meta name="twitter:url" content="{$row.link}">
+  <meta name="twitter:title" content="{$meta_tags.title|escape|default:$contentHeader}">
+  <meta name="twitter:description" content="{$meta_tags.description|escape|default:$contentHeader}">
+  <meta name="twitter:image" content="{$row.images.b}">
+{/if}
+
+{if $tpl_config.responsive}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+{/if}
+
+{if $meta_tags.image}
+<meta property="og:image" content="{$meta_tags.image}" />
+{/if}
+{if $meta_tags.type}
+<meta property="og:type" content="{$meta_tags.type}" />
+{/if}
+{if $page_prd_view}
+<meta property="og:image" content="{$row.images.b}" />
+{/if}
+
+{if $canonical_url}
+<link rel="canonical" href="{$canonical_url}" />
+<meta property="og:url" content="{$canonical_url}" />
+{/if}
+
+
+<link rel="dns-prefetch" href="//cdn1.dokuzsoft.com" />
+<link rel="dns-prefetch" href="//stats.g.doubleclick.net" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//www.googleadservices.com" />
+
+<link rel="shortcut icon" href="{$smarty.const.HTTP_MEMBER_IMAGES}favicon.ico?v={$cache_rev}" type="image/x-icon" />
+
+{*******}
+{if $smarty.session.test_mode or !$tpl_config.combine_css} {* test etmek icin /tools/generate.php?test_mode=1  *}
+{foreach from=$tpl_config.css item=item}
+<link type="text/css" href="{$item}" rel="stylesheet" />
+{/foreach}
+{else}
+<link type="text/css" href="{$smarty.const.HTTP_MEMBER_IMAGES}combine.css?v={$cache_rev}" rel="stylesheet" />
+{/if}
+{*******}
+
+{if $home and $config.cfg_head_code_home}{$config.cfg_head_code_home}{/if}
+{if $config.cfg_head_code}{$config.cfg_head_code}{/if}
+{if $config.cfg_google_verify}{$config.cfg_google_verify}{/if}
+
+{if $config.cfg_color_primary}
+<style>
+body, html {literal}{{/literal}
+  --color-primary: {$config.cfg_color_primary|brightness:0.01};
+  --color-lighten10: {$config.cfg_color_primary|brightness:0.1};
+  --color-lighten15: {$config.cfg_color_primary|brightness:0.15};
+  --color-lighten20: {$config.cfg_color_primary|brightness:0.2};
+  --color-darken3: {$config.cfg_color_primary|brightness:-0.03};
+  --color-darken6: {$config.cfg_color_primary|brightness:-0.06};
+  {if $config.cfg_color_secondary}
+  --color-secondary: {$config.cfg_color_secondary|brightness:0};
+  {/if}
+{literal}}{/literal}
+</style>
+{/if}
+
+</head>
+
+<body>

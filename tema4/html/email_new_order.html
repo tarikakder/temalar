@@ -1,0 +1,33 @@
+<div>{$LANG.label_greeting} {$row.ord_mmb_name},</div>
+<p>{$LANG.label_order_details_desc}</p>
+<p><a href="{$smarty.const.HTTP_HOST}?p=Orders&view_by_code=1&ord_code={$row.ord_code}&email={$row.ord_mmb_email}">{$LANG.label_click_to_view}</a></p>
+
+{if $config.cfg_purchase_and_return_policy}
+{if $row.page_rows}
+{foreach from=$row.page_rows item=item}
+<p><a href="{$smarty.const.HTTP_HOST}?p=OrderAggrements&pdf={$row.ord_id|md5}&page_id={$item.pag_id}">{$LANG.view_sale_aggrement|sprintf:$item.pag_name}</a></p>
+{/foreach}
+{/if}
+{/if}
+
+{if $payment_row.pop_desc_email}
+	<p style="margin-top:20px;">{$payment_row.pop_desc_email}</p>
+{/if}
+
+{if $row.ord_payment_type eq mo}
+	<h3>{$LANG.label_order_bank_account_info}</h3>
+	<table cellpadding="0" cellspacing="0">
+		<tr><td width="100">{$LANG.label_bnk_name}</td><td>:&nbsp;{$row.bnk_name}</td></tr>
+		{if $row.bac_owner}<tr><td>{$LANG.label_bac_owner}</td><td>:&nbsp;{$row.bac_owner}</td></tr>{/if} 		
+		{if $row.bac_iban}<tr><td>{$LANG.label_bac_iban}</td><td>:&nbsp;{$row.bac_iban}</td></tr>{/if} 
+		
+	</table>
+{/if}
+
+<div style="margin-top:20px;">
+{include file='email_orders_view.html'}
+</div>
+<div style="margin-top:20px;">
+  {banner name="email_new_order"}
+</div>
+

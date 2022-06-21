@@ -1,0 +1,129 @@
+<div class="frm orders_confirm_form">
+
+	{include file="order_steps.html" ord_step_selected="confirm"}
+
+	{if $error}
+	<div class="alert alert-danger">{$LANG.validation_general}</div>
+	{/if}
+
+	{if $payment3d or $payment_oos}
+	<form action="{$vpos3d.vposurl}" method="post" class="edit_form {if $autopost}form-auto-post{/if} prevent-double-submission" id="order_confirm_form" onsubmit="$('#confirm_button').hide();$('.loading-submit-button').removeClass('d-none')">
+		{foreach from=$vpos3d item=vpos3d_item key=vpos3d_key}
+		{if $vpos3d_key eq 'script'}
+		{$vpos3d_item}
+		{elseif $vpos3d_key ne "vposurl"}
+		<input type="hidden" name="{$vpos3d_key}" value="{$vpos3d_item}" />
+		{/if}
+		{/foreach}
+
+	{else}
+	<form action="{create_link transfer=get https=1 confirm=$smarty.session.order_info.order_id}" method="post" class="edit_form {if $autopost}form-auto-post{/if} prevent-double-submission" id="order_confirm_form" onsubmit="$('#confirm_button').hide();$('.loading-submit-button').removeClass('d-none')">
+	{/if}
+
+		<input type="hidden" name="ord_ccowner" value="{$smarty.post.ord_ccowner|escape}" />
+		<input type="hidden" name="ord_ccno" value="{$smarty.post.ord_ccno|escape}" />
+		<input type="hidden" name="ord_ccexpdate[m]" value="{$smarty.post.ord_ccexpdate.m|escape}" />
+		<input type="hidden" name="ord_ccexpdate[y]" value="{$smarty.post.ord_ccexpdate.y|escape}" />
+		<input type="hidden" name="ord_cctype" value="{$smarty.post.ord_cctype|escape}" />
+		<input type="hidden" name="ord_cvc" value="{$smarty.post.ord_cvc|escape}" />
+
+		<div class="orders_info_wrapper">
+			<div class="orders_info_item">	
+				<div class="ord_header">{$LANG.label_billing_info}</div>
+				<p>
+					<b>{if $row.ord_billing_firm_name}{$row.ord_billing_firm_name|escape}{else}{$row.ord_billing_name|escape}{/if}</b><br/>
+					{$row.ord_billing_address|escape}<br/>
+					{$row.ord_billing_postalcode|escape} {$row.ord_billing_town|escape}/{$row.ord_billing_city|escape}/{$row.ord_billing_country|escape}<br/>
+					{$row.ord_billing_phone|escape}<br/>			
+					{$row.ord_billing_tax_office|escape} {$row.ord_billing_tax_number|escape}
+				</p>
+			</div>
+			{if !$cart_contents.all_digital}
+			<div class="orders_info_item">
+				<div class="ord_header">{$LANG.label_shipping_info}</div>
+				<p>
+					<b>{$row.ord_shipping_name|escape}</b><br/>
+					{$row.ord_shipping_address|escape}<br/>
+					{$row.ord_shipping_postalcode|escape} {$row.ord_shipping_town|escape}/{$row.ord_shipping_city|escape}/{$row.ord_shipping_country|escape}<br/>
+					{$row.ord_shipping_phone|escape}<br/>			
+				</p>
+			</div>
+			{/if}
+		</div>
+
+		<div class="ord_header mt-3">{$LANG.label_cart_contents}</div>
+		<div class="orders_cart_list_container">
+			{include file='orders_cart_list.html'}
+		</div>
+
+		<div class="orders_bottom_info">
+			{if $row.crg_name}
+			<div class="orders_bottom_info_item">
+				<span id="label_ord_payment_type">{$LANG.label_ord_cargo_id} : </span>
+				<span>{$row.crg_name|escape}</span>
+			</div>
+			{/if}
+			<div class="orders_bottom_info_item">
+				<span id="label_ord_payment_type">{$LANG.label_ord_payment_type} : </span>
+				<span>{$row.pop_name|escape}</span>
+			</div>
+
+			{if $row.ord_note}
+			<div class="orders_bottom_info_item">
+				<span id="label_ord_note">{$LANG.label_ord_note} : </span>
+				<div>{$row.ord_note|escape}</div>
+			</div>
+			{/if}
+			
+			{if $row.ord_payment_type eq 'ccp' or $row.ord_payment_type eq 'cct' or $row.ord_payment_type eq 'ccp3d' or $row.ord_payment_type eq 'cct3d'}
+				{if $row.ord_payment_type eq 'cct' or $row.ord_payment_type eq 'cct3d' or $row.ord_payment_type eq 'oost'}	
+				<div class="orders_bottom_info_item">
+					<span id="label_ord_ccexpdate">{$LANG.label_ord_installment} : </span>
+					<div>
+					{if $row.ord_installment eq 1}{$LANG.label_inst_1}{else}{$row.ord_installment}{/if}	
+					</div>
+				</div>
+				{/if}
+			{/if}
+		</div>
+
+		{if $row.ord_payment_type eq 'mo'}
+		<div class="mt-2">
+			<div class="ord_header">{$LANG.label_ord_bank_account_id}</div>
+			<div class="ord_bank_info">
+				{$row.bnk_name}{if $row.bac_owner}<br/>{$row.bac_owner|escape}{/if}<br/>	
+				{$LANG.label_bac_iban}: {if $row.bac_iban}<b>{$row.bac_iban|escape}</b>{/if} {$item.bac_account_type}<br/>
+				{$LANG.label_total_amount} : {$row.ord_grand_total|price_format4:$cart_contents.cur_code}<br/>
+			</div>
+			<div class="alert alert-warning mt-2">{$LANG.info_bank_account|sprintf:$row.bac_owner:$row.ord_code}</div>
+		</div>
+		{/if}
+
+		<div class="mt-4">
+			{if $config.cfg_purchase_and_return_policy>0 and $page_rows}
+			{foreach from=$page_rows item=page_row}
+				<div class="ord_return_policy">{$page_row.pag_content}</div>
+				<div class="form-group form-check">
+					<input class="form-check-input" required="required" type="checkbox" name="purchase_and_return_policy[{$page_row.pag_id}]" id="purchase_and_return_policy_{$page_row.pag_id}" {if $smarty.session.order_info.purchase_and_return_policy2[$page_row.pag_id]}checked="checked"{/if} value="1">
+					<label class="form-check-label" for="purchase_and_return_policy_{$page_row.pag_id}">{$LANG.label_confirm_purchase_policy2|sprintf:$page_row.pag_name}</label>
+				</div>
+			{/foreach}
+			{/if}
+
+			<div class="form-group mt-3">
+				<input class="btn btn-light mr-2 button_edit button_order_edit" type="button" onclick="window.location='{create_link p=Orders edit=$smarty.session.order_info.order_id https=1}'" name="cancel" id="cancel" value="{$LANG.button_edit}">
+				
+        
+        <button  name="confirm" id="confirm_button" value="1" type="submit" name="save"  class="btn btn-orange button_confirm button_order_confirm">
+        {$LANG.button_confirm}
+        </button>
+        <button class="btn btn-orange button_confirm button_order_confirm d-none loading-submit-button" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  
+        </button> 
+          
+        
+				<div class="alert alert-danger order_confirm_warning mt-3">{$LANG.label_order_confirm_warning}</div>
+			</div>
+		</div>
+	</form>
+</div>

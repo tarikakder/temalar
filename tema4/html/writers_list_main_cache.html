@@ -1,0 +1,29 @@
+{foreach from=$recordset item=items key=letter name=letter_loop}
+{if $items.count>0}
+	<div class="card">
+	  <div class="card-body">
+	  	<a href="{create_link p=Writers letter=$letter}">
+	    	<h3 class="card-title">{$letter}</h3>
+	    </a>
+	  </div>
+	  <ul class="list-group list-group-flush pub-items">
+	    {foreach from=$items.data item=item key=k}
+			<li class="list-group-item d-flex align-items-center py-1 pub-item">
+	    	<a title="{$item.wrt_name|display_text}" href="{$item.link}">
+	    		{$item.wrt_name|truncate:22|display_text}
+	    	</a>
+	    	<div class="ml-auto d-flex">
+		    	{if $item.wrt_discount>0}<span class="badge badge-danger badge-pill">%{$item.wrt_discount|intval}</span>{/if}
+		    	{if $item.wrt_prd_count>0}<span class="badge badge-secondary badge-pill">{$item.wrt_prd_count}</span>{/if}
+	    	</div>
+	    </li>
+			{/foreach}
+	  </ul>
+	  {if $items.more}
+	  <div class="card-body">
+	    <a href="{create_link p=Writers letter=$letter}" class="card-link">{$LANG.click_for_more}</a>
+	  </div>
+	  {/if}
+	</div>
+{/if}
+{/foreach}

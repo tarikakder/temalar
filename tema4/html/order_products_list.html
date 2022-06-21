@@ -1,0 +1,114 @@
+<div class="orders-products-list">
+
+	<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form">
+		{if $order_products}
+		<table class="table table-bordered">
+			<thead class="rsp-hide-538">
+				<th>
+					{$LANG.label_orp_prd_name}
+				</th>
+				
+				<th class="rsp-hide-538">
+					{$LANG.label_orp_price}
+				</th>
+				
+				<th>
+					{$LANG.label_orp_quantity}
+				</th>
+				
+				<th>
+					{$LANG.label_orp_grand_total}
+				</th>
+
+				<th>
+					{$LANG.label_orp_status}
+				</th>		
+			</thead>
+			<tbody>
+			{foreach from=$order_products item=item key=k}
+				<tr data-prd-id="{$item.orp_prd_id}" data-prd-name="{$item.orp_prd_name|escape}" data-barcode="{$item.orp_barcode}" data-quantity="{$item.orp_quantity}" data-final-price="{$item.orp_final_price}">
+					<td>
+						{$item.orp_prd_name|display_text}
+						{if $item.orp_pro_id>0}<br/><div class="prd_opt_list">{$item.orp_pro_string|nl2br}</div>{/if}
+					</td>
+							
+					<td class="rsp-hide-538"> 
+						{if $item.orp_point eq 'y'}{$item.orp_price|intval} {$LANG.label_point}{else}{$item.orp_final_price|price_format4:$row.ord_currency_code}{/if}		
+					</td>
+							
+					<td>
+						<span class="rsp-show-538">{$LANG.label_orp_quantity} : </span>
+						{if $item.orp_unit_quantity>0}{$item.orp_unit_quantity} {$item.orp_unit.unt_name}{else}{$item.orp_quantity}{/if}
+					</td>
+
+					<td>
+						<span class="rsp-show-538">{$LANG.label_orp_grand_total} : </span>
+						{if $item.orp_point eq 'y'}{$item.orp_grand_total|intval} {$LANG.label_point}{else}{$item.orp_grand_total|price_format4:$row.ord_currency_code}{/if}
+					</td>
+
+					<td class="rsp-hide-538">
+						{if $item.orp_download_link}
+							<a class="ord_download_link" href="{create_link p=Orders download=1 order_id=$item.orp_order_id item_id=$item.orp_id}">{$LANG.label_download}</a>
+						{else}
+							{if $item.orp_prd_id>0}{$item.ors_name}{/if}
+						{/if}
+					</td>	
+				</div>
+			{/foreach}
+			</tbody>
+		</table>
+
+		<div class="ord_cart_total_info">
+			{if $row.ord_shipping_total>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_shipping_total} : </span>
+				<span>{$row.ord_shipping_total|price_format4:$row.ord_currency_code}</span>
+			</div>
+			{/if}
+			{if $row.ord_gift_wrap_price>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_gift_wrap_price} : </div>
+				<span>{$row.ord_gift_wrap_price|price_format4:$row.ord_currency_code}</span>
+			</div>
+			{/if}
+
+			{if $row.ord_mo_discount>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_generic_discount|sprintf:$row.pop_name} : </span>
+				<span>-{$row.ord_mo_discount|price_format4:$row.ord_currency_code}</span>
+			</div>
+			{/if}
+			{if $row.ord_payment_price>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_total_amount_inst} ({$row.ord_installment}) : </span>
+				<b><span id="div_total_amount">{$row.ord_payment_price|price_format4:$row.ord_currency_code}</span></b>
+			</div>
+			{/if}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_sub_total} : </span>
+				<span>{$row.ord_sub_total|price_format4:$row.ord_currency_code}</span>
+			</div>
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_tax_total} : </span>
+				<span>{$row.ord_tax_total|price_format4:$row.ord_currency_code}</span>
+			</div>
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_grand_total} : </span>
+				<span>{$row.ord_grand_total|price_format4:$row.ord_currency_code}</span>
+			</div>
+			{if $row.ord_returned_amount>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_returned_amount} : </span>
+				<span>{$row.ord_returned_amount|price_format4:$row.ord_currency_code}</span>
+			</div>
+			{/if}
+			{if $row.ord_points_used>0}
+			<div class="ord_cart_total_info_item">
+				<span>{$LANG.label_ord_points_used} : </span>
+				<span>{$row.ord_points_used} {$LANG.label_point}</span>
+			</div>
+			{/if}
+		</table>
+		{/if}
+	</form>
+</div>

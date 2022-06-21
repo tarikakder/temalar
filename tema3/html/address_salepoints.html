@@ -1,0 +1,44 @@
+<div class="list  adr_list">
+
+
+			<h1 class="contentHeader adrListHeader">{$contentHeader|display_text}</h1>
+
+
+			
+      <form action="{create_link transfer=get}" id="filter_form" method="get">
+        {foreach from=$smarty.get key=key item=val}
+        {if $key ne 'q' and $key ne 'city' and $key ne 'adr_town_id'}<input type="hidden" value="{$val}" name="{$key}" />{/if}
+        {/foreach}
+        <div class="input-group my-3">        
+          <div class="input-group-prepend">
+            <select onchange="loadComboBox('adr_town_id','{create_link p=Towns  no_common=1 opts=''}'+this.value,this.value);" class="form-control" name="city" id="city"><option value="">{$LANG.label_all}</option>{html_options options=$select_options.cities selected=$smarty.get.city|escape|default:$city_row.cty_id}</select>        
+          </div>
+          <div class="input-group-prepend">
+            <select class="form-control" name="town" id="town"><option value="">{$LANG.label_all}</option>{html_options options=$select_options.towns selected=$smarty.get.town|escape}</select>
+          </div>
+          <input type="submit" class="btn btn-dark" name="search" value="{$LANG.button_search}" />
+        </div>
+      </form>				
+      
+      {if $recordset}
+				<table class="table table-bordered">
+					<tbody>          
+						{foreach from=$recordset item=item key=k}
+						<tr>
+							<td>
+								<div>									
+										<b>{$item.adr_title|display_text}</b>									
+								</div>								
+								<div>{$item.adr_address|display_text}</div>
+								<div>{$item.twn_name|display_text} {$item.cty_name|display_text} / {$item.cnt_name|display_text}</div>
+								<div>{$item.adr_phone|display_text}</div>		
+								</td>
+						</tr>
+						{/foreach}            
+					</tbody>
+				</table>
+        {/if}
+        
+        {include file="pager.html"}
+				
+</div>

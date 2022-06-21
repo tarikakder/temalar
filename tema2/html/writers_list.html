@@ -1,0 +1,64 @@
+<div class="list wrt_list">
+
+	<h1 class="contentHeader wrtListHeader">{$contentHeader|display_text}</h1>
+	
+	<div class="letter_bar">
+		<form action="{create_link}">
+			<input type="hidden" name="p" value="{$smarty.get.p}">
+			{if !$config.cfg_hide_letters_wrt}
+			<span class="letter_items">
+				{foreach from=$arr_letters item=item key=k}
+					{if $smarty.get.letter eq $item}
+					<a class="letter_link dy_selected" href="{$LANG.link_writers_letter|sprintf:$item}">{$item}</a>
+					{else}
+					<a class="letter_link" href="{$LANG.link_writers_letter|sprintf:$item}">{$item}</a>
+					{/if}
+				{/foreach}
+			</span>
+			{/if}
+			<span class="form_items">
+				<div class="form-group">
+					<input type="text" class="form-control" value="{$smarty.get.wq|escape}" name="wq" id="wq" />
+				</div>
+				<input class="btn btn-dark button_wrt_search" type="submit" value="{$LANG.button_search}" />
+			</span>
+		</form>
+	</div>
+
+	{if $popular_items and $default_wrt_page}
+	<div class="popular_items popular_writers">
+		<h3>{$LANG.label_popular_writers}</h3>
+		{foreach from=$popular_items item=item key=k}
+			<div class="pub_item{if ($k+1) is div by 3} pub_item_last{/if}">
+				<a href="{$item.link}">
+					<span class="pub_item_title">{$item.wrt_name|truncate:38|display_text}</span>
+					{if $item.wrt_prd_count>0}<span class="count">({$item.wrt_prd_count})</span>{/if}
+					{if $item.wrt_discount>0}<span class="red">%{$item.wrt_discount|intval}</span>{/if}	
+				</a>
+			</div>
+		{/foreach}
+	</div>
+	<br/>
+	<br/>
+	{/if}
+
+	{if $recordset}
+	<div class="pub_items">
+		{foreach from=$recordset item=item key=k}
+			<div class="pub_item{if ($k+1) is div by 3} pub_item_last{/if}">
+			<a href="{$item.link}" class="d-flex align-items-center">
+				<span class="pub_item_title">{$item.wrt_name|truncate:38|display_text}</span>
+				<div class="ml-auto d-flex">
+					{if $item.wrt_discount>0}<span class="badge badge-danger badge-pill">%{$item.wrt_discount|intval}</span>{/if}
+					{if $item.wrt_prd_count>0}<span class="badge badge-secondary badge-pill">{$item.wrt_prd_count}</span>{/if}
+				</div>
+			</a>
+			</div>
+		{/foreach}
+	</div>
+	{else}
+	<div class="alert alert-orange">{$LANG.message_no_product_found_filter}</div>
+	{/if}
+	
+	{include file='pager.html'}
+</div>

@@ -1,0 +1,92 @@
+{if $custom_input_fields}
+<div class="custom_input_fields">
+  {foreach from=$custom_input_fields item=item}
+    <div class="frm_row form-group">
+      <label><b>{$item.fld_label}</b> {if $item.fld_required}<span class="required_star">*</span>{/if}</label>
+      <div>  
+        <div {if $item.fld_type eq 'text' && $item.fld_length>500}style="max-height:600px;"{else}style="max-height:300px;overflow: auto;"{/if}>
+        <div class="error">{$error.custom_fields[$item.fld_id]}</div>
+        {if $item.fld_type eq 'text'}
+          {if $item.fld_length>500}
+            <div><textarea class="form-control custom_input inp_textarea {if $item.fld_type_editor}wysiwyg{/if}" name="custom_fields[{$item.fld_id}]" id="custom_fields_{$item.fld_id}" maxlength="{$item.fld_length}">{$row.features[$item.fld_id]}</textarea></div>
+          {else}
+            <div><input class="form-control custom_input inp_text" type="text" name="custom_fields[{$item.fld_id}]" id="custom_fields_{$item.fld_id}" value="{$row.features[$item.fld_id]}" maxlength="{$item.fld_length}" /></div>
+          {/if}
+        {*  
+        {elseif $item.fld_type eq 'checkbox2'}
+          <div><input class="inp_checkbox custom_input" type="checkbox" name="custom_fields[{$item.fld_id}]" id="custom_fields_{$item.fld_id}" value="1" {if $row.features[$item.fld_id]}checked="checked"{/if}  /></div>
+        *}    
+        {elseif $item.fld_type eq 'dropdown'}
+          <select name="custom_fields[{$item.fld_id}]" id="custom_fields_{$item.fld_id}" class="form-control inp_select custom_input">
+          {if !$item.fld_required}<option value="">{$LANG.label_none}</option>{/if}
+          {html_options options=$item.fld_options selected=$row.features[$item.fld_id]}
+          </select>
+        {elseif $item.fld_type eq 'radio'}
+          <div class="custom_input custom_field_radios">{html_radios class="inp_radio" name="custom_fields[%s]"|sprintf:$item.fld_id options=$item.fld_options selected=$row.features[$item.fld_id]}</div>
+        {elseif $item.fld_type eq 'checkbox'}
+          <div class="custom_field_checkboxes">
+          {foreach from=$item.fld_options key=key2 item=item2}
+          <input class="inp_checkbox2 custom_input" type="checkbox" name="custom_fields[{$item.fld_id}][]" id="custom_fields_{$item.fld_id}" value="{$key2}" /><label> {$item2}</label>
+          {/foreach}
+          </div>  
+        {elseif $item.fld_type eq 'image' or $item.fld_type eq 'pdf'}  
+          {if $item.fld_type eq 'image'}  
+          <div class="form-group">
+            <div class="text-danger">Max: 2MB</div>
+            <div class="input-group mt-2">                  
+              <div class="custom-file is-short input-group">
+                <input class="custom-file-input" type="file" accept="image/*" onchange="ccLoadFile(event)">                
+                <label class="custom-file-label" for="prd_image">{$LANG.label_upload}</label>
+              </div>            
+              <div class="input-group-append">
+                <input class="btn btn-secondary button" type="submit" name="upload_xml_btn" id="upload_xml_btn" value="{$LANG.button_upload}" />      
+              </div>
+            </div>          
+          </div>  
+          <div class="form-group">
+            <img id="cc_output"/>
+          </div>
+          {elseif $item.fld_type eq 'pdf'} 
+          
+            <div class="input-group mt-2">              
+              <div class="custom-file is-short input-group">                
+                <input class="custom-file-input" type="file" accept="pdf/*" onchange="ccLoadFile(event)">
+                <label class="custom-file-label" for="prd_image">{$LANG.label_upload}</label>
+              </div>            
+              <div class="input-group-append">
+                <input class="btn btn-secondary button" type="submit" name="upload_xml_btn" id="upload_xml_btn" value="{$LANG.button_upload}" />      
+              </div>
+            </div>          
+          {/if}
+          <input type="hidden" class="custom_input" name="custom_fields[{$item.fld_id}]" id="custom_fields_{$item.fld_id}" value="" />
+          
+          <script>
+            var hiddenid='custom_fields_{$item.fld_id}';
+            var ccLoadFile = function(event) {
+              var filesize = event.target.files[0].size;
+              if(filesize<2*1024*1024){
+                var reader = new FileReader();
+                reader.onload = function(){
+                  var output = document.getElementById('cc_output');
+                  output.src = reader.result;
+                  var hiddeninput=document.getElementById(hiddenid);
+                  hiddeninput.value=reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+              }
+              else{
+                //console.log(event.target.files[0].size);
+                //console.log("+++");
+                //console.log(event.target.files[0].fileSize);
+                alert("Max Dosya Boyutu: 2MB");
+              }
+              //$("#yourFileInput")[0].files[0].size;
+            };
+          </script>          
+        {/if}
+        </div>
+      </div>
+    </div>   
+  {/foreach}
+ </div> 
+{/if}

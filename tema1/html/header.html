@@ -1,0 +1,46 @@
+{include file='bar_top.html'}
+<input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+<header class="Header Header--sticky">
+  <div class="container Header-container">
+    <div class="Header-logo">
+      <i id="HeaderMenuOpen" class="la la-bars"></i>
+      <a href="{$smarty.const.HTTP_URL}">
+        <img src="{$config.logo_url}" alt="{$config.cfg_site_name}">
+      </a>
+      <i id="HeaderSearchOpen" class="la la-search"></i>
+    </div>
+
+    {include file='search_box.html'}
+    <div class="Header-right">
+      <div class="Header-right-profile">
+        {if isUserLogin()}
+        <a class="btn btn-light" href="{create_link p=Members}" rel="nofollow">
+          <i class="la la-user"></i>
+          <span class="login-user-info" data-user-id="{$smarty.session.userID}" data-user-fullname="{$smarty.session.userFullName}" data-user-email="{$smarty.session.userEmail}">{$LANG.label_my_account}</span>
+        </a>
+        {else}
+        <a class="btn btn-light" href="{create_link p=Login}" rel="nofollow">
+          <i class="la la-user"></i>
+          <span>{$LANG.label_login}</span>
+        </a>
+        {/if}
+      </div>
+      {if !$config.cfg_catalog_mode}
+      {include file="cart_box.html"}
+      {/if}
+    </div>
+
+  </div>
+
+
+  <nav class="Header-menu">
+    <div class="container">
+      <i id="HeaderMenuClose" class="la la-times"></i>
+      {menu name="main"}
+    </div>
+  </nav>
+  <div class="dovizMobil pb-3 row justify-content-center">
+					<span class="ml-2">USD:<span id="usd">{$cur_values.USD}</span>
+			EUR:<span id="eur">{$cur_values.EUR}</span></span>
+  </div>
+</header>

@@ -1,0 +1,45 @@
+<h2>{$LANG.label_mr}{$row.mmb_name}</h2>
+
+{$LANG.label_thanks_for_registering}<br />
+{if $pending_message}{$pending_message}{/if}
+<p>
+
+<table class="table-bordered" cellpadding="3" cellspacing="0" width="450" border="1">
+<tr>
+	<th>{$LANG.label_mmb_email}</th>
+	<td>{$row.mmb_email}</td>
+</tr>
+	
+<tr>
+	<th>{$LANG.label_mmb_password}</th>
+	<td>******</td>
+</tr>
+
+	
+<tr>
+	<th>{$LANG.label_mmb_name}</th>
+	<td>{$row.mmb_name|display_text}</td>
+</tr>
+{if $row.mmb_cellphone}
+<tr>
+	<th>{$LANG.label_mmb_cellphone}</th>
+	<td>{$row.mmb_cellphone|display_text}</td>
+</tr>
+{/if}
+{if $row.mmb_birthdate}
+<tr>
+	<th>{$LANG.label_mmb_birthdate}</th>
+	<td>{$row.mmb_birthdate|date_format:'%d-%m-%Y'}</td>
+</tr>
+{/if}
+{if $row.mmb_gender}
+<tr>
+	<th>{$LANG.label_mmb_gender}</th>
+	<td>{$LANG.arr_genders[$row.mmb_gender]}</td>
+</tr>
+{/if}
+</table>
+
+
+</p>
+<p><a href="{$smarty.const.HTTP_HOST}">{$smarty.const.HTTP_HOST}</a></p>

@@ -1,0 +1,21 @@
+<div class="order_steps">
+	<span class="ord_step ord_step_1 ord_step_cart{if $ord_step_selected eq 'cart'} ord_step_selected{/if}" title="{$LANG.label_cart}">
+		<span class="ord_step_number">1</span>
+		<span class="ord_step_label">{$LANG.label_cart}</span>
+	</span>
+	
+	<span class="ord_step ord_step_2 ord_step_info{if $ord_step_selected eq 'info'} ord_step_selected{/if}" title="{$LANG.label_order_info}">
+		<span class="ord_step_number">2</span>
+		<span class="ord_step_label">{$LANG.label_order_info}</span>
+	</span>
+	
+	<span class="ord_step ord_step_3 ord_step_confirm{if $ord_step_selected eq 'confirm'} ord_step_selected{/if}" title="{$LANG.label_order_step_confirm}">
+		<span class="ord_step_number">3</span>
+		<span class="ord_step_label">{$LANG.label_order_step_confirm}</span>
+	</span>
+	
+	<span class="ord_step ord_step_4 ord_step_completed{if $ord_step_selected eq 'completed'} ord_step_selected{/if}" title="{$LANG.label_order_completed}">
+		<span class="ord_step_number">4</span>
+		<span class="ord_step_label">{$LANG.label_order_completed}</span>
+	</span>
+</div>

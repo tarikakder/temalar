@@ -1,0 +1,147 @@
+<div class="frm Account address_form">
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader pageViewHeader">{$contentHeader|display_text}</h1>
+
+			{if $error}
+			<div class="alert alert-danger">{$LANG.validation_general}</div>
+			{/if}
+
+			<form action="{create_link transfer=get}" method="post" class="edit_form adr_form">
+				<input type="hidden" id="adr_id" name="adr_id" value="{$row.adr_id|escape}" />
+				{if $config.billing_adr_fixed}
+				<input type="hidden" id="adr_type" name="adr_type" value="s" />
+				{/if}
+
+				<div class="form-group form-check adr_corp">
+					<div class="error">{$error.adr_corp}</div>
+					<input class="form-check-input adr_corp" type="checkbox" name="adr_corp" id="adr_corp" value="1" {if $row.adr_corp|escape}checked="checked"{/if}  />
+					<label class="form-check-label" for="adr_corp">{$LANG.label_adr_corp}</label>
+				</div>
+
+				{if !$config.billing_adr_fixed}
+				<div class="form-group">
+					<div class="error">{$error.adr_type}</div>
+					<label for="adr_type">{$LANG.label_adr_type} : </label>
+					<select required="required" class="form-control adr_type" id="adr_type" name="adr_type">
+						{html_options options=$LANG.arr_address_types selected=$row.adr_type|default:'sb'}
+					</select>
+				</div>
+				{/if}
+
+				<div class="form-group">
+					<div class="error">{$error.adr_title}</div>
+					<label for="adr_title">{$LANG.label_adr_title} : </label>
+					<input class="form-control inp_adr_title" type="text" name="adr_title" id="adr_title" maxlength="20" value="{$row.adr_title|escape}"  />
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_name}</div>
+					<label for="adr_name">{$LANG.label_adr_name} <span class="required_star">*</span>: </label>
+					<input required="required" class="form-control inp_adr_name" type="text" name="adr_name" id="adr_name" maxlength="255" value="{$row.adr_name|escape}"  />
+				</div>
+						
+				<div class="form-group show_corp">
+					<div class="error">{$error.adr_firm_name}</div>
+					<label for="adr_firm_name">{$LANG.label_adr_firm_name} : </label>
+					<input class="form-control inp_adr_firm_name" type="text" name="adr_firm_name" id="adr_firm_name" maxlength="255" value="{$row.adr_firm_name|escape}"  />
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_country_id}</div>
+					<label for="adr_country_id">{$LANG.label_adr_country_id} <span class="required_star">*</span>: </label>
+					<select required="required" onchange="loadComboBox('adr_city_id','{create_link p=Cities  no_common=1 opts=''}'+this.value,this.value);" class="form-control" name="adr_country_id" id="adr_country_id">
+						<option value="">{$LANG.label_please_select}</option>
+						{html_options options=$select_options.countries selected=$row.adr_country_id}
+					</select>
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_city_id}</div>
+					<label for="adr_city_id">{$LANG.label_adr_city_id} <span class="required_star">*</span>: </label>
+					{if $config.adr_city_text}
+					<input type="text" required="required" class="form-control" name="adr_city" id="adr_city" value="{$select_options.cities[$row.adr_city_id]}" />
+					{else}
+					<select required="required" onchange="loadComboBox('adr_town_id','{create_link p=Towns  no_common=1 opts=''}'+this.value,this.value);" class="form-control" name="adr_city_id" id="adr_city_id">
+						<option value="">{$LANG.label_please_select}</option>
+						{html_options options=$select_options.cities selected=$row.adr_city_id}
+					</select>
+					{/if}
+				</div>
+
+				<div class="form-group adr_town">
+					<div class="error">{$error.adr_town_id}</div>
+					<label for="adr_town_id">{$LANG.label_adr_town_id}: </label>
+					{if $config.adr_town_text}
+					<input type="text" class="form-control" name="adr_town" id="adr_town" value="{$select_options.towns[$row.adr_town_id]}" />
+					{else}
+					<select class="form-control" name="adr_town_id" id="adr_town_id">
+						<option value="">{$LANG.label_please_select}</option>
+						{html_options options=$select_options.towns selected=$row.adr_town_id}
+					</select>
+					{/if}
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_postal_code}</div>
+					<label for="adr_postal_code">{$LANG.label_adr_postal_code} {if $config.post_code_required}<span class="required_star">*</span>{/if}: </label>
+					<input class="form-control" type="number" name="adr_postal_code" id="adr_postal_code" {if $config.post_code_required}required="required"{/if} maxlength="20" value="{$row.adr_postal_code|escape}" />
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_address}</div>
+					<label for="adr_address">{$LANG.label_adr_address} <span class="required_star">*</span> : </label>
+					<textarea required="required" class="form-control" type="text" name="adr_address" id="adr_address">{$row.adr_address|escape}</textarea>
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_cellphone}</div>
+					<label for="adr_cellphone">{$LANG.label_adr_cellphone} : </label>
+					<input class="form-control inp_adr_cellphone" type="text" name="adr_cellphone" id="adr_cellphone" maxlength="20" value="{$row.adr_cellphone|escape}" onkeypress="return Only_Integer(event);"  />
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_phone}</div>
+					<label for="adr_phone">{$LANG.label_adr_phone} : </label>
+					<input class="form-control" type="text" name="adr_phone" id="adr_phone" maxlength="20" value="{$row.adr_phone|escape}" onkeypress="return Only_Integer(event);"  />
+				</div>
+
+				<div class="form-group">
+					<div class="error">{$error.adr_phone2}</div>
+					<label for="adr_phone2">{$LANG.label_adr_phone2} : </label>
+					<input class="form-control" type="text" name="adr_phone2" id="adr_phone2" maxlength="20" value="{$row.adr_phone2|escape}" onkeypress="return Only_Integer(event);"  />
+				</div>
+
+				<div class="form-group show_b show_corp2 adr_tax_office">
+					<div class="error">{$error.adr_tax_office}</div>
+					<label for="adr_tax_office">{$LANG.label_adr_tax_office} : </label>
+					<input class="form-control" type="text" name="adr_tax_office" id="adr_tax_office" maxlength="32" value="{$row.adr_tax_office|escape}"  />
+				</div>
+
+				<div class="form-group show_b adr_tax_number">
+					<div class="error">{$error.adr_tax_number}</div>
+					<label for="adr_tax_number">{$LANG.label_adr_tax_number} : </label>
+					<input class="form-control" type="text" name="adr_tax_number" id="adr_tax_number" maxlength="32" size="20" value="{$row.adr_tax_number|escape}"  />
+				</div>
+
+
+				<div class="form_row">
+					<label></label>
+					
+          <button value="1" type="submit" name="save" onclick=";$(this).hide();$('.loading-submit-button').removeClass('d-none')" class="btn btn-dark button_save button_adr_save">
+          {$LANG.button_save}
+          </button>
+          <button class="btn btn-dark d-none loading-submit-button" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  
+          </button>          
+          
+					<a class="btn btn-light" href="{create_link p=Address}"><span class="">{$LANG.button_cancel}</span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

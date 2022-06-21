@@ -1,0 +1,52 @@
+<div class="list">
+
+
+
+<form action="{create_link transfer=get}" method="post" name="list_frm" class="form-inline list_form">
+{if $pager.data_count>0}
+<table cellpadding="0" cellspacing="0" width="100%" class="table table-striped table-hover list_table">
+<tr class="hdr">
+	<th nowrap="nowrap">
+  	<a href="{create_link transfer=get order='quo_id' sort=$next_sort_order|default:'asc'}"><span class="fa fa-sort"></span></a>
+    {$LANG.label_quo_id}
+  </th>
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='mmb_name' sort=$next_sort_order|default:'asc'}"><span class="fa fa-sort"></span></a>
+	{$LANG.label_mmb_name}
+	</th>
+  
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='quo_update_date' sort=$next_sort_order|default:'asc'}"><span class="fa fa-sort"></span></a>
+	{$LANG.label_quo_update_date}
+	</th>	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='quo_status' sort=$next_sort_order|default:'asc'}"><span class="fa fa-sort"></span></a>
+	{$LANG.label_quo_status}
+	</th>	  
+  
+		
+</tr>
+{foreach from=$recordset item=item key=k}
+<tr class="{cycle values='odd,even'}">
+	<td>  
+    {if $item.quo_status gt 1}
+		<a class="btn btn-light" href="{create_link p=Quotes view=$item.quo_id}">
+			#{$item.quo_id|display_text}
+		</a>  
+    {else}
+      #{$item.quo_id|display_text}
+    {/if}
+  </td>		
+	<td>{$item.mmb_name|display_text}</td>
+  <td>{$item.quo_update_date|display_text}</td>
+   <td>{$item.status_text|display_text}</td>
+
+</tr>
+{/foreach}
+</table>
+{/if}
+</form>
+
+{include file='pager.html'}
+
+</div>

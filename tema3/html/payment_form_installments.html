@@ -1,0 +1,19 @@
+<div class="vpos_type_container vpos_type_container_{$vpos_type}" {if $vpos_type_select_enabled and $vpos_type ne '3d'}style="display:none"{/if}>
+	{foreach from=$vpos_items item=item}
+	{if $item.installments}
+		<div class="paymentInstallmentCol">
+			<div class="title {if $item.bnk_image_a}img{else}{/if}">
+				{if $item.bnk_image_a}
+				<img src="{$item.bnk_image_a}" alt="{$item.vps_name}">
+				{else}
+				<h3>{$item.vps_name}</h3>
+				{/if}
+			</div>
+
+			<div class="content">
+				{include file="payment_inst_options.html" inst_options=$item.installments input_name='installment_str'}		
+			</div>
+		</div>
+	{/if}
+	{/foreach}
+</div>

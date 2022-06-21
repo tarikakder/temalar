@@ -1,0 +1,19 @@
+<div class="vote_section">
+	<div class="vote_imgs">
+		{section loop=6 start=1 name=stars}
+		<a class="vote_items {if $row.prd_vote_avg|round gte $smarty.section.stars.index}dy_selected{/if}" rel="nofollow" 
+		{if isUserLogin()}
+		onclick="$('.vote_result_{$row.prd_id|default:$item_id}').loadPage($(this).attr('href'),'#vote_result');$(this).parents('.vote_section').find('.vote_result').show();return false;" 
+		href="{create_link save=1 p=Votes vote_value=$smarty.section.stars.index item_id=$row.prd_id|default:$item_id item_type=prd no_common=1}" 	
+	  {else}
+	  onclick="$('.vote_result').html('{$LANG.message_login_required} - <a href={create_link p=Login return_url=$smarty.const.CURRENT_URL|escape|url_encrypt}>{$LANG.label_login}</a>')"
+		{/if}
+		>
+			<span class="la la-star"></span>
+		</a>
+		{/section}
+		
+		<!--<span class="vote_stats">{$row.prd_vote_avg}/5</span>-->
+	</div>
+	<div class="vote_result vote_result_{$row.prd_id|default:$item_id}" onclick="$(this).toggle()"></div>	
+</div>

@@ -1,0 +1,148 @@
+<div class="list bg-white p-5">
+
+
+
+<div>
+<table class="table">
+  <tr>
+    <th></th>
+    <td class="text-right">
+      <a class="btn btn-secondary border" href="{create_link p=Quotes add_to_cart=$quote_row.quo_id}">
+        {$LANG.label_add_to_cart}
+      </a>
+      <a class="btn btn-secondary border" href="{create_link p=Quotes pdf=$quote_row.quo_id}">
+        <i class="la la-file-pdf"></i> PDF
+      </a>
+    </td>  
+  </tr>
+   <tr>
+    <th>{$LANG.label_quo_id}</th>
+    <td>#{$quote_row.quo_id}</td>
+   </tr>
+  <tr>
+    <th>{$LANG.label_mmb_id}</th>
+    <td>{$quote_row.mmb_id}</td>
+   </tr>
+   <tr>
+    <th>{$LANG.label_mmb_email}</th>
+    <td>{$quote_row.mmb_email}</td>
+   </tr>
+   <tr>
+    <th>{$LANG.label_mmb_name}</th>
+    <td>{$quote_row.mmb_name}</td>
+   </tr>
+   <tr>
+    <th>{$LANG.label_quo_insert_date}</th>
+    <td>{$quote_row.quo_insert_date|dt_format}</td>
+   </tr>
+</table>
+</div>
+
+
+<div class="bg-light">
+
+
+{if $quote_row.items}
+<table cellpadding="0" cellspacing="0" width="100%" class="table table-striped table-hover list_table">
+<tr class="hdr">
+	<th nowrap="nowrap">
+	{$LANG.label_prd_barcode}
+	</th>
+	<th nowrap="nowrap">
+	{$LANG.label_prd_name}
+	</th>
+	<th nowrap="nowrap">
+	{$LANG.label_qit_quantity}
+	</th>
+	<th nowrap="nowrap" class="text-center">
+	{$LANG.label_qit_list_price}
+	</th>
+ 	<th nowrap="nowrap" class="text-center">
+	{$LANG.label_qit_discount_rate}
+	</th>
+ 	<th nowrap="nowrap" class="text-center">
+	{$LANG.label_qit_discount_price}
+	</th>  
+	
+</tr>
+{foreach from=$quote_row.items item=item key=k}
+<tr class="{cycle values='odd,even'}">
+  <td>{$item.prd_barcode|display_text}</td> 
+  <td>{$item.prd_name|display_text}</td>
+  <td>{$item.qit_quantity|display_text}</td>  
+  <td class="text-center">{$item.qit_list_price|display_text|price_format4:$item.cur_code}</td>  
+	<td class="text-center">{$item.qit_discount_rate|number_format:2}%</td>
+  <td class="text-center">{$item.qit_discount_price|display_text|price_format4:$item.cur_code}</td>
+
+
+</tr>
+{/foreach}
+</table>
+<table class="table">
+<tr class="{cycle values='odd,even'}">
+  <td colspan="3">{$LANG.label_total}</td> 
+  <td class="text-center"></td>  
+  <td class="text-center"></td>   
+  {foreach from=$totals key=cur_code item=item}
+  <td class="text-right">{$item.list_price_total|price_format4:$cur_code}</td> 
+  {/foreach}
+</tr>
+<tr class="{cycle values='odd,even'}">
+  <td colspan="3">{$LANG.label_total_discount}</td> 
+  <td class="text-center"></td>  
+  <td class="text-center"></td>  
+  {foreach from=$totals key=cur_code item=item}
+  <td class="text-right">{$item.discount_total|price_format4:$cur_code}</td> 
+  {/foreach}  
+</tr>
+<tr class="{cycle values='odd,even'}">
+  <td colspan="3">{$LANG.discount_prd}</td> 
+  <td class="text-center"></td>  
+  <td class="text-center"></td>   
+  {foreach from=$totals key=cur_code item=item}
+  <td class="text-right">{$item.discount_price_total|price_format4:$cur_code}</td>
+  {/foreach}  
+</tr>
+{if !$quote_row.quo_vat_included}
+<tr class="{cycle values='odd,even'}">
+  <td colspan="3">{$LANG.label_vat}</td> 
+  <td class="text-center"></td>  
+  <td class="text-center"></td>   
+  {foreach from=$totals key=cur_code item=item}
+  <td class="text-right">{$item.vat_total|price_format4:$cur_code}</td>   
+  {/foreach}
+</tr>
+<tr class="{cycle values='odd,even'}">
+  <td colspan="3">{$LANG.label_total}</td> 
+  <td class="text-center"></td>  
+  <td class="text-center"></td>   
+  {foreach from=$totals key=cur_code item=item}
+  <td class="text-right">{$item.grand_total|price_format4:$cur_code}</td>   
+  {/foreach}
+</tr>
+{/if}
+</table>
+
+
+
+
+{/if}
+</div>
+
+<div class="my-5">
+  {foreach from=$quote_row.quo_notes_arr item=item key=k}  
+   {if $item ne ""}
+    <div class="my-1">
+      {$item}
+    </div>
+   {/if}
+  {/foreach}
+</div>
+
+<div class="my-5">
+  {foreach from=$quote_footer_text_list item=item}
+    <div>* {$item}</div>
+  {/foreach}
+</div>
+
+</div>

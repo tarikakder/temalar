@@ -1,0 +1,52 @@
+<div class="">
+    <h1 class="contentHeader commentListHeader">{$contentHeader|display_text}</h1>
+
+    {include file="messages_menu.html"}
+
+    <form action="{create_link transfer=get}" method="post" name="list_frm" class="form-inline list_form messages_list">
+
+        {if $pager.data_count>0}
+        <div class="table-responsive mt-3">
+        <table class="table border table-striped">
+            {foreach from=$recordset item=item key=k}
+            <tr class="{if $item.msg_is_read or $folder eq 'sent'}{else}message_unread{/if}">
+                <td width="10" class="message_checkbox"><input class="inp_checkbox toggle"
+                                                                                      type="checkbox" name="delete[]"
+                                                                                      id="delete{$k}"
+                                                                                      value="{$item.msg_id}"/></td>
+
+
+                <td class="message_name">
+                    <a href="{create_link transfer=get view=$item.msg_id}">{if $folder eq
+                    'sent'}{$item.msg_to_name}{else}{$item.msg_from_name|display_text}{/if}</a></td>
+                <td class="message_content">
+                  <a href="{create_link transfer=get view=$item.msg_id}">{$item.msg_subject|display_text} -
+                    {$item.msg_message|tokenTruncate:100}</a></td>
+                <td class="message_time">
+                  <a href="{create_link transfer=get view=$item.msg_id}">{$item.msg_time|dt_format}</a>
+                </td>
+
+
+                <td class="message_actions">
+                    <a class="btn btn-danger btn-sm" href="{create_link p=$pageName del=$item.msg_id}"
+                       onclick="return confirm('{$LANG.general_confirm_delete}')"><span class="la la-trash"
+                                                                                        title="{$LANG.general_delete}"></span></a>
+                </td>
+            </tr>
+            {/foreach}
+        </table>    
+        </div>
+        <div class=" rsp-hide-538">
+            <input type="submit" name="del" id="del" class="btn btn-danger button_delete button_fav_delete"
+                   value="{$LANG.label_delete}"/>
+        </div>
+        {else}
+        <div class="ui-grid-content  table-block list_table">
+            <h3>{$LANG.label_message_not_found}</h3>
+        </div>
+        {/if}
+    </form>
+
+    {include file='pager.html'}
+
+</div>

@@ -1,0 +1,12 @@
+<form action="{$vpos3d.vposurl}" method="post" class="edit_form form-auto-post" id="payment_3d_form">
+	{foreach from=$vpos3d item=vpos3d_item key=vpos3d_key}
+	{if $vpos3d_key eq 'script'}
+	{$vpos3d_item}
+	{elseif $vpos3d_key ne "vposurl"}
+	<input type="hidden" name="{$vpos3d_key}" value="{$vpos3d_item}" />
+	{/if}
+	{/foreach}
+	<br/><br/>
+	<input type="submit" name="payment3d_submit" class="button" value="submit" />
+	<br/><br/><br/>
+</form>	

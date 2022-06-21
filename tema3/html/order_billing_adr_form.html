@@ -1,0 +1,106 @@
+<div class="form_table ord_billing_adr_form">
+	<div class="form-group ord_billing_name">
+		<div class="error">{$error.ord_billing_name}</div>
+		<label for="ord_billing_name"><span id="label_ord_billing_name">{$LANG.label_ord_billing_name}</span><span class="required_star">*</span> : </label>	
+		<input required="required" class="form-control" type="text" name="ord_billing_name" id="ord_billing_name" maxlength="32" value="{$row.ord_billing_name|escape}"  />
+	</div>
+
+	{if !isUserLogin()}
+	<div class="form-group ord_mmb_email">
+		<div class="error">{$error.ord_mmb_email}</div>
+		<label for="ord_mmb_email"><span id="label_ord_mmb_email">{$LANG.label_ord_mmb_email}</span><span class="required_star">*</span> : </label>	
+		<input required="required" class="form-control" type="text" name="ord_mmb_email" id="ord_mmb_email" maxlength="255" value="{$row.ord_mmb_email|escape}"  />
+	</div>
+	{/if}
+
+	<div class="form-group ord_billing_phone">
+		<div class="error">{$error.ord_billing_phone}</div>
+		<label for="ord_billing_phone"><span id="label_ord_billing_phone">{$LANG.label_ord_billing_phone}</span><span class="required_star">*</span> : </label>	
+		<input required="required" class="form-control" type="text" name="ord_billing_phone" id="ord_billing_phone" maxlength="20" onkeypress="return Only_Integer(event);" value="{$row.ord_billing_phone|escape}"  />
+	</div>
+
+	<div class="form-group ord_billing_country_id">
+		<div class="error">{$error.ord_billing_country_id}</div>
+		<label for="ord_billing_country_id"><span id="label_ord_billing_country_id">{$LANG.label_ord_billing_country_id}</span><span class="required_star">*</span> : </label>	
+		<select required="required" onchange="loadComboBoxCnt('ord_billing_city_id','{create_link p=Cities no_common=1 https=1 opts=''}'+this.value,this.value);$(this).updateCargoList();" class="form-control" name="ord_billing_country_id" id="ord_billing_country_id">
+			<option value="">{$LANG.label_please_select}</option>
+			{html_options options=$select_options.countries selected=$row.ord_billing_country_id}
+		</select>
+	</div>
+	
+	<div class="form-group ord_billing_city_id">
+		<div class="error">{$error.ord_billing_city_id}</div>
+		<label for="ord_billing_city_id"><span id="label_ord_billing_city_id">{$LANG.label_ord_billing_city_id}</span><span class="required_star">*</span> : </label>
+		{if $config.adr_city_text}
+		<input type="text" required="required" class="form-control" name="ord_billing_city" id="ord_billing_city" value="{$select_options.billing_cities[$row.ord_billing_city_id]|default:$row.ord_billing_city}" />
+		{else}
+		<select required="required" onchange="loadComboBoxCnt('ord_billing_town_id','{create_link p=Towns no_common=1 https=1 opts=''}'+this.value,this.value);" class="form-control" name="ord_billing_city_id" id="ord_billing_city_id">
+			<option value="">{$LANG.label_please_select}</option>
+			{html_options options=$select_options.billing_cities selected=$row.ord_billing_city_id}
+		</select>
+		{/if}
+	</div>
+
+	<div class="form-group ord_billing_town_id">
+		<div class="error">{$error.ord_billing_town_id}</div>	
+		<label for="ord_billing_town_id"><span id="label_ord_billing_town_id">{$LANG.label_ord_billing_town_id}</span>{if $config.town_required}<span class="required_star">*</span>{/if} : </label>
+		{if $config.adr_town_text}
+		<input type="text" class="form-control" name="ord_billing_town" id="ord_billing_town" value="{$select_options.billing_towns[$row.ord_billing_town_id]|default:$row.ord_billing_town}" />
+		{else}	
+		<select class="form-control" name="ord_billing_town_id" id="ord_billing_town_id">
+			<option value="">{$LANG.label_please_select}</option>
+			{html_options options=$select_options.billing_towns selected=$row.ord_billing_town_id}
+		</select>
+		{/if}
+	</div>
+
+	<div class="form-group ord_billing_address">
+		<div class="error">{$error.ord_billing_address}</div>	
+		<label for="ord_billing_address"><span id="label_ord_billing_address">{$LANG.label_ord_billing_address}</span><span class="required_star">*</span> : </label>	
+		<textarea required="required" class="form-control" type="text" name="ord_billing_address" id="ord_billing_address">{$row.ord_billing_address|escape}</textarea>
+	</div>
+
+	<div class="form-group ord_billing_postalcode">
+		<div class="error">{$error.ord_billing_postalcode}</div>	
+		<label for="ord_billing_postalcode"><span id="label_ord_billing_postalcode">{$LANG.label_ord_billing_postalcode}</span> {if $config.post_code_required}<span class="required_star">*</span>{/if}: </label>	
+		<input class="form-control" type="text" {if $config.post_code_required}required="required"{/if} name="ord_billing_postalcode" id="ord_billing_postalcode" maxlength="10" value="{$row.ord_billing_postalcode|escape}"  />
+	</div>
+
+	<div class="form-group form-check ord_adr_corp">
+		<input type="hidden" name="ord_adr_corp_exists" id="ord_adr_corp_exists" value="1"> 
+		<input class="form-check-input ord_adr_corp" onchange="$(this).ordAdrChange();" type="checkbox" name="ord_adr_corp" id="ord_adr_corp" value="1" {if $row.ord_adr_corp|escape}checked="checked"{/if}  />
+		<label class="form-check-label" for="ord_adr_corp">{$LANG.label_adr_corp}</label>
+	</div>
+
+	<div class="form-group ord_billing_firm_name ord_firm {if !$row.ord_adr_corp}ord_firm_hide{/if}" >
+		<div class="error">{$error.ord_billing_firm_name}</div>
+		<label for="ord_billing_firm_name"><span id="label_ord_billing_firm_name">{$LANG.label_ord_billing_firm_name}</span> : </label>	
+		<input class="form-control" type="text" name="ord_billing_firm_name" id="ord_billing_firm_name" maxlength="200" value="{$row.ord_billing_firm_name|escape}"  />
+	</div>
+
+	<div class="form-group ord_billing_tax_office ord_firm {if !$row.ord_adr_corp}ord_firm_hide{/if}" >
+		<div class="error">{$error.ord_billing_tax_office}</div>
+		<label for="ord_billing_tax_office"><span id="label_ord_billing_tax_office">{$LANG.label_ord_billing_tax_office}</span> : </label>	
+		<input class="form-control" type="text" name="ord_billing_tax_office" id="ord_billing_tax_office" maxlength="32" value="{$row.ord_billing_tax_office|escape}"  />
+	</div>
+		
+	<div class="form-group ord_billing_tax_number ">
+		<div class="error">{$error.ord_billing_tax_number}</div>
+		
+		<label for="ord_billing_tax_number"><span id="label_adr_tax_number">{$LANG.label_ord_billing_tax_number}</span> 
+		{if $config.cfg_tax_no_required}
+		<span class="required_star">*</span>
+		{/if}: 
+		</label>	
+		<input class="form-control" type="text" name="ord_billing_tax_number" id="ord_billing_tax_number" maxlength="32" value="{$row.ord_billing_tax_number|escape}"  />
+	</div>
+						
+	{if !$cart_contents.all_digital}
+	<div class="form-group form-check">
+		<input class="form-check-input" type="checkbox" id="different_address" name="different_address" value="1" {if $row.different_address}checked{/if} onclick="this.checked?$('#ord_shipping_container').show('slow'):$('#ord_shipping_container').hide('slow');">
+		<label class="form-check-label" for="different_address">&nbsp;{$LANG.label_different_address}</label>	
+	</div>
+	{/if}
+</div>
+<span class="error ord_firm_note">{$LANG.label_ord_firm_note}</span><br/>
+<span class="error required_fields_desc">{$LANG.label_required_fields_desc}</span>

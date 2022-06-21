@@ -1,0 +1,13 @@
+<ul id="nav_top">	
+	<li {if $selected_tab eq 'home'}class="nav_s"{/if}><a href="{$LANG.link_homepage}">{$LANG.label_homepage}</a></li>
+	
+{foreach from=$modules_list.top item=mod_item key=key}
+	<li {if $selected_tab eq 'fp'|cat:$mod_item.mod_id}class="nav_s"{/if}>
+	<a href="{$mod_item.link}">{$mod_item.mod_name}</a></li>
+{/foreach}
+	
+
+	<li {if $selected_tab eq 'ctg'}class="nav_s"{/if}><a href="{$LANG.link_categories}">{$LANG.label_categories}</a></li>
+	<li {if $selected_tab eq 'wrt'}class="nav_s"{/if}><a href="{$LANG.link_writers}">{$LANG.label_writers}</a></li>
+	<li {if $selected_tab eq 'pub'}class="nav_s"{/if}><a href="{$LANG.link_publihers}">{$LANG.label_publishers}</a></li>				
+</ul>

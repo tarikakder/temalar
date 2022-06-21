@@ -1,0 +1,64 @@
+{if $ctg_filters}
+<div class="Box ctg_filters_box">
+<div class="Box-header"><a href="#">{$mod_item.mod_name}</a></div>
+<div class="Box-content">
+
+	
+	<form id="search_filter_form" name="search_filter_form" action="{create_link}" method="get">
+	{$hidden_values}
+	{assign var='max_filter_count' value=5}
+	<ul>
+	
+
+		
+		{foreach from=$ctg_filters item=fld key=key}
+		
+		{if $key eq 'stock'}
+			{if $config.show_zero_stock_prd}
+			<li class="ctg_filter_{$key}"><span>{$fld.fld_label}</span>
+				<ul>
+				{foreach from=$fld.filters key=k item=item}
+					{if $item.value ne ''}
+					<li>
+						<input type="checkbox" name="stock" id="stock" value="1" class="filters_checkbox" onclick="$('#search_filter_form').submit()" {if $smarty.get.stock}checked="checked"{/if}  />
+						<label for="stock">{$item.value} ({$item.c})</label>			
+					</li>
+					{/if}
+				{/foreach}	
+				</ul>
+			</li>
+			{/if}		
+		{else}	
+		<li class="ctg_filter_{$key}"><span>{$fld.fld_label}</span>
+			<ul>
+				{foreach from=$fld.filters key=k item=item}
+				{if $item.value ne ''}
+		
+						
+				<li>
+						<input
+						class="filters_checkbox"			 
+						onclick="$('#search_filter_form').submit()" 
+						type="checkbox" 
+						id="prpm_{$key}_{$item.v}" 
+						{if $smarty.get.prpm.$key[$item.v] eq $item.v}checked="checked"{/if} 
+						name="prpm[{$key}][{$item.v}]" 
+						value="{$item.v}" />
+						<label for="prpm_{$key}_{$item.v}"> {$item.value|truncate:40} ({$item.c})</label>
+				</li>
+			
+							
+				{/if}
+				{/foreach}	
+			</ul>	
+		</li>
+		{/if}
+		{/foreach}	
+	</ul>
+	</form>
+
+
+</div>
+<div class="Box-footer"></div>
+</div>
+{/if}

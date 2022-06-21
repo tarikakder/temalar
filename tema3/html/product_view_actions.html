@@ -1,0 +1,12 @@
+<div class="prd_view_actions">
+  {if $config.sharing_enabled}
+	<a class="btn btn-light btn-sm button_share" title="{$LANG.tooltip_share}" rel="nofollow" href="#" onclick="$('.result_box_wrapper').addClass('active');$('.result_box').loadPage('{create_link p=Sharings shr_item_id=$row.prd_id popup=1 no_common=1}','{$LANG.label_share}');return false;"><span class="">{$LANG.label_share}</span></a>
+  {/if}
+	<a class="btn btn-light btn-sm button_feedback" title="{$LANG.tooltip_feedback}" rel="nofollow" href="#" onclick="$('.result_box_wrapper').addClass('active');$('.result_box').loadPage('{create_link p=ProductFeedbacks edit=-1 prf_prd_id=$row.prd_id popup=1 no_common=1}','{$LANG.label_add_feedback}');return false;"><span class="">{$LANG.label_add_feedback}</span></a>
+	
+	{* hata bildir ve tavsiye et formlari burada acilacak*}
+	<div class="result_box_wrapper">
+		<div class="result_box_overlay" onclick="$('.result_box_wrapper').removeClass('active');"></div>
+		<div class="result_box"></div>
+	</div>
+</div>

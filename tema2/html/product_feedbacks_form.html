@@ -1,0 +1,27 @@
+<div class="frm feedback_form mt-3">
+	{if $success}
+		<div class="alert alert-success">{$message}</div>
+	{else}
+		{if $error}
+		<div class="alert alert-danger">{$LANG.validation_general}</div>
+		{/if}
+
+		<form action="{create_link p=$pageName}" method="post" class="edit_form" data-container=".result_box" onsubmit="return $(this).loadPageSubmit()">
+			<input type="hidden" id="prf_prd_id" name="prf_prd_id" value="{$row.prf_prd_id}">
+			<div class="form_table feedback_form">
+				<div class="form-group">
+					<div class="error">{$error.prf_prd_id}</div>
+					<div class="checkbox-labels">{html_checkboxes class="inp_checkbox_smarty" name='fops' options=$select_options.feedback_options selected=$row.prf_fop_id separator=''}</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="error">{$error.prf_text}</div>
+					<div>{$LANG.label_other}</div>
+					<div><input class="form-control" type="text" name="prf_text" id="prf_text" maxlength="255" value="{$row.prf_text|escape}"  /></div>
+				</div>
+				
+				<input class="btn btn-dark btn-sm button_send" type="submit" name="save" id="save" value="{$LANG.button_send}"/>	
+			</div>
+		</form>
+	{/if}
+</div>

@@ -1,0 +1,62 @@
+
+{if !$config.cfg_email_list_form}
+<div class="Footer-email">
+	{include file='email_list_form.html'}
+</div>
+{/if}
+<footer class="Footer">
+	<div id="dump"></div>
+	<div class="container">
+		<div class="Footer-wrapper">
+			<div class="Footer-content">
+				<div class="Footer-content-logo">
+					<img src="{$config.logo_url}" alt="{$config.cfg_site_name}" draggable="false">
+				</div>
+				<div class="Footer-content-info">
+					<span class="firm_title">{if $config.cfg_firm_title}{$config.cfg_firm_title}{/if}</span>
+					<span class="firm_address">{$config.cfg_address}</span>
+					<span class="firm_phone">
+						{if $config.cfg_phone1}<a href="tel:{$config.cfg_phone1}">{$config.cfg_phone1}</a>{/if}
+						{if $config.cfg_phone2}&nbsp;&nbsp;&nbsp;<a href="tel:{$config.cfg_phone2}">{$config.cfg_phone2}</a>{/if}
+						{if $config.cfg_phone3}&nbsp;&nbsp;&nbsp;<a href="tel:{$config.cfg_phone3}">{$config.cfg_phone3}</a>{/if}
+					</span>
+					{if $config.cfg_email}<span>{$config.cfg_email}</span>{/if}
+
+					<span>&copy; {$smarty.now|date_format:'%Y'} {$config.cfg_site_name}</span>
+				</div>
+				{menu name="footer_social"}
+			</div>
+			<div class="Footer-menu">
+				{menu name="footer_top"}
+			</div>
+		</div>
+
+		<div class="Footer-banner">
+			{banner name="footer"}
+
+			{if $config.cfg_etbis_code}
+			<div class="etbis_code">
+				{$config.cfg_etbis_code}
+			</div>
+			{/if}
+		</div>
+
+		{if $config.cfg_phone3}
+			<div class="Footer-whatsapp">
+				<a href="https://api.whatsapp.com/send?phone={if $config.cfg_phone3|count_characters:true eq '10'}0{/if}{$config.cfg_phone3}&text={$smarty.const.CURRENT_URL}" target="blank">
+					<span class="la la-whatsapp"></span>
+				</a>
+			</div>
+		{else}
+		<div class="Footer-button">
+			<span class="la la-angle-up"></span>
+		</div>
+		{/if}
+	</div>
+	<div class="banner_cookie">
+		{banner name="cookie"}
+		<span class="close" onclick="$('.banner_cookie').hide()">X</span>
+	</div>
+	
+  {include file="dy_branding.html"}
+</footer>

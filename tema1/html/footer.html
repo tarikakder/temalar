@@ -1,0 +1,121 @@
+<div class="Footer-email">
+	{include file='email_list_form.html'}
+</div>
+<footer class="Footer">
+	<div id="dump"></div>
+	<div class="container">
+		<div class="Footer-wrapper">
+			<div class="Footer-content">
+				<div class="Footer-content-logo">
+					<img src="{$config.logo_url}" alt="{$config.cfg_site_name}" draggable="false">
+				</div>
+				<div class="Footer-content-info">
+					<span class="firm_title">{if $config.cfg_firm_title}{$config.cfg_firm_title}{/if}</span><br>
+					{$config.cfg_address}<br />
+					{if $config.cfg_phone1}<a href="tel:{$config.cfg_phone1}">{$config.cfg_phone1}</a>{/if}
+					{if $config.cfg_phone2}&nbsp;&nbsp;&nbsp;<a href="tel:{$config.cfg_phone2}">{$config.cfg_phone2}</a>{/if}
+					{if $config.cfg_phone3}&nbsp;&nbsp;&nbsp;<a href="tel:{$config.cfg_phone3}">{$config.cfg_phone3}</a>{/if}
+					{if $config.cfg_email}<br><span>{$config.cfg_email}</span>{/if}
+
+					<br><span>&copy; {$smarty.now|date_format:'%Y'} {$config.cfg_site_name}</span>
+				</div>
+				{menu name="footer_social"}
+			</div>
+			<div class="Footer-menu">
+				{menu name="footer_top"}
+			</div>
+		</div>
+
+		<div class="Footer-banner">
+			{banner name="footer"}
+
+			{if $config.cfg_etbis_code}
+			<div class="etbis_code">
+				{$config.cfg_etbis_code}
+			</div>
+			{/if}
+		</div>
+
+		{if $config.cfg_phone3}
+			<div class="Footer-whatsapp">
+				<a href="https://api.whatsapp.com/send?phone={if $config.cfg_phone3|count_characters:true eq '10'}0{/if}{$config.cfg_phone3}&text=" target="blank">
+					<span class="la la-whatsapp"></span>
+				</a>
+			</div>
+		{else}
+		<div class="Footer-button">
+			<span class="la la-angle-up"></span>
+		</div>
+		{/if}
+	</div>
+	<div class="banner_cookie">
+		{banner name="cookie"}
+		<span class="close" onclick="$('.banner_cookie').hide()">X</span>
+	</div>
+	
+  {include file="dy_branding.html"}
+</footer>
+<div style="width: 100%;
+    background: #00a4b7;
+    display: flex;
+    justify-content: center;">
+	<a target="_blank" href="http://kanmazteknoloji.com/?page=%C3%87%C3%B6z%C3%BCmler&amp;content=E-Ticaret%20/%20B2B%20Bayi%20Sistemi&amp;id=111">
+		<img title="Kanmaz Teknoloji E-Ticaret Paketleri" alt="Kanmaz Teknoloji E-Ticaret Paketleri" width="70px" src="http://agakoc.de/kanmaz-teknoloji-logo-beyaz-202010408.svg">
+	</a></div>
+
+<script type="text/javascript">
+	var logoFtr = document.getElementsByClassName("Footer-content-logo");
+	logoFtr[0].innerHTML = '<img width="273px" src="/u/kartekiletisim/docs/k/a/kartek-logo-beyaz-1635336901.png">';
+
+	var footCont=document.getElementsByClassName("Footer-content");
+	footCont[0].children[2].remove();
+
+
+	var disCount=document.getElementsByClassName("discount");
+
+	for (i=0; i<disCount.length; i++){
+
+		if(disCount[i].children[0].innerHTML == "0"){
+			console.log(disCount[i].children[0].innerHTML);
+			disCount[i].children[0].innerHTML=" ";
+			//disCount[i].style="visibility:hidden;";
+			console.log("silindi");
+		}
+	}
+
+
+	var usdCur=document.getElementById("usd").innerText.substring(0,7);
+	var eurCur=document.getElementById("eur").innerText.substring(0,7);
+	var cardUSD=document.getElementsByTagName("span");
+
+	document.getElementById("eur").innerText=eurCur;
+	document.getElementById("usd").innerText=usdCur;
+
+	console.log(document.getElementById("eur").innerText.substring(0,5) + "kesildi");
+
+
+		for(i=0; i<cardUSD.length; i++){
+			if(cardUSD[i].id=="cardUsd"){
+				cardUSD[i].innerText=cardUSD[i].innerText.substring(0,7);
+				var deger=parseFloat(cardUSD[i].innerText);
+				cardUSD[i].innerText=deger.toFixed(2);
+                cardUSD[i].innerText=cardUSD[i].innerHTML.replace(".",",");
+                // for(z=0; z<cardUSD[i].innerText.length; z++){
+				// 	if(cardUSD[i].innerText[z]==","){
+				// 		var g=0;
+				// 		g++;
+				// 		if(g>="2"){
+				// 			cardUSD[i].innerText[z]="";
+				// 		}
+				// 	}
+				// }
+
+			}
+		}
+
+
+</script>
+
+
+
+

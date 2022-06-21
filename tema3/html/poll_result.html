@@ -1,0 +1,14 @@
+<div class="error">{$msg}</div>
+
+{if !$error}
+<ul>
+	<li class="poll_title">{$poll.pol_title}</li>		
+	{foreach from=$poll.options item=subitem key=subk}
+	<li class="poll_options" style="float:none; clear:both;"
+		<div style="float:left; margin:3px;background-color:#515151; height:10px;width:{$subitem.bar_length}px">&nbsp;</div>
+		<div style="float:left;">{$subitem.pop_name} (% {$subitem.pop_vote_percent})</div>
+	</li>
+	{/foreach} 
+	<br /><br />	
+</ul>
+{/if}

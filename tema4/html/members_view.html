@@ -1,0 +1,132 @@
+<div class="view Account">
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader mmbViewHeader">
+				{if $smarty.get.firm}
+				{$LANG.label_firm_info}
+				{else}
+				{$contentHeader|display_text}
+				{/if}
+			</h1>
+			
+			<div class="view_table members_view_table">
+				{if !$smarty.get.firm}
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_id} : </label>
+					<span>{$row.mmb_id|display_text}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_name} : </label>
+					<span>{$row.mmb_name|display_text}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_email} : </label>
+					<span>{$row.mmb_email} <a href="{create_link p=MemberPassword t=email_change}" class="btn btn-light btn-sm ml-2">{$LANG.button_edit}</a></span>
+				</div>
+					
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_password} : </label>
+					<span>****** <a href="{create_link p=MemberPassword}" class="btn btn-light btn-sm ml-2">{$LANG.button_edit}</a> </span>
+				</div>
+
+				{if $row.mmb_birthdate}
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_birthdate} : </label>
+					<span>{$row.mmb_birthdate|date_format:'%d-%m-%Y'}</span>
+				</div>
+				{/if}
+				
+				{if $config.cfg_show_jobs_in_member_form}
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_job_id} : </label>
+					<span>{$row.job_name}</span>
+				</div>
+				{/if}
+				
+				{if $config.cfg_point_value gt 0}
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_total_points} : </label>
+					<span>{$row.mmb_total_points}</span>
+				</div>
+				{/if}
+
+				{else}
+				<div class="view_table_item">
+					<label>{$LANG.label_adr_tax_number} : </label>
+					<span>{$address["s"][0].adr_tax_number}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_mmb_phone} : </label>
+					<span>{$row.mmb_phone}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_cnt_name} : </label>
+					<span>{$address["s"][0].cnt_name}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_cty_name} : </label>
+					<span>{$address["s"][0].cty_name}</span>
+				</div>
+
+				<div class="view_table_item">
+					<label>{$LANG.label_twn_name} : </label>
+					<span>{$address["s"][0].twn_name}</span>
+				</div>
+				{/if}
+				
+				<div class="view_table_item">
+					<a href="{create_link p=Members edit=1}" class="btn btn-dark button_update_mmb">{$LANG.button_update}</a>
+				</div>
+			
+				<div class="view_table_item login_social_links">
+					{if (!$row.mmb_fb_id and $config.cfg_enable_facebook_login)
+					 or (!$row.mmb_twitter_id and $config.cfg_enable_twitter_login)
+					 or (!$row.mmb_google_id and $config.cfg_enable_google_login)
+					}
+					<div>
+						<h3>{$LANG.label_integrate_your_accounts}</h3>
+					</div>
+					{/if}
+				
+					{if !$row.mmb_fb_id and $config.cfg_enable_facebook_login}
+						<a class="button login_facebook" href="{$smarty.const.HTTP_HOST}extensions/facebook/index.php">{$LANG.label_connect_with_facebook}</a>
+					{/if}
+					
+					{if !$row.mmb_twitter_id and $config.cfg_enable_twitter_login}
+						<a class="button login_twitter" href="{$smarty.const.HTTP_HOST}extensions/twitter/redirect.php">{$LANG.label_connect_with_twitter}</a>
+					{/if}
+					
+					{if !$row.mmb_google_id and $config.cfg_enable_google_login}
+						<a class="button login_google" href="{$smarty.const.HTTP_HOST}extensions/google_api/index.php">{$LANG.label_connect_with_google}</a>
+					{/if}
+				</div>
+        
+        <div class="view_table_item">
+          
+          <button data-toggle="collapse" data-target="#collapse1" class="btn btn-light">{$LANG.delete_my_account}</button>
+     
+          <div class="collapse py-3 my-3" id="collapse1">
+          {$LANG.delete_my_account_desc}
+            <form class="py-3" action="{create_link p=Members}" method="POST">
+              <button class="btn btn-secondary" value="1" type="submit" name="delete_my_account">{$LANG.button_continue}</button>
+            </form>           
+          </div>
+         
+        </div>
+        
+        
+			</div>
+		</div>
+	</div>
+</div>
+
+{*include file='products_list_prefs.html'*}

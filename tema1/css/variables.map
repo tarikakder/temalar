@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "variables.css",
+	"sources": [
+		"../scss/variables.scss"
+	],
+	"sourcesContent": [
+		"// colors\r\n$color_black: #000;\r\n$color_gray: #343a40;\r\n$color_gray2: #777;\r\n$color_orange: #FF3D00;\r\n$color_white: #FFF;\r\n$color_white2: #F5F5F5;\r\n$color_white3: #F9F9F9;\r\n$color_white4: #EEE;\r\n$color_red: #ff1744;\r\n$color_pink: #f50057;\r\n$color_purple: #6a1b9a;\r\n$color_yellow: #ffd740;"
+	],
+	"names": [],
+	"mappings": ""
+}

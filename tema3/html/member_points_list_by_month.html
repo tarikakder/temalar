@@ -1,0 +1,62 @@
+<div class="ui-grid   ">
+<h1 class="contentHeader">{$contentHeader}</h1>
+<br/>
+
+<br/>
+<form action="{create_link transfer=get}" method="post" name="list_frm" class="list_form">
+{if $recordset}
+
+
+{foreach from=$recordset item=items key=date_y}
+<h3>{$date_y}</h3>
+<div class="ui-grid-content  table-block list_table">
+<div class="table-row table-header-row rsp-hide-538">
+<div class="  table-cell">
+	
+	</div>		
+	<div class="  table-cell table-cell-center">
+	<a href="#">{$LANG.label_points_earned}</a>
+	</div>		
+	<div class="  table-cell table-cell-center">
+	<a href="#">{$LANG.label_points_spent}</a>
+	</div>
+
+	<div class="  table-cell table-cell-center">
+	<a href="#">{$LANG.label_mmb_total_points}</a>
+	</div>
+	
+</div>
+{foreach from=$items item=date_items key=date_m}
+{foreach from=$date_items.data item=item key=k}
+<div class="table-row table-body-row {cycle values='odd,even'}">
+	
+	
+	<div class=" table-cell"><a href="{create_link p=MemberPoints date1=$date_items.date}">{$date_items.label}</a></div>					
+	
+			
+	<div class=" table-cell table-cell-center">
+	{$item.sum_points_earned|default:0}
+	({$item.sum_points_earned_price|default:0} {$default_cur.cur_code})
+	</div>
+	<div class=" table-cell table-cell-center">
+	{$item.sum_points_spent|default:0}
+	({$item.sum_points_spent_price|default:0} {$default_cur.cur_code})
+	</div>	
+	<div class=" table-cell table-cell-center">
+	{$item.sum_points|default:0}
+	({$item.sum_points_price|default:0} {$default_cur.cur_code})
+	</div>	
+	
+	
+</div>
+{/foreach}
+{/foreach}
+</div>
+{/foreach}
+
+{/if}
+</form>
+
+{include file='pager.html'}
+
+</div>

@@ -1,0 +1,21 @@
+{if $image_list}
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type}">
+	{if !$tabs_view}
+		<div class="Box-header">
+			<a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>
+		</div>
+	{/if}
+	<div class="Box-content">
+		<div class="prd_view_images">
+		{foreach from=$image_list item=item}		
+			{if $item.c}
+			<a class="thickbox" title="{$row.prd_name|display_text}" href="{$item.c}">
+				<img title="{$row.prd_name|display_text}" class="prd_image_list_box" src="{$item.b}" alt="{$row.prd_name|display_text}" />
+			</a>
+			{/if}
+		{/foreach}
+		</div>
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

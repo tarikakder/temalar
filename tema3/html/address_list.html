@@ -1,0 +1,69 @@
+<div class="list Account adr_list">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader adrListHeader">{$contentHeader|display_text}</h1>
+
+			<a class="btn btn-dark button_new" href="{create_link p=Address edit=-1}">
+				<span class="">{$LANG.button_new}</span>
+			</a>
+
+			{if $address}
+			<form action="{create_link p=Address}" method="post" name="list_frm" class="list_form">
+				<table class="table table-bordered">
+					<thead class="rsp-hide-538">
+						<th width="30">
+							<div class="form-group form-check">
+								<input class="form-check-input" type="checkbox" name="checkall" id="checkall" onclick="$('.toggle').prop('checked',this.checked)">
+							</div>
+						</th>
+
+						<th>
+							{$LANG.label_adr_address}
+						</th>
+					</thead>
+					<tbody>
+						{foreach from=$address item=item key=k}
+						<tr>
+							<td>
+								<div class="form-group form-check">
+									<input class="form-check-input toggle" type="checkbox" name="delete[]" id="delete{$k}" value="{$item.adr_id}">
+								</div>
+							</td>
+
+							<td>
+								<div>
+									<a href="{create_link p=Address edit=$item.adr_id}">
+										<b>{$item.adr_title|display_text}</b>
+									</a>
+								</div>
+								<div>{$item.adr_name|display_text}</div>
+								<div>{$item.adr_address|display_text}</div>
+								<div>{$item.twn_name|display_text} {$item.cty_name|display_text} / {$item.cnt_name|display_text}</div>
+								<div>{$item.adr_phone|display_text}</div>
+								
+								<div class="adr_type">{$LANG.arr_address_types[$item.adr_type]}</div>
+								{if $item.editable}
+								<div class="buttons">
+									<a class="button_edit" href="{create_link p=Address edit=$item.adr_id}">{$LANG.general_edit}</a>
+									<a class="button_delete" href="{create_link p=Address del=$item.adr_id}" onclick="return confirm('{$LANG.general_confirm_delete}')">{$LANG.general_delete}</a>
+								</div>
+								{/if}
+								</td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+
+				<div class="rsp-hide-538">
+					<input type="submit" name="del" id="del" class="btn btn-danger button_delete button_adr_delete" value="{$LANG.label_delete}">
+				</div>
+			</form>
+			{/if}
+		</div>
+	</div>
+</div>

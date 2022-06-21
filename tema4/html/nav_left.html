@@ -1,0 +1,20 @@
+<ul id="nav">
+	{if $smarty.session.userID}
+	<div class="Box-header">{$LANG.label_greeting} {$smarty.session.userFullName}</div>
+		<ul class="member_nav">
+			<li><a href="{create_link p='Members'}">{$LANG.label_member_info}</a></li>
+			<li><a href="{create_link p='Orders'}">{$LANG.label_my_orders}</a></li>	
+			<li><a href="{create_link p='Favorites'}">{$LANG.label_my_favorites}</a></li>
+			<li><a href="{create_link p='Comments'}">{$LANG.label_my_comments}</a></li>			
+			<li><a href="{create_link p='Cart'}">{$LANG.label_my_cart}</a></li>
+			<li><a href="{create_link p='Logout'}">{$LANG.label_logout}</a></li>		
+		</ul>
+	</div>
+	{elseif $smarty.get.p ne 'Login'}
+	<div class="Box"><div class="Box-header">{$LANG.label_login}</div>
+		<ul class="Box-content">
+		{include file='loginForm.html'}
+		</ul>
+	</li>
+	{/if}
+</ul>

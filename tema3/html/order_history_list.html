@@ -1,0 +1,82 @@
+<div class="list">
+
+
+<table cellpadding="0" cellspacing="0" border="0" class="tbl_list_filters">
+	<tr><td><input type="button" class="button" onClick="window.location='{create_link p=$pageName edit=-1}'" value="{$LANG.button_new}"></td></tr>
+</table>
+
+<form action="{create_link p=$pageName}" method="post" name="list_frm" class="list_form">
+{if $pager.data_count>0}
+<table cellpadding="3" cellspacing="2" width="100%" class="list_table">
+<tr class="hdr">
+	<td width="10"><input class="inp_checkbox" type="checkbox" name="checkall" onclick="toggleAll(this)"/></td>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='ord_mmb_email' sort=asc}">.:</a>
+	{$LANG.label_ord_mmb_email}
+	<a href="{create_link transfer=get  order='ord_mmb_email' sort=desc}">:.</a>
+	</th>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='orh_orp_id' sort=asc}">.:</a>
+	{$LANG.label_orh_orp_id}
+	<a href="{create_link transfer=get  order='orh_orp_id' sort=desc}">:.</a>
+	</th>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='ors_name' sort=asc}">.:</a>
+	{$LANG.label_ors_name}
+	<a href="{create_link transfer=get  order='ors_name' sort=desc}">:.</a>
+	</th>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='orh_new_status' sort=asc}">.:</a>
+	{$LANG.label_orh_new_status}
+	<a href="{create_link transfer=get  order='orh_new_status' sort=desc}">:.</a>
+	</th>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='orh_notify_customer' sort=asc}">.:</a>
+	{$LANG.label_orh_notify_customer}
+	<a href="{create_link transfer=get  order='orh_notify_customer' sort=desc}">:.</a>
+	</th>
+	
+	<th nowrap="nowrap">
+	<a href="{create_link transfer=get order='orh_comments' sort=asc}">.:</a>
+	{$LANG.label_orh_comments}
+	<a href="{create_link transfer=get  order='orh_comments' sort=desc}">:.</a>
+	</th>
+	
+	<th>&nbsp;</th>	
+</tr>
+{foreach from=$recordset item=item key=k}
+<tr class="{cycle values='odd,even'}">
+	<td width="10"><input class="inp_checkbox" type="checkbox" name="delete[]" id="delete{$k}" value="{$item.orh_id}" /></td>
+			
+	<td>{$item.ord_mmb_email|display_text}</td>
+			
+	<td>{$item.orh_orp_id|display_text}</td>
+			
+	<td>{$item.ors_name|display_text}</td>
+			
+	<td>{$item.orh_new_status|display_text}</td>
+			
+	<td>{$item.orh_notify_customer|display_text}</td>
+			
+	<td>{$item.orh_comments|display_text}</td>
+	
+	<td width="80" align="right">
+	<a href="{create_link p=$pageName view=$item.orh_id}"><img title="{$LANG.general_view}" src="{$smarty.const.HTTP_IMAGES}b_view.png" border="0" /></a>	
+	<a href="{create_link p=$pageName edit=$item.orh_id}"><img title="{$LANG.general_edit}" src="{$smarty.const.HTTP_IMAGES}b_edit.png" border="0" /></a>
+	<a href="{create_link p=$pageName del=$item.orh_id}" onclick="return confirm('{$LANG.general_confirm_delete}')"><img title="{$LANG.general_delete}" src="{$smarty.const.HTTP_IMAGES}b_drop.png" border="0" /></a>	
+	</td>	
+</tr>
+{/foreach}
+</table>
+<div><input type="submit" class="button" name="del" id="del" value="{$LANG.button_delete_selected_rows}" onclick="return confirm('{$LANG.general_confirm_delete}')" /></div>
+{/if}
+</form>
+
+{include file='pager.html'}
+
+</div>

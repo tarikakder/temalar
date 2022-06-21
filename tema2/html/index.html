@@ -1,0 +1,70 @@
+{include file='html_header.html'}
+
+  <div class="page page_{$mod_group_id|default:'0'} {if $home}page_home{/if}  {if $mod_group_id eq 'pages_view'} {$row.pag_css_class} {/if}">
+    <div class="container-page container-fluid{if $layout_style.vit.full} container-full{/if}{if $config.rtl} rtl_container{/if} {if isUserLogin()}container_logged_in{else}container_logged_out{/if}">
+      <div class="Content-wrapper">
+
+        <div class="banner_top">{banner name="top"}</div>
+
+        {if !$smarty.session.MobileApp}
+        {include file='header.html'}
+        {/if}
+
+        <main class="Content">
+        	<div class="container">
+            {if $page_message}
+            <div class="alert {if $page_message_type eq 'success'}alert-success{else}alert-danger{/if}">
+              {$page_message}
+            </div>
+            {/if}
+
+            {if $bread_crumbs}{include file='bread_crumbs.html'}{/if}
+          </div>
+
+          {if $layout_style.vit.visible}
+        	<div class="layout_010">	
+        	{include_html file="single_column%s.html"|sprintf:$mod_group_id}
+        	</div>
+        	{/if}
+
+        	<div id="layout_style" class="container layout_{$layout_style.layout|default:'010'}">
+            {if $layout_style.left.visible}
+              <div class="side_column left_column">
+                {include_html file="left_column%s.html"|sprintf:$mod_group_id}
+              </div>
+            {/if}
+            <div class="main_content">
+              {if $home} 
+               	{include_html file="homepage%s.html"|sprintf:$mod_group_id} 
+              {else}
+                {include file=$template}
+                {if $mod_group_id}
+                  {include_html file="homepage%s.html"|sprintf:$mod_group_id}
+                {/if}
+              {/if}
+            </div>
+            {if $layout_style.right.visible}
+              <div class="side_column right_column">
+                {include_html file="right_column%s.html"|sprintf:$mod_group_id}
+              </div>
+            {/if}
+        	</div>
+        </main>
+
+        {if !$smarty.session.MobileApp}
+          {include file='footer.html'}
+        {/if}
+
+          
+
+      </div>
+    </div>
+  </div>
+
+
+  {include file='footer_variables.html'}
+  {include file="scripts.html"}
+  {include file='licence.html'}
+  {include file="mobile_app_webview.html"}
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* login form*/
+.Box--form {
+  .contentHeader {
+    text-align: center;
+  }
+
+  .form_table {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 3px;
+  }
+
+  .form-links {
+    font-size: 0.9em;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form_row_captcha_image {
+      position: relative;
+      label {
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .form-group {
+      width: 100%;
+      text-align: left;
+
+      &-date {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+      }
+    }
+
+    .login_page_login_button,
+    .button_member_save {
+      width: 100%;
+    }
+  }
+}
+
+/* members_form*/
+.Sign {
+  &-desc {
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-content {
+    .alert {
+      margin-top: 20px;
+    }
+
+    .form-check {
+      text-align: left;
+      font-size: 0.9em;
+
+      &-input {
+        margin-top: .4rem;
+      }
+    }
+
+    .invalid-feedback {
+      text-align: left;
+    }
+  }
+}
+
+.Account {
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 20px;
+  }
+
+  .table {
+    margin: 20px 0;
+  }
+
+  .edit_form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Account-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .form_row_captcha_image img {
+    width: 100%;
+  }
+}
+
+/* members view*/
+.members_view_menu{
+  float: left;
+  width: 20%; 
+  padding: 0 2em 0 0;
+}
+.members_view_menu ul{
+  border-bottom: 1px solid;
+}
+.members_view_menu ul li a{
+  border: 1px solid;
+  border-bottom: 0;
+  display: block;
+  padding: 0.5em; 
+}
+.members_view_menu ul li a{
+  border-color: #ddd;
+}
+.members_view_menu ul li a:hover{
+  text-decoration: none;
+}
+.members_view_menu ul li a:hover{
+  background: #ddd;
+}
+
+.view_table {
+  &_item {
+    padding: 15px 20px;
+    border-radius: 5px;
+
+    &:nth-child(odd){
+      background-color: #F9F9F9;
+    }
+
+    label {
+      font-weight: 500;
+    }
+  }
+}
+
+.account_activity_table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+
+  .view_table_item {
+    background-color: #F9F9F9;
+  }
+}
+
+/* favorites*/
+
+.favorites_list .fav-desc{
+  margin-bottom: 10px;
+}
+
+/* comments*/
+.comments_list {
+  .comment_title {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .comment_text {
+    background-color: #F5F5F5;
+    padding: 15px;
+    border-radius: 3px;
+  }
+
+  .com_info {
+    display: flex;
+    font-size: 0.8em;
+    margin-bottom: 5px;
+
+    .button_delete {
+      margin-left: auto;
+    }
+  }
+}
+
+.member_nav {
+  font-size: 0.9em;
+
+  a {
+    padding: .5rem 1rem;
+    
+    &.active {
+      background-color: rgb(var(--color-primary));
+      border-color: rgb(var(--color-primary));
+    }
+  }
+}
+
+.form_row_captcha_image {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+
+  label {
+    margin-bottom: 0;
+    position: static;
+    cursor: pointer;
+
+    a {
+      margin-left: 10px;
+      
+      i {
+        color: #fff;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+.members_form_desc {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+
+.form-links {
+  &-top {
+    display: flex;
+
+    a:last-of-type {
+      margin-left: auto;
+    }
+  }
+
+  &-activation {
+    margin-top: 20px;
+    border-top: 1px solid #F5F5F5;
+    padding-top: 10px;
+  }
+}
+
+.members_form_social_links {
+  margin-top: 10px;
+
+  .button {
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Account-content {
+    .list_form {
+      thead tr th:first-of-type, tbody tr td:first-of-type {
+        display: none;
+      }
+    }
+  }
+
+  .Sign {
+    &-wrapper {
+      flex-direction: column-reverse;
+    }
+
+    &-desc {
+      margin-left: 0;
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,156 @@
+/* line 3, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel * {
+  outline: 0;
+}
+
+/* line 7, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel-wrapper {
+  overflow-x: hidden;
+}
+
+/* line 11, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-prev, .Carousel .slick-next {
+  position: absolute;
+  z-index: 102;
+  top: calc(50% - 16px);
+  font-size: 2em;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .3s all ease;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* line 26, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-prev .la, .Carousel .slick-next .la {
+  color: #333;
+}
+
+/* line 31, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-track {
+  margin-left: 0;
+}
+
+/* line 35, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-prev {
+  left: -50px;
+}
+
+/* line 39, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-next {
+  right: -50px;
+}
+
+/* line 43, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-dots {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 54, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-dots li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #FFF;
+  border: 1px solid transparent;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+/* line 64, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-dots li button {
+  background: none;
+  border: none;
+  font-size: 0;
+}
+
+/* line 70, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-dots li.slick-active {
+  background-color: #FF3D00;
+  border: 1px solid #FF3D00;
+}
+
+/* line 75, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel .slick-dots li:hover {
+  text-decoration: none;
+}
+
+/* line 82, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel-item a {
+  display: block;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* line 87, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.Carousel-item a img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+/* line 98, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.mod_container:hover .slick-prev, .mod_container:hover .slick-next {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* line 103, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.mod_container:hover .slick-prev {
+  left: -30px;
+}
+
+/* line 107, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.mod_container:hover .slick-next {
+  right: -30px;
+}
+
+/* line 113, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.mod_container.mod_full:hover .slick-prev {
+  left: 20px;
+}
+
+/* line 117, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.mod_container.mod_full:hover .slick-next {
+  right: 20px;
+}
+
+/* line 123, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.prd_view_img_box a {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 132, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+  .Carousel .slick-arrow, .Carousel .slick-dots {
+    display: none !important;
+  }
+}
+
+/* line 138, ../kanmazteknoloji/temalar/tema1/scss/slideshow.scss */
+.box_prd .slick-slide {
+  margin: 0 10px;
+}
+
+/*
+.slick-list {
+  margin: 0 -10px;
+}*/
+
+/*# sourceMappingURL=slideshow.css.map */

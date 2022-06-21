@@ -1,0 +1,17 @@
+<div class="share-buttons">	
+	<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={$smarty.const.CURRENT_URL}&t={$meta_tags.title|urlencode}" rel="nofollow" onclick="window.open(this.href);return false;">
+    <span class="la la-facebook"></span>
+  </a>
+	<a class="twitter" href="https://twitter.com/intent/tweet?text={$meta_tags.title|urlencode}&url={$smarty.const.CURRENT_URL}" rel="nofollow" onclick="window.open(this.href);return false;">
+    <span class="la la-twitter"></span>
+  </a>
+	<a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={$smarty.const.CURRENT_URL}&title={$meta_tags.title|urlencode}&summary=&source=" rel="nofollow" onclick="window.open(this.href);return false;">
+    <span class="la la-linkedin"></span>
+  </a>
+	<a class="pinterest" href="http://pinterest.com/pin/create/button/?url={$smarty.const.CURRENT_URL}&media={$row.images.c}&description={$meta_tags.title|urlencode}" rel="nofollow" onclick="window.open(this.href);return false;">
+    <span class="la la-pinterest"></span>
+  </a>	
+	<a class="whatsapp" href="https://api.whatsapp.com/send?text={$smarty.const.CURRENT_URL}">
+    <span class="la la-whatsapp"></span>
+  </a>
+</div>

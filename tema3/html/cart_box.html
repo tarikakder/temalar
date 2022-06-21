@@ -1,0 +1,11 @@
+<div class="Cart {if $cart_contents.products_count|intval gt 0}cart_box_full{/if}">
+	<div class="Cart-icon">
+    <a href="{$smarty.const.HTTP_URL}cart" class="btn btn-light">
+      <i class="la la-shopping-cart"></i>
+      <span>{$LANG.label_my_cart}</span>
+      <span class="dy_cart_prd_count">{$cart_contents.products_count|intval}</span>
+    </a>
+  </div>
+</div>
+
+<div class="cart_box_container"></div>

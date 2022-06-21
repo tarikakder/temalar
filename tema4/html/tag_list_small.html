@@ -1,0 +1,11 @@
+{if $tags_list}
+<div class="Box">
+	<div class="Box-header tag_header"><a href="javascript:void(0);">{$mod_item.mod_name|default:$LANG.label_tags}</a></div>
+	<div class="Box-content">
+	{foreach from=$tags_list item=item key=k}
+		<a href="{$item.link}" style="color:{$item.color}; font-weight:bold;">{$item.tag_name}</a>&nbsp;
+	{/foreach}
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

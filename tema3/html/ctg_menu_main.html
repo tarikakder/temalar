@@ -1,0 +1,12 @@
+{if $main_ctg_menu}
+
+
+
+<ul>
+{foreach from=$main_ctg_menu item=item}
+	<li><a href="{$item.link}">{$item.ctg_name|escape|truncate:100}</a></li>
+{/foreach}
+</ul>
+
+
+{/if}

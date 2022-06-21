@@ -1,0 +1,52 @@
+<div class="ui-grid">
+
+	<h1 class="contentHeader commentListHeader">{$contentHeader|display_text}</h1>
+
+{include file="messages_menu.html"}
+
+
+
+<div class="container">	
+
+	<div class="mt-3 mb-3 p-3 bg-light border p-3 d-flex">
+    <div class="">{$row.msg_subject|escape}</div>
+    {if $row.msg_item_id>0 and $row.msg_item_class ne ''}
+    <div class="ml-auto">
+      <a class="btn btn-light" href="{create_link p=$row.msg_item_class view=$row.msg_item_id}" target="_blank"><span class="fa fa-arrow-right"></span></a>
+    </div>
+    {/if}	
+	</div>
+  
+  <div class="msg-reply-list">
+  {foreach from=$replies item=item key=k}  
+  <div class="msg-reply-item mt-3 mb-3 p-3 bg-light">
+    <div class="d-flex">
+      <div class="msg-reply-item-title">{$item.msg_from_name|display_text}</div>
+      {if $item.msg_is_read}<div class="text-success ml-auto"><i class="las la-check-double"></i></div>{/if}
+    </div>
+    <div class="msg-reply-item-body">{$item.msg_message}</div>			
+    <div class="mt-2"><small>{$item.msg_time|dt_format}</small></div>
+  </div>
+  {/foreach}
+  </div>
+
+  <br/>
+  <div>{$LANG.label_msg_reply}</div>
+  <form action="{create_link transfer=get reply=$row.msg_id}" method="post" class="msg_reply_form">
+    <div class="form_row">
+      <div class="error">{$error.msg_message}</div>
+      <div><textarea cols="30" rows="5" placeholder="{$LANG.label_msg_message}" required="required" class="form-control" name="msg_message" id="msg_message">{$smarty.post.msg_message}</textarea></div>
+    </div>
+
+    <div class="form_row mt-3">
+      <input class="btn btn-orange button_save button_save_message" type="submit" name="reply" id="reply" value="{$LANG.button_send}"/>	
+    </div>
+
+  </form>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+</div>

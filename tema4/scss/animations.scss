@@ -1,0 +1,31 @@
+@keyframes fadeInDownSD {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUpSD {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.slick-active .fadeInUp {
+  animation-name: fadeInUpSD;
+}
+
+.slick-active .fadeInDown {
+  animation-name: fadeInDownSD;
+}

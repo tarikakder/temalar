@@ -1,0 +1,32 @@
+<div class="Box Box--form frm ">
+	<h1 class="contentHeader mmbViewHeader">{$contentHeader|display_text}</h1>
+
+	<form action="{create_link transfer=get}" method="post" class="validate_form">
+		<input type="hidden" name="email_change_save" id="email_change_save" value="1">
+		<div class="form_table email_change_form text-left">
+			<div class="form-group">
+				<label>{$LANG.your_current_email} : </label>
+				<input class="form-control" disabled value="{$smarty.session.userEmail}">
+			</div>
+			<div class="error">{$error.mmb_email}</div>
+			<div class="form-group">
+				<label for="email">{$LANG.your_new_email} : </label>		
+				<input class="form-control email" required="required" type="email" name="mmb_email" id="mmb_email" value="{$smarty.post.mmb_email|escape}" />
+			</div>
+			<div class="form-group form_row_captcha_image">
+				<label>
+					<a class="btn btn-orange" href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">
+						<i class="la la-sync"></i>
+					</a>
+				</label>
+				<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="">
+			</div>
+			<div class="error">{$error.captcha_string}</div>
+			<div class="form-group form_row_captcha">
+				<span>{$LANG.label_captcha_string}</span>
+				<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+			</div>
+			<input type="submit" class="btn btn-dark" value="{$LANG.button_save}">
+		</div>
+	</form>
+</div>

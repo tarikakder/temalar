@@ -1,0 +1,62 @@
+
+{if !isUserLogin()}
+
+	{if $display_type eq 'out' or $display_type eq 'both'}
+	<div class="Box box_login">
+		<div class="Box-header"><a href="javascript:void(0);">{$LANG.label_login}</a></div>
+		<div class="Box-content">
+	
+	
+	{if $login_error}
+	<div class="error_header">{$login_error}</div>
+	{/if}
+	
+	<form name="form1" method="post" action="{create_link p=Login}">
+  <input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+	<input  name="return_url" id="return_url"  type="hidden" value="{$return_url|default:$smarty.const.CURRENT_URL|escape|url_encrypt}" />
+	<input  name="login" id="login"  type="hidden" value="1" />
+	
+	
+		<p>		
+		<input class="inp_text" placeholder="{$LANG.label_mmb_email}" name="email" id="email"  type="email" required="required" value="{$smarty.post.email|escape}" size="18" />
+		</p>
+	
+		<p>
+		
+		<input class="inp_text" placeholder="{$LANG.label_mmb_password}" name="password" id="password" type="password" required="required" value="{$smarty.post.password}" size="18" />
+		</p>
+		
+		<p>	
+		<input type="submit" class="button login_button" value="{$LANG.button_login}" />
+		</p>
+			
+		<p>
+		<a href="{create_link p=MemberPassword t='forgot_form'}">{$LANG.label_forgot_password}</a>&nbsp;<br />
+		<a href="{create_link p=Members}">{$LANG.label_register}</a>	
+		</p>
+	
+	</form>
+	
+	
+	</div>
+	
+	
+		<div class="Box-footer"></div>
+	</div>
+	{/if}
+
+
+{else}
+	{if $display_type eq 'in' or $display_type eq 'both'}
+	<div class="Box">
+		<div class="Box-header"><a href="javascript:void(0);">{$LANG.label_my_account}</a></div>
+		<div class="Box-content">
+	{include file='members_menu.html'}
+	</div>
+		<div class="Box-footer"></div>
+	</div>
+	{/if}
+
+{/if}
+
+	

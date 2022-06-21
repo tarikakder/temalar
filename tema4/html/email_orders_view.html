@@ -1,0 +1,198 @@
+<div style="font-size: 14px; line-height: 20px; color: #333; font-family: verdana;">
+
+
+<table cellpadding="3" cellspacing="0" width="100%" >
+<tr>
+	<td colspan="2">
+		
+<div style="padding:10px 0;">
+	<div style="font-weight:bold;">{$LANG.label_ord_code}</div>
+	<div>{$row.ord_code}</div>
+</div>		
+		
+	</td>
+</tr>
+
+{if $row.ors_name}
+<tr>
+	<td colspan="2"><div style="font-weight:bold;">{$LANG.label_ord_status}</div>{$row.ors_name}</td>	
+</tr>
+{/if}
+
+{if $row.ord_cargo_ref_no}<tr><td colspan="2"><div style="  font-weight:bold;">{$row.crg_name} - {$LANG.label_ord_cargo_ref_no}</div>{$row.ord_cargo_ref_no}
+{if $row.crg_url}<br /><a href="{$row.crg_url}" style="color:#0000ff;" target="_blank">({$LANG.label_click_cargo_ref})</a>{/if}
+</td></tr>{/if}
+<tr>
+
+<td valign="top">
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td valign="top">
+
+		<br/>
+		
+			<div style="font-weight:bold;">{$LANG.label_billing_info}</div>
+			
+			<p>
+			<b>{if $row.ord_billing_firm_name}{$row.ord_billing_firm_name}{else}{$row.ord_billing_name|display_text}{/if}</b><br/>
+			{$row.ord_billing_address|display_text}<br/>
+			{$row.ord_billing_postalcode|display_text} {$row.ord_billing_town|display_text}/{$row.ord_billing_city|display_text}/{$row.ord_billing_country|display_text}<br/>
+			{$row.ord_billing_phone|display_text}<br/>			
+			{$row.ord_billing_tax_office|display_text} {$row.ord_billing_tax_number|display_text}
+			</p>
+
+	</td>
+	{if !$cart_contents.all_digital}
+	<td valign="top">
+			<br/>
+			<div style="font-weight:bold;">{$LANG.label_shipping_info}</div>
+			<p>
+			<b>{$row.ord_shipping_name|display_text}</b><br/>
+			{$row.ord_shipping_address|display_text}<br/>
+			{$row.ord_shipping_postalcode|display_text} {$row.ord_shipping_town|display_text}/{$row.ord_shipping_city|display_text}/{$row.ord_shipping_country|display_text}<br/>
+			{$row.ord_shipping_phone|display_text}<br/>			
+			</p>
+
+			
+	</td>
+	{/if}
+
+</tr>
+
+	
+
+</table>
+
+
+</td></tr>
+
+<tr><td colspan="2"><div style="font-weight:bold;">{$LANG.label_order_products}</div>
+
+
+			<div class="list">
+			
+			
+			
+			{if $order_products}
+			<table cellpadding="3" cellspacing="0" width="100%" class="list_table" style="border-collapse:collapse;" border="1"> 
+			<tr class="hdr">
+				
+				<th style="background-color:#f9f9f9;color:#000000;">
+				{$LANG.label_orp_barcode}
+				</th>				
+				<th style="background-color:#f9f9f9;color:#000000;">
+				{$LANG.label_orp_prd_name}
+				</th>
+				
+				<th style="text-align:center;background-color:#f9f9f9;color:#000000;">
+				{$LANG.label_orp_price}
+				</th>
+				
+				<th style="text-align:center;background-color:#f9f9f9;color:#000000;">
+				{$LANG.label_orp_quantity}
+				</th>
+				
+		
+				
+				<th style="text-align:center;background-color:#f9f9f9;color:#000000;">
+				{$LANG.label_orp_grand_total}
+				</th>
+				
+			</tr>
+			{foreach from=$order_products item=item key=k}
+			<tr class="{cycle values='odd,even'}">
+						
+				<td style="text-align:center" width="100">{$item.orp_barcode|escape}</td>
+						
+				<td width="50%">{$item.orp_prd_name|escape}
+				
+				{if $item.pub_name}<br/>{$item.pub_name|escape}{/if}
+
+				<br/>
+				<span style="font-style:italic;font-size: 0.8em;">
+					{if $item.prd_preorder}
+						{$LANG.label_pre_order_desc|sprintf:$item.prd_preorder_date_str}        
+					{elseif $item.prd_sahaf eq 2}						
+						{$LANG.label_prd_in_stock}
+					{elseif $item.prd_sahaf eq 1}
+						{$LANG.label_prd_stock_count|sprintf:$item.prd_stock}
+					{elseif $item.prd_supply_time>0}
+						{$LANG.label_prd_supply_time_desc|sprintf:$item.prd_supply_time}
+					{elseif $item.prd_supply_time!="" and $item.prd_supply_time eq 0}
+						{$LANG.label_zero_supply_time}
+					{/if}
+				</span>						
+				
+				{if $item.orp_download_link}
+					<br/><a href="{create_link p=Orders download=1 order_id=$item.orp_order_id item_id=$item.orp_id}">{$LANG.label_download}</a>				
+				{/if}
+	
+				
+				</td>
+						
+				<td style="text-align:right"> 
+				{if $item.orp_point eq 'y'}{$item.orp_final_price|intval} {$LANG.label_point}{else}{$item.orp_final_price|price_format4:$row.ord_currency_code:2:1}{/if}		
+				</td>
+						
+				<td style="text-align:right">{$item.orp_quantity}</td>
+						
+						
+						
+				<td style="text-align:right">{if $item.orp_point eq 'y'}{$item.orp_grand_total|intval} {$LANG.label_point}{else}{$item.orp_grand_total|price_format4:$row.ord_currency_code:2:1}{/if}</td>
+
+				
+			</tr>
+			{/foreach}
+			{if $row.ord_shipping_total>0}
+			<tr class="hdr">			
+				<th colspan="4" style="text-align:right">{$LANG.label_ord_shipping_total} : </th>					
+				<th style="text-align:right">{$row.ord_shipping_total|price_format4:$row.ord_currency_code:2:1}</th>	
+					
+			</tr>
+			{/if}
+			{if $row.ord_gift_wrap_price>0}
+			<tr class="hdr">			
+				<th colspan="4" style="text-align:right">{$LANG.label_ord_gift_wrap_price} : </th>					
+				<th style="text-align:right">{$row.ord_gift_wrap_price|price_format4:$cart_contents.cur_code:2:1}</th>	
+					
+			</tr>
+			{/if}
+			{if $row.ord_mo_discount>0}
+			<tr class="hdr">			
+				<th colspan="4" style="text-align:right">{$LANG.label_generic_discount|sprintf:$row.pop_name} : </th>					
+				<th style="text-align:right">-{$row.ord_mo_discount|price_format4:$row.ord_currency_code:2:1}</th>	
+					
+			</tr>
+			{/if}
+
+	
+			<tr class="hdr">			
+				<th colspan="4" style="text-align:right">{$LANG.label_ord_grand_total} : </th>					
+				<th style="text-align:right">{$row.ord_grand_total|price_format4:$row.ord_currency_code:2:1}</th>	
+					
+			</tr>
+			
+			
+			
+			</table>
+			{/if}
+			
+			
+			
+			
+			</div>
+
+
+
+
+</td></tr>
+
+{if $row.ord_total_points and isUserLogin()}
+<tr><td colspan="2"><div style="color:#000000; font-size:13px; font-weight:bold;">{$LANG.label_ord_total_points}</div>{$row.ord_total_points}</td></tr>
+{/if}
+
+</table>
+	
+
+</div>

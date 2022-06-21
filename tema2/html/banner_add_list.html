@@ -1,0 +1,81 @@
+<div class="afil_banner_list">	
+
+
+	<link rel="stylesheet" href="{$smarty.const.TEMPLATE_PATH}css/afil.css" type="text/css" />
+	<link rel="stylesheet" href="{$smarty.const.SITE_PATH}js/colorpicker/css/colorpicker.css" type="text/css" />
+	<script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/colorpicker/js/colorpicker.js"></script>
+    <script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/colorpicker/js/eye.js"></script>
+    <script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/colorpicker/js/utils.js"></script>
+    <script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/colorpicker/js/layout.js?ver=1.0.2"></script>	
+	<script defer="defer" type="text/javascript" src="{$smarty.const.SITE_PATH}js/afil.js?v={$cache_rev}"></script>
+ 
+
+<p>{$LANG.label_afil_banner_options}</p>
+<form id="afil_banner_options" class="afil_banner_options">
+
+
+
+<table class="table table-bordered">
+	<tr>
+		<th>{$LANG.label_afil_category}</th>
+		<td>
+			<select class="inp_select afil_banner_option" id="mod_id" name="mod_id">{html_options options=$select_options.mods}</select>
+		</td>
+	</tr>	
+	<tr>
+		<th>{$LANG.label_afil_size}</th>
+		<td>
+			<select class="inp_select afil_banner_option" id="afil_banner_size" name="afil_banner_size">
+				{html_options options=$select_options.afil_banner_sizes}
+			</select>
+			
+		</td>
+	</tr>	
+	<tr>
+		<th>{$LANG.label_afil_border_color}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="bcolor" id="bcolor" size="6" maxlength="6" value="CCCCCC" /></div></td>
+	</tr>
+	<tr>
+		<th>{$LANG.label_afil_price_color}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="pcolor" id="pcolor" size="6" maxlength="6" value="ff0000" /></div></td>
+	</tr>	
+	<tr>
+		<th>{$LANG.label_afil_cprice_color}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="ccolor" id="ccolor" size="6" maxlength="6" value="000000" /></div></td>
+	</tr>
+	<tr>
+		<th>{$LANG.label_afil_name_color}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="ncolor" id="ncolor" size="6" maxlength="6" value="333333" /></div></td>
+	</tr>
+	<tr>
+		<th>{$LANG.label_afil_logo_color}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="lcolor" id="lcolor" size="6" maxlength="6" value="CCCCCC" /></div></td>
+	</tr>	
+	<tr>
+		<th>{$LANG.label_afil_logo_bgcolor}</th>
+		<td><div><input class="inp_text afil_banner_option color_picker" type="text" name="lbcolor" id="lbcolor" size="6" maxlength="6" value="333333" /></div></td>
+	</tr>	
+				
+</table>
+
+
+
+<div style="display:none;">
+<div><input class="inp_text afil_banner_option" type="text" name="width" id="afil_width" size="3" maxlength="3" /></div>
+<div><input class="inp_text afil_banner_option" type="text" name="height" id="afil_height" size="3" maxlength="3" /></div>
+</div>
+</form>
+
+
+<br/><br/>
+<h2>{$LANG.label_copy_afil_code}</h2>
+<textarea id="afil_code" rows="5" cols="60" onclick="$(this).select();">{$item.code|htmlspecialchars}</textarea >
+<br/>
+<br/><br/>
+
+<h2>{$LANG.label_afil_preview}</h2>
+<div id="afil_preview"></div>
+<br/><br/><br/>
+
+
+</div>

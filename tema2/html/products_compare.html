@@ -1,0 +1,68 @@
+
+<div class="ui-grid   ">
+
+<h1 class="contentHeader cartListHeader">{$contentHeader|display_text}</h1>
+
+<p class="prd_compare_desc">{$LANG.label_prd_compare_desc}</p>
+
+{assign var=col_count value=$col_count|default:4}
+<div class="prd_compare_wrapper table-responsive">
+<table class="table table-striped  list_table prd_compare">
+<thead>
+<tr class="hdr">
+<th class=" "></th>
+{foreach from=$rows item=item key=k name="prd_loop"}
+<th class="  prd_compare_col_{$k}" style="text-align:center;">
+		<div class="image image_{$image_size}">{if $item.images}<a title="{$item.prd_name|escape}" href="{$item.link}"><img src="{$item.images.a}" alt="{$item.prd_name|escape}" title="{$item.prd_name|escape}" /></a>{/if}</div>
+		<div class="name"><a title="{$item.prd_name|escape}" href="{$item.link}">{$item.prd_name|escape}</a></div>
+		<div>
+		{if $item.prd_option_count>0}
+		<input type="button" class="btn btn-dark btn-sm button_add_to_cart" value="{$LANG.label_add_to_cart}" onclick="window.location='{$item.link}'" />
+		{else}
+		<input id="cart_prd_compare_1_{$item.prd_id}" type="button" class="btn btn-dark btn-sm button_add_to_cart" value="{$LANG.label_add_to_cart}" />
+		{/if}
+		</div>
+
+</th>
+{/foreach}
+</tr>
+</thead>
+<tbody>
+
+
+<tr>
+<th class="">{$LANG.label_prd_final_price}</th>
+{foreach from=$rows item=item key=k name="prd_loop"}
+<td class=" prd_compare_col_{$k}">{$item.prd_final_price|price_format} {$item.cur_code}{if $config.vat}<span class="plus_vat"> {$LANG.label_plus_vat}</span>{/if}</td>
+{/foreach}
+</tr>
+
+{foreach from=$all_fields item=field key=field_id}
+<tr>
+<th class="">{$field.fld_label}</th>
+{foreach from=$rows item=item key=k name="prd_loop"}
+<td class=" prd_compare_col_{$k}">{$item.fields[$field_id].value|escape}</td>
+{/foreach}
+</tr>
+{/foreach}
+
+<tr>
+<th class=""></th>
+{foreach from=$rows item=item key=k name="prd_loop"}
+<td class=" prd_compare_col_{$k}">
+		{if $item.prd_option_count>0}
+		<input type="button" class="btn btn-dark btn-sm button_add_to_cart" value="{$LANG.label_add_to_cart}" onclick="window.location='{$item.link}'" />
+		{else}
+		<input id="cart_prd_compare_2_{$item.prd_id}" type="button" class="btn btn-dark btn-sm button_add_to_cart" value="{$LANG.label_add_to_cart}" />
+		{/if}
+
+</td>
+{/foreach}
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+</div>

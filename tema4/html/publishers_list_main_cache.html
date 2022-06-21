@@ -1,0 +1,34 @@
+{foreach from=$recordset item=items key=letter name=letter_loop}
+{if $items.count>0}
+	<div class="card">
+	  <div class="card-body">
+	  	<a href="{create_link p=Publishers letter=$letter}">
+	    	<h3 class="card-title">{$letter}</h3>
+	    </a>
+	  </div>
+	  <ul class="list-group list-group-flush pub-items" data-pub-id-url="{create_link p=Publishers get_special_discount=1}">
+	    {foreach from=$items.data item=item key=k}
+			{if $item.image.a}
+			<a title="{$item.pub_name|display_text}" href="{$item.link}">
+				<img src="{$item.image.a}">
+			</a>
+			{/if}
+			<li class="list-group-item d-flex align-items-center py-1 pub-item pub-item-{$item.pub_id}" data-pub-id="{$item.pub_id}">
+	    	<a title="{$item.pub_name|display_text}" href="{$item.link}">
+	    		{$item.pub_name|truncate:22|display_text}
+	    	</a>
+	    	<div class="ml-auto d-flex">
+					{if $config.show_list_price and $item.pub_discount>0}<span class="badge badge-danger badge-pill discount">%<span>{$item.pub_discount|intval}</span></span>{/if}
+		    	{if $item.pub_prd_count>0}<span class="badge badge-secondary badge-pill">{$item.pub_prd_count}</span>{/if}
+	    	</div>
+	    </li>
+			{/foreach}
+	  </ul>
+	  {if $items.more}
+	  <div class="card-body">
+	    <a href="{create_link p=Publishers letter=$letter}" class="card-link">{$LANG.click_for_more}</a>
+	  </div>
+	  {/if}
+	</div>
+{/if}
+{/foreach}

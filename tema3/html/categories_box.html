@@ -1,0 +1,36 @@
+{if $sub_ctgs}
+<div class="Box categories_box sub_categories_box">
+	<div class="Box-header">
+		<a href="{$mod_link}">{$mod_title}</a>
+	</div>
+	<div class="Box-content">
+		{foreach from=$bread_crumbs.0 item=item key=k1 name=bread}
+		{if !$smarty.foreach.bread.last or $current_ctg_row.ctg_is_parent eq 'y'}
+		<ul class="list-group list-group-hide">
+			<li class="list-group-item{if $current_ctg_row.ctg_id eq $item.ctg_id} dy_selected{/if}">
+				<a href="{if $clink and $item.label ne $LANG.label_homepage}{create_link transfer=get ctg_id=$item.ctg_id}{else}{$item.link}{/if}">
+					<span><i class="la la-angle-right"></i> {$item.label}</span>
+				</a>
+		{/if}
+		{/foreach}
+
+			<ul class="list-group">
+				{foreach from=$sub_ctgs item=item key=k2}	
+				<li class="list-group-item{if $current_ctg_row.ctg_id eq $item.ctg_id} dy_selected{/if}">
+					<a href="{if $clink}{$item.dynamic_link}{else}{$item.link}{/if}">
+						<span><i class="la la-angle-right"></i> {$item.ctg_name}</span>
+					</a>
+				</li>
+				{/foreach}
+			</ul>
+					
+		{foreach from=$bread_crumbs.0 item=item key=k1 name=bread}
+			{if !$smarty.foreach.bread.last or $current_ctg_row.ctg_is_parent eq 'y'}
+				</li>
+			</ul>
+			{/if}
+		{/foreach}
+	</div>
+	<div class="Box-footer"></div>
+</div>
+{/if}

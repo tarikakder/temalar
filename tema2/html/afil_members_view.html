@@ -1,0 +1,57 @@
+<div class="view bg-light p-2">
+
+{include file="afil_menu.html"}
+		
+<h1>{$LANG.label_afil_account}</h1>
+
+<table class="table table-bordered">
+<tr>
+	<td>{$LANG.label_afl_id}</td>
+	<td>{$smarty.session.userID}</td>
+</tr>
+<tr>
+	<td>{$LANG.label_afl_website}</td>
+	<td>{$row.afl_website|display_text}</td>
+</tr>
+	
+<tr>
+	<td>{$LANG.label_afl_phone}</td>
+	<td>{$row.afl_phone|display_text}</td>
+</tr>
+	
+<tr>
+	<td>{$LANG.label_afl_cellhphone}</td>
+	<td>{$row.afl_cellhphone|display_text}</td>
+</tr>
+	
+<tr>
+	<td>{$LANG.label_afl_address}</td>
+	<td>{$row.afl_address|display_text}</td>
+</tr>
+<tr>
+	<td>{$LANG.label_afl_iban}</td>
+	<td>{$row.afl_iban|display_text}</td>
+</tr>	
+<tr>
+	<td>{$LANG.label_afl_insert_date}</td>
+	<td>{$row.afl_insert_date|display_text}</td>
+</tr>
+<tr>
+	<td>{$LANG.label_afl_insert_date}</td>
+	<td>{$row.afl_insert_date|display_text}</td>
+</tr>
+<tr>
+	<td>Url</td>
+	<td>
+    <p>{$smarty.const.HTTP_HOST}afil.php?afil={$smarty.session.userID}</p>
+    <p>{$LANG.label_afil_link2|sprintf:$smarty.session.userID}</p>
+  </td>
+</tr>
+
+</table>
+
+<a class="btn btn-secondary" href="{create_link p=$pageName edit=1}">{$LANG.button_edit}</a>
+
+
+
+</div>

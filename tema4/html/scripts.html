@@ -1,0 +1,62 @@
+
+{$tpl_config.external_css}
+
+{if $smarty.session.test_mode or !$tpl_config.combine_js} {* test etmek icin /tools/generate.php?test_mode=1  *}
+{foreach from=$tpl_config.js item=item}
+<script src="{$item}"></script>
+{/foreach}
+{else}
+<script {if $config.defer}defer="defer"{/if} src="{$smarty.const.HTTP_MEMBER_IMAGES}combine.js?v={$cache_rev}"></script>
+{/if}
+
+
+{if $config.cfg_google_analytics}{$config.cfg_google_analytics}{/if}
+{if $home and $config.cfg_footer_code_home}{$config.cfg_footer_code_home}{/if}
+{if $config.prd_view_code}{$config.prd_view_code}{/if}
+{if $config.cfg_footer_code}{$config.cfg_footer_code}{/if}
+{if $conversion_code}{$conversion_code}{/if}
+
+
+
+{*
+google analytics eticaret kodlari
+<script>
+$(document).ready(function () {
+	
+	
+	
+	if($('.login-user-info').size()>0){
+		//gtag('set', {'user_id': $('.login-user-info').data('user-id')});//global site 
+		ga('set', 'userId', $('.login-user-info').data('user-id')); //universal
+	}
+	
+	if($('.completed-order-info').size()>0){
+		ga('require', 'ecommerce', 'ecommerce.js');
+
+		//sipariş verileri
+		ga('ecommerce:addTransaction', {
+			'id': $('.completed-order-info').data('ord-code'), // Transaction ID. Required.
+			'revenue': $('.completed-order-info').data('ord-grand-total'), // Grand Total.
+			'shipping': $('.completed-order-info').data('ord-shipping-total'), // Shipping.
+			'currency': 'TRY'
+		});
+
+		//ürün verileri
+		$('.order-products').each(function(i,item){
+
+			ga('ecommerce:addItem', {
+			  'id': $('.completed-order-info').data('ord-code'), // Transaction ID. Required.
+			  'name': $(item).data('prd-name'), // Product name. Required.
+			  'sku': $(item).data('barcode'), // SKU/code.
+			  'price': $(item).data('final-price'), // Unit price.
+			  'quantity': $(item).data('quantity'), // Quantity.
+			  'currency': 'TRY'
+			});	
+
+		});	
+		ga('ecommerce:send');		
+	}
+
+});
+</script>
+*}

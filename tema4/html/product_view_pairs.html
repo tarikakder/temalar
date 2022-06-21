@@ -1,0 +1,40 @@
+{if $products}
+<div class="Box box_prd_pairs">	
+	<div class="Box-header box_header_prd_pairs"><a href="{$mod_item.link}">{$mod_item.mod_name|default:$LANG.label_product_pairs_header|sprintf:$group_item.discount}</a></div>
+		<div class="Box-content">
+		{foreach from=$products item=item key=key}
+			<div class="prd_pairs">
+				
+				<div class="prd_pairs_images">
+					<a href="{$item.link}" title="{$item.prd_name|display_text}"><img class="item_image" src="{$item.images.a}" title="{$item.prd_name|display_text}" alt="{$item.prd_name|display_text}" /></a>
+					<span class="la la-plus"></span>					
+					<a href="{$item.item.link}" title="{$item.item.prd_name|display_text}"><img class="item_image" src="{$item.item.images.a}" title="{$item.item.prd_name|display_text}" alt="{$item.item.prd_name|display_text}" /></a>
+				</div>
+				
+				<div class="prd_pairs_info">
+					<div class="prd_pairs_names">
+						<a href="{$item.link}" class="prd_pairs_name">{$item.prd_name}</a>
+						<span>&</span>
+						<a href="{$item.item.link}" class="prd_pairs_name">{$item.item.prd_name}</a>
+					</div>
+					<span class="price_box">
+						{if $config.show_list_price}
+						<span class="price price_list">{$item.price_list|price_format} {$item.cur_code}</span> 
+						{/if}
+						<span class="price price_sale">{$item.final_price|price_format} {$item.cur_code}</span>
+					</span>
+					
+					
+					<span class="actions">
+						<a data-prd-id="{$item.item.prd_id}" class="btn btn-dark button_add_to_cart" onclick="$(this).next('.pair_item').addToCart();"><span class="button-text">{$LANG.label_add_to_cart}</span></a>
+						<input type="hidden" class="pair_item" data-prd-id="{$item.prd_id}" />
+					</span>
+				</div>
+			
+			</div>
+		{/foreach}
+		</div>
+	
+</div>
+
+{/if}

@@ -1,0 +1,22 @@
+<div class="variant_box">  
+  <form class="variant_form" action="/">
+  <input type="hidden" name="p" value="Products" />
+  <input type="hidden" name="view_variant" value="{$row.prd_main_id}" />
+  
+  <div class="prd_opt_table">
+  {foreach from=$row.variants item=item key=field_id}
+    <div class="form-group">
+      <label>{$item.fld_label}&nbsp;&nbsp;</label>
+      
+      <select onchange="{if $row.variants|@count gt 1}{literal}setTimeout(function(){$('.variant_form').submit()},1500);{/literal}{else}$('.variant_form').submit(){/if}" name="variants[{$field_id}]" id="variants{$field_id}" class="form-control prd_opts inp_select">
+        {if !$row.custom_fields[$field_id]}<option value="">{$LANG.label_please_select}</option>{/if}
+        {foreach from=$item.values item=opt_item}
+        <option value="{$opt_item.opt_id}" {if $row.custom_fields[$field_id].id eq $opt_item.opt_id}selected="selected"{/if}>{$opt_item.opt_name}</option>
+        {/foreach}
+      </select>
+      
+   </div>
+  {/foreach}
+  </div>
+  </form>
+</div>	

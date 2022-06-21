@@ -1,0 +1,51 @@
+{if $products}
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type|default:'list_img'} {if $mod_item.mod_numbers}box_prd_list_with_numbers{/if}">
+	{if $mod_item.show_title}
+		<div class="Box-header">
+			<a href="{$mod_item.link|default:'javascript:void(0);'}">
+				{if $mod_item.image.a}
+					<img src="{$mod_item.image.a}" alt="{$mod_item.mod_name|escape}" width="100" height="20">
+				{else}
+					{$mod_item.mod_name|escape}
+				{/if}
+			</a>
+		</div>
+	{/if}
+	<div class="Box-content">
+		<ul class="grid grid-{$col_count}">
+			{assign var=col_count value=1}
+			{assign var=image_size value=$image_size|default:"a"}
+			{foreach from=$products item=item key=k name="prd_loop"}
+			<li>
+				<div class="Product Product_list_img Product_{$image_size} {if $mod_item.mod_numbers}Product_numbers{/if}">
+					{if $mod_item.mod_numbers}<div class="list_number">{$k+1}</div>{/if}
+					<div class="Product-image-wrapper">
+						<div class="Product-image image_{$image_size}">
+							{if $item.images}
+							<a title="{$item.prd_name|display_text}" class="tooltip-ajax" href="{$item.link}">
+								<img src="{$item.images.$image_size}" alt="{$item.prd_name|display_text}" title="{$item.prd_name|display_text}">
+							</a>
+							{/if}
+						</div>
+					</div>
+					<div class="Product-content">
+						<div class="name">
+							<div class="prd_name">
+								<a href="{$item.link}">{$item.prd_name|truncate:75|display_text}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+	<div class="Box-footer">
+		{if $mod_item.link}
+		<div class="Box-footer-more">
+			<a class="btn btn-orange" href="{$mod_item.link|default:'javascript:void(0);'}">{$LANG.label_click_for_more}</a>
+		</div>
+		{/if}
+	</div>
+</div>
+{/if}

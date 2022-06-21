@@ -1,0 +1,61 @@
+<nav class="mt-4" aria-label="navigation">
+	<ul class="pagination">
+	{if $pager.page_count>1}
+		{if $pager.page > 1}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=1 transfer=get}">
+				<span>&laquo;&laquo;</span>
+			</a>
+		</li>
+		{/if}
+		
+		{if $pager.page > 1}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=$pager.page-1 transfer=get}">
+				<span>&laquo;</span>
+			</a>
+		</li>
+		{/if}
+		
+		{if $pager.prev_decimal_group >-1}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=$pager.prev_decimal_group+1 transfer=get}">
+				<span>{$pager.prev_decimal_group+1}-{$pager.prev_decimal_group+10}</span>
+			</a>
+		</li>
+		{/if}
+		
+		{foreach from=$pager.page_list_decimal item=item}
+		<li class="page-item{if $pager.page eq $item} active{/if} page-item-number">
+			<a class="page-link" href="{create_link page=$item transfer=get}">
+				<span>{$item}</span>
+			</a>
+		</li>
+		{/foreach}
+
+		{if $pager.next_decimal_group >-1}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=$pager.next_decimal_group+1 transfer=get}">
+				<span>{$pager.next_decimal_group+1}-{$pager.next_decimal_group+10}</span>
+			</a>
+		</li>
+		{/if}
+		
+		{if $pager.page < $pager.page_count}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=$pager.page+1 transfer=get}">
+				<span>&raquo;</span>
+			</a>
+		</li>
+		{/if}
+
+		{if $pager.page < $pager.page_count}
+		<li class="page-item">
+			<a class="page-link" href="{create_link page=$pager.page_count transfer=get}">
+				<span>&raquo;&raquo;</span>
+			</a>
+		</li>
+		{/if}
+	{/if}
+	</ul>
+</nav>

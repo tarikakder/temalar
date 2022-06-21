@@ -1,0 +1,46 @@
+<div id="email_list_container">
+	<div class="Box Box--email">
+		<div class="container">
+			<div class="Box-header">
+				<a href="javascript:void(0);">{$LANG.label_email_list}</a>
+			</div>
+			<div class="Box-content">
+				<div class="email_list_desc">{$LANG.label_email_list_desc}</div>
+				{if $smarty.get.success}
+				<div class="alert alert-success">{$LANG.message_email_saved}</div>
+				{else}
+				<div class="alert alert-danger">{$error.eml_email}</div>
+				<form action="{create_link p=EmailList popup=1 no_common=1}" method="post" class="edit_form" data-container="#mod_container_{$target|default:$mod_item.mod_id}" onsubmit="$(this).loadPageSubmit();return false;">
+          <input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+					<div class="inp_container form-inline">
+						<div class="form-group">
+							<input placeholder="{$LANG.label_eml_email}" class="form-control form-control-sm" type="text" name="eml_email" id="eml_email" maxlength="255" size="40" value="{$row.eml_email}">
+							<input class="btn btn-orange btn-sm ml-2" type="submit" name="save" id="save" value="{$LANG.button_save}">
+						</div>
+					</div>
+          
+          {*
+          
+           {if $config.cfg_terms_and_conds_eml}     
+           {assign var=form_terms value=$config.cfg_terms_and_conds_eml}   
+            {if $error.cfg_terms_and_conds}<div class="invalid-feedback">{$error.cfg_terms_and_conds}</div>{/if}
+            {foreach from=$config.cfg_terms_and_conds_eml item=term_item_name key=term_item_id}
+            <div class="form-group form-check cfg_terms_and_conds">
+              <input required="required" class="form-check-input" type="checkbox" name="cfg_terms_and_conds[{$term_item_id}]" id="cfg_terms_and_conds{$term_item_id}" {if $smarty.post.cfg_terms_and_conds}checked="checked"{/if} value="1" />
+              <label class="form-check-label myPopupModal1ButtonM" data-toggle="modal" data-target="#termsPopupModal{$k}" style="text-align: left; cursor:pointer">						
+                <a href="{create_link p=Pages view=$term_item_id}" target="_blank">{$LANG.label_confirm_terms_and_conds|sprintf:$term_item_name}</a>
+              </label>
+            </div>    
+            {/foreach}
+          {/if}
+          
+          *}
+          
+				</form>
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+
+{include file="terms_popup.html"}

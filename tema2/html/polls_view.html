@@ -1,0 +1,11 @@
+<div class="inner_container" style="padding-bottom:20px;">
+<h2 style="margin-bottom:5px;">{$row.pol_title}</h2>
+<ul>	
+	{foreach from=$row.options item=subitem key=subk}
+	<li class="poll_options" style="float:none; clear:both;">
+		<div style="float:left; margin:3px;background-color:#515151; height:10px;width:{$subitem.bar_length}px">&nbsp;</div>
+		<div style="float:left;">{$subitem.pop_name} (% {$subitem.pop_vote_percent})</div>
+	</li>
+	{/foreach} 
+</ul>
+</div>

@@ -1,0 +1,65 @@
+<div class="ui-grid   ">
+
+	<h1 class="contentHeader adrListHeader">{$contentHeader|display_text}</h1>
+
+{if $pager.data_count>0}
+<div class="ui-grid-content  table-block list_table">
+<div class="table-row table-header-row rsp-hide-538">
+	
+	<div class="  table-cell">
+	{$LANG.label_cop_desc}
+	</div>
+
+	
+	<div class="  table-cell">
+	{$LANG.label_cop_condition}
+	</div>
+
+	
+	<div class="  table-cell">
+	{$LANG.label_cop_discount}
+	</div>
+
+	
+	<div class="  table-cell">
+	{$LANG.label_cop_exp_date}
+	</div>
+	
+	
+</div>
+{foreach from=$recordset item=item key=k}
+<div class="table-row table-body-row {cycle values='odd,even'}">
+	<div class=" table-cell">{$item.cop_desc}</div>		
+	<div class=" table-cell">{*{$item.cop_conditon}<br/>*}
+	{$LANG.label_cop_min_amount_desc|sprintf:$item.cop_min_amount}
+	{if $item.cop_page}<br/><span class="cop_conditions_link" onclick="mypopup('{create_link p=Coupons view=$item.cop_id popup=1}')">{$LANG.label_cop_other_condition}</a>{/if}
+	</div>
+			
+	<div class=" table-cell">
+	<span class="rsp-show-538">{$LANG.label_cop_discount} : </span>
+	{if $item.cop_discount_rate>0}
+	%{$item.cop_discount_rate}
+	{else}
+	{$item.cop_discount|price_format} {$smarty.const.CURRENCY_CODE}
+	{/if}
+	</div>
+			
+			
+	<div class=" table-cell"><span class="rsp-show-538">{$LANG.label_cop_exp_date} : </span>{$item.cop_exp_date|dt_format}</div>
+			
+	
+	
+
+</div>
+{/foreach}
+</div>
+{/if}
+
+{include file='pager.html'}
+
+
+
+
+
+
+</div>

@@ -1,0 +1,51 @@
+{if !isUserLogin()}
+<div class="login_top_box">
+	
+	
+	<div class="login_top_content">
+
+		<form name="form1" method="post" action="{$smarty.const.HTTP_HOST}login">
+    <input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+		<input  name="return_url" id="return_url"  type="hidden" value="{$smarty.session.return_url|default:$smarty.const.CURRENT_URL|escape|url_encrypt}" />
+		<div class="login_top_form_container">
+		<div class="login_top_row">	
+			<input placeholder="{$LANG.label_mmb_email}" class="inp_text" name="email" id="email"  type="email" value="{if $smarty.get.ml}{$smarty.get.ml|base64_decode}{/if}" />
+		</div>
+
+		<div class="login_top_row">		
+			<input placeholder="{$LANG.label_mmb_password}" class="inp_text" name="password" id="password" type="password" value=""  />
+		</div>
+		<div class="login_top_row">		
+			<input type="submit" class="button login_button" value="{$LANG.button_login}" />			
+		</div>		
+		<div class="login_top_row">
+			<a class="login_top_forgot" href="{$smarty.const.HTTP_HOST}pass-forgot" rel="nofollow">{$LANG.label_forgot_password}</a>
+		</div>
+		<div class="login_top_row">
+			<a class="register_link" href="{$smarty.const.HTTP_HOST}register" rel="nofollow">{$LANG.label_register}</a>
+		</div>
+			{if !$smarty.get.ml}
+		<div class="login_top_row social_login_buttons" >
+			{if $config.cfg_enable_facebook_login}
+			<a class="login_facebook" href="{$smarty.const.HTTP_HOST}extensions/facebook/index.php" rel="nofollow">{$LANG.label_connect_with_facebook}</a>
+			{/if}
+			{if $config.cfg_enable_twitter_login}
+			<a class="login_twitter" href="{$smarty.const.HTTP_HOST}extensions/twitter/redirect.php" rel="nofollow">{$LANG.label_connect_with_twitter}</a>
+			{/if}
+			
+			{if $config.cfg_enable_google_login}
+			<a class="login_google" href="{$smarty.const.HTTP_HOST}extensions/google_api/index.php" rel="nofollow">{$LANG.label_connect_with_google}</a>
+			{/if}			
+		</div>
+			{/if}
+		
+		
+		</div>
+		</form>
+		
+
+		
+	</div>
+	<div class="login_top_footer"></div>
+</div>	
+{/if}

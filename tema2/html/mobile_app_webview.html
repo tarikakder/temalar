@@ -1,0 +1,30 @@
+{if $smarty.session.MobileApp}
+  <div style="display:none;">
+    <span class="dy_cart_prd_count">{$cart_contents.products_count|intval}</span>
+  </div>
+  <script> 
+  var mobile_app_menu_items = {$mobile_params.menu_items_json|default:'[]'}; 
+  var logo_src="{$mobile_params.logo}"; 
+  var user_full_name="{$mobile_params.user_full_name}"; 
+
+  </script>
+  {literal}
+  <script>
+  
+  function getMobileInfo(){
+    var c=parseInt($(".dy_cart_prd_count").html());
+    var res= {"cart_item_count":c,"user_name":user_full_name,"menu_items":mobile_app_menu_items,"logo":logo_src};
+    //console.log(res);
+    return res;
+  }
+  //getMobileInfo();
+
+   window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+     var cart_item_count=parseInt($(".dy_cart_prd_count").html());
+     window.flutter_inappwebview.callHandler('sayHello', cart_item_count,user_full_name).then(function(result) {
+       //console.log(result);  
+     });
+   });
+</script>  
+  {/literal}  
+{/if}

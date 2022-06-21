@@ -1,0 +1,173 @@
+@import 'variables';
+
+.Search {
+  margin: 0 auto;
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  padding: 0 50px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &>i {
+    display: none;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    margin-right: 5px;
+
+    input, select {
+      font-size: 0.9em;
+    }
+
+    &-search {
+      width: 100%;
+      position: relative;
+
+      input {
+        width: 100%;
+      }
+
+      .btn {
+        position: absolute;
+        right: 8px;
+        top: 3px;
+        font-size: 1.2em;
+        padding: 0;
+        color: #aaa;
+        transition: .3s all ease;
+
+        &:hover {
+          color: #333;
+        }
+
+        &:hover, &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    &-select {
+      max-width: 180px;
+      width: 100%;
+    }
+  }
+
+  &-content {
+    display: flex;
+  }
+
+  &-detail {
+    position: absolute;
+    right: 50px;
+    bottom: -25px;
+    font-size: 0.75em;
+    color: $color_gray2;
+  }
+
+  &-autocomplete {
+    max-height: 300px;
+    z-index: 300;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+    padding-top: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    top: 60px;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      top: 40px;
+    }
+
+    &-none {
+      margin-top: 10px;
+      font-size: 0.8em;
+    }
+
+    &-label {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.1em;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    li {
+      padding: 3px 0;
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Search {
+    opacity: 0;
+    visibility: hidden;
+    margin: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    margin: 0;
+    z-index: 302;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-autocomplete {
+      max-height: 70vh;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    &>form {
+      margin-top: 20px;
+      width: 100%;
+
+      .form-group-search {
+        input {
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, .5);
+        }
+      }
+    }
+
+    &>i {
+      display: block;
+      color: #000;
+      font-size: 2em;
+      margin: 0 auto;
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .form-group-select {
+      display: none;
+    }
+
+    &-detail {
+      display: none;
+    }
+  }
+}

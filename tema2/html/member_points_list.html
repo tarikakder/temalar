@@ -1,0 +1,52 @@
+<div class="Account">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader">{$contentHeader}</h1>
+
+			<h4>{$LANG.label_total_points} : {$mmb_row.mmb_total_points}</h4>
+			{if $config.cfg_coupon_min_point>$mmb_row.mmb_total_points}
+			<h4>{$LANG.label_total_points_needed} : {$config.cfg_coupon_min_point}</h4>
+			{/if}
+			{$date1}
+
+			<form action="{create_link transfer=get}" method="post" name="list_frm" class="list_form">
+				{if $pager.data_count>0}
+				<table class="table table-bordered">
+					<thead class="rsp-hide-538">
+						<th>
+							{$LANG.label_mpt_insert_date}
+						</th>
+						<th>
+							{$LANG.label_mpt_type}
+						</th>
+						<th>
+							{$LANG.label_mpt_point}
+						</th>
+					</thead>
+					<tbody>
+						{foreach from=$recordset item=item key=k}
+						<tr>
+							<td>{$item.mpt_insert_date|dt_format}</td>
+							<td>
+								{if $item.link}<a target="_blank" href="{$item.link}">{$item.label}</a>
+								{else}
+								{$item.label}
+								{/if}
+							</td>
+							<td>{$item.mpt_point|escape} {$LANG.label_mpt_point}</td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+				{/if}
+			</form>
+
+			{include file='pager.html'}
+		</div>
+	</div>
+</div>

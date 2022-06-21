@@ -1,0 +1,30 @@
+{if $products}
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type}">
+	{if $mod_item.show_title}
+		<div class="Box-header">
+			<a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>
+		</div>
+	{/if}
+	<div class="Box-content">
+		{assign var=col_count value=$col_count|default:1}
+		{assign var=image_size value=$image_size|default:"a"}	
+		<ul class="grid grid-{$col_count}">
+			{foreach from=$products item=item key=k name="prd_loop"}	
+			<li>
+				<a href="{$item.link}" title="{$item.prd_name|display_text}|{$LANG.label_prd_price}:{$item.prd_final_price|price_format} {$item.prd_cur_code} {$LANG.label_click_to_view}">
+					<span class="la la-angle-right"></span>
+					<span>{$item.prd_name|display_text:200:20}</span>
+				</a>
+			</li>
+			{/foreach}
+		</ul>
+	</div>
+	<div class="Box-footer">
+		{if $mod_item.link}
+		<div class="Box-footer-more">
+			<a class="btn btn-orange" class="btn btn-light" href="{$mod_item.link|default:'javascript:void(0);'}">{$LANG.label_click_for_more}</a>
+		</div>
+		{/if}
+	</div>
+</div>
+{/if}

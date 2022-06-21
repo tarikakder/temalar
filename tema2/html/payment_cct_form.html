@@ -1,0 +1,55 @@
+<script>
+{literal}
+if (typeof jQuery != 'undefined'){
+	$(document).ready(function() {
+			var v=$("input[name='ord_bank_id']:checked").val();
+				
+			{/literal}
+			$('#div_intsallments').loadPage('{create_link p=Installments https=1}&bank_id='+v+'&amount='+$('#total_amount').val()+'&ord_installment={$row.ord_installment}');
+			{literal}
+			
+	});
+}
+{/literal}
+</script>
+<div class="d-flex  flex-sm-row flex-column bg-light p-3">
+
+  {if $payment_type!='oost'}
+    <div class="px-3 flex-fill">
+    {include file='payment_ccp_form.html'}
+    </div>
+  {/if}
+  
+  <div class="ord_form_box ord_installment_box flex-fill" data-installment="{$row.ord_installment}">
+    <div class="ord_form_box_header">
+      <span>{$LANG.label_cc_installemnt_info}</span>
+    </div>
+    <div class="error">{$error.ord_installment}</div>
+    <div class="">
+
+
+     {if $payment_type eq 'oost'}
+      <div class="form-group">
+        <label class="my-2">{$LANG.label_ord_bank_id}</label>
+        <select required="required" class="form-control" name="ord_bank_id" id="ord_bank_id{$item.bnk_id}" onchange="$('#div_intsallments').loadPage('{create_link p=Installments payment=$smarty.get.payment https=1}&bank_id='+$(this).val()+'&amount='+$('#total_amount').val());">
+        <option value="">{$LANG.label_please_select}</option>
+        {foreach from=$inst_banks item=item key=key}
+          <option value="{$item.bnk_id}"
+          {if $row.ord_bank_id eq $item.bnk_id or ($smarty.get.bank_id eq $item.bnk_id)}selected="selected"{/if}>
+          {$item.vps_name}
+          </option>
+        {/foreach}
+        </select>
+      </div>  
+      {/if}
+
+
+      <div id="div_intsallments" class="">
+        {include file='payment_inst_options.html'}
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

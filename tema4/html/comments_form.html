@@ -1,0 +1,80 @@
+<div id="comment_form_container">
+{if $success}
+	<div class="alert alert-success">{$message}</div>
+{else}
+	{if $config.cfg_comment_approve}
+	<div class="msg_box">{$LANG.label_comment_desc}</div>
+	{/if}
+	{if $error}
+	<div class="error_header">{$LANG.validation_general}</div>
+	{/if}
+	<form action="{create_link transfer=get}"  data-container=".comment_form_container" method="post" class="edit_form" onsubmit="return $(this).loadPageSubmit()">
+		<input type="hidden" id="com_item_id" name="com_item_id" value="{$row.com_item_id|escape}" />
+	
+  
+    
+    <div class="form-group">
+      <div class="form_row">
+        <label>{$LANG.label_votes}</label>
+      </div>
+      {section loop=6 start=1 name=stars}             
+         <span><input type="radio" name="prd_com_vote" value="{$smarty.section.stars.index}" {if $smarty.section.stars.index eq 5}checked="checked"{/if}> {$smarty.section.stars.index}&nbsp;&nbsp;&nbsp;</span>
+      {/section}
+    </div>  
+  
+		<div class="comments_form">
+			<div class="error">{$error.com_name}</div>
+			<div class="form-group">
+				<label for="com_name">{$LANG.label_com_name} <span class="required_star">*</span> : </label>
+				<input class="form-control" placeholder="{$LANG.label_com_name}" type="text" name="com_name" id="com_name" maxlength="15" value="{$row.com_name|escape}">
+			</div>
+			
+			<div class="error">{$error.com_comment}</div>
+			<div class="form-group">
+				<label for="com_comment">{$LANG.label_com_comment} <span class="required_star">*</span> : </label>	
+				<textarea class="form-control" placeholder="{$LANG.label_com_comment}" rows="5" name="com_comment" id="com_comment">{$row.com_comment|escape}</textarea>
+			</div>
+
+			{if $config.cfg_enable_comment_captha}
+				{if $config.captcha_lib eq "recaptchav3"}
+				<!-- google recaptcha v3 -->
+				{elseif $config.captcha_lib!="recaptcha"}
+				<div class="form_row form_row_captcha_image">
+					<label>
+						<a class="btn btn-orange" href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">
+							<i class="la la-sync"></i>
+						</a>
+					</label>
+					<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="" />
+				</div>
+				<div class="error">{$error.captcha_string}</div>
+				<div class="form_row form_row_captcha">
+					<span>{$LANG.label_captcha_string}</span>
+					<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+				</div>
+				{else}
+				<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+				<div class="error">{$error.captcha_string}</div>
+				<div class="g-recaptcha" data-sitekey="{$config.recaptcha_site_key}"></div>
+				{/if}
+			{/if}
+		
+			<input type="hidden" id="token" name="token">
+			<input type="submit" class="btn btn-dark button_save button_save_comment" value="{$LANG.button_send}">
+		</div>
+	</form>
+{/if}
+</div>
+
+{if $config.cfg_enable_comment_captha && $config.captcha_lib eq "recaptchav3"}
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy"></script>
+{literal}
+<script type="text/javascript">
+	grecaptcha.ready(function() {
+    grecaptcha.execute('6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy', {action: 'homepage'}).then(function(token) {
+      document.getElementById("token").value = token;
+    });
+  });
+</script>
+{/literal}
+{/if}

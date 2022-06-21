@@ -1,0 +1,91 @@
+<div class="Box Box--form Login">
+	
+	<div class="Box-content">
+		{if !isUserLogin()}
+
+			{if $login_error}
+			<div class="alert alert-danger">{$login_error}</div>
+			{/if}
+
+			<form name="form1" method="post" action="{create_link p=Login}">
+        <input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+				<input name="return_url" id="return_url"  type="hidden" value="{$return_url|escape}" />
+
+				<div class="Login-form form_table">
+					<h1 class="contentHeader loginHeader">{$contentHeader|display_text}</h1>
+					<div class="form-group">
+					  <input placeholder="{$LANG.label_mmb_email}" class="form-control" required="required" name="email" id="email" type="email" value="{if $smarty.post.email}{$smarty.post.email|escape}{else}{if $smarty.get.ml}{$smarty.get.ml|base64_decode}{/if}{/if}">
+					</div>
+					<div class="form-group">
+					  <input placeholder="{$LANG.label_mmb_password}" class="form-control" required="required" name="password" id="password" type="password" value="{$smarty.post.password|escape}">
+					</div>
+
+					<div class="form-group">
+						{if $config.cfg_enable_login_captha}
+							{if $config.captcha_lib eq "recaptchav3"}
+							<!-- google recaptcha v3 -->
+							{elseif $config.captcha_lib!="recaptcha"}
+								<div class="form_row form_row_captcha_image">
+									<label>
+										<a class="btn btn-orange" href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">
+											<i class="la la-sync"></i>
+										</a>
+									</label>
+									<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="" />
+								</div>
+								<div class="error">{$error.captcha_string}</div>
+								<div class="form_row form_row_captcha">
+									<span>{$LANG.label_captcha_string}</span>
+									<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+								</div>
+							{else}
+								<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+								<div class="error">{$error.captcha_string}</div>
+								<div class="g-recaptcha" data-sitekey="{$config.recaptcha_site_key}"></div>
+							{/if}
+						{/if}
+					</div>
+
+					<input type="submit" class="btn btn-orange login_page_login_button" value="{$LANG.button_login}">
+
+					<div class="form-links">
+						<div class="form-links-top">
+							<a href="{$smarty.const.HTTP_HOST}pass-forgot">{$LANG.label_forgot_password}</a>
+							<a class="login_page_register" href="{$smarty.const.HTTP_HOST}register">{$LANG.label_register}</a>
+						</div>
+						{if $config.cfg_mmb_activation and $smarty.get.p eq 'Login'}
+						<a class="form-links-activation" href="{$smarty.const.HTTP_HOST}activation-code">{$LANG.label_send_activation_code}</a>
+						{/if}
+					</div>
+				</div>
+
+				{if !$smarty.get.ml && ($smarty.get.p eq 'Login' && ($config.cfg_enable_facebook_login || $config.cfg_enable_twitter_login || $config.cfg_enable_google_login) || ($smarty.get.onm && $config.cfg_order_without_subs))}
+					<div class="Login-social members_form_social_links mt-3">
+						{if $smarty.get.p eq 'Login' && $config.cfg_enable_facebook_login}
+							<a class="button login_facebook Login-social-facebook" href="{$smarty.const.HTTP_HOST}extensions/facebook/index.php">{$LANG.label_connect_with_facebook}</a>
+						{/if}
+						{if $smarty.get.p eq 'Login' && $config.cfg_enable_twitter_login}
+							<a class="button login_twitter Login-social-twitter" href="{$smarty.const.HTTP_HOST}extensions/twitter/redirect.php">{$LANG.label_connect_with_twitter}</a>
+						{/if}
+						{if $smarty.get.p eq 'Login' && $config.cfg_enable_google_login}
+							<a class="button login_google Login-social-google" href="{$smarty.const.HTTP_HOST}extensions/google_api/index.php">{$LANG.label_connect_with_google}</a>
+						{/if}
+						{if $smarty.get.onm and $config.cfg_order_without_subs}
+							<a class="btn btn-dark login-order-button " href="{create_link p=Orders edit=-1 onm=1 https=1}"><span>{$LANG.label_ord_not_mmb}</span></a>
+						{/if}
+					</div>
+				{/if}
+
+		  	{if $smarty.session.MobileApp}<input type="hidden" name="remember_me" value="1" />{/if}
+			</form>
+		{else}
+			&nbsp;{$LANG.label_greeting} {$smarty.session.userFullName}
+			{include file='members_menu.html'}
+		{/if}
+	</div>
+	<div class="Box-footer"></div>
+</div>
+
+
+
+

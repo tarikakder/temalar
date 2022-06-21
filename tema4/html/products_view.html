@@ -1,0 +1,479 @@
+<div class="view prd_view" data-prd-id="{$row.prd_id}" data-prd-name="{$row.prd_name|escape}" data-prd-barcode="{$row.prd_barcode|escape}" data-prd-price="{$row.prd_price|escape}" data-prd-final-price="{$row.prd_final_price|escape}">
+	{* col1 *}
+	<div class="prd_view_item">
+		{if $row.images}
+			<div class="prd_view_img_box">
+				{if $row.new}
+					<div class="new_icon">
+						<span>{$LANG.label_new}</span>
+					</div>
+				{/if}
+
+				{if $row.image_list}
+				<div class="Carousel-wrapper">
+		      <div class="Carousel Carousel-banner" data-slick='{literal}{{/literal}"slidesToShow":1{literal}}{/literal}'>
+		      	{foreach from=$row.image_list item=item key=key}
+							{if $item.c}
+							<div class="Carousel-item">
+								<a href="{$item.c}" class="fancybox" rel="group" data-lightbox="lightbox-image-gallery" data-title="{$row.prd_name|escape}">
+									<img class="tooltipx prd_img prd_view_img" width="300" height="300" src="{$item.b}" data-zoom-image="{$item.c}" alt="{$meta_tags.title|escape}" title="{$meta_tags.title|escape}">
+								</a>
+							</div>
+							{/if}
+						{/foreach}
+		      </div>
+		    </div>
+				{else}
+					<a href="{$row.images.c}" class="fancybox" id="main_img_link"><img id="main_img" class="tooltipx prd_img prd_view_img" width="300" height="300" src="{$row.images.b}" data-zoom-image="{$row.images.c}" alt="{$meta_tags.title|escape}" title="{$meta_tags.title|escape}" /></a>	
+				{/if}
+			</div>
+		
+			{if $row.documents}
+			<div class="prd_documents">
+				{foreach from=$row.documents item=item}
+					{if $item.doc_file_type eq 'pdf'}
+						<a href="{$item.link}" class="btn btn-light" target="_blank" title="{$item.doc_title}">
+							<span class="la la-file-pdf-o"></span>
+							{$item.doc_title|default:$LANG.label_view_prd_document_pdf|escape}
+						</a>
+					{elseif $item.doc_file_type eq 'xls' or $item.doc_file_type eq 'xlsx'}	
+						<a href="{$item.link}" class="btn btn-light" target="_blank" title="{$item.doc_title}">
+							<span class="la la-file-excel-o"></span>
+							{$item.doc_title|default:$LANG.label_view_prd_document_xls|escape}
+						</a>
+					{elseif $item.doc_file_type eq 'doc' or $item.doc_file_type eq 'docx'}	
+						<a href="{$item.link}" class="btn btn-light" target="_blank" title="{$item.doc_title}">
+							<span class="la la-file-word-o"></span>
+							{$item.doc_title|default:$LANG.label_view_prd_document_doc|escape}
+						</a>
+					{elseif $item.doc_file_type eq 'mp3' or $item.doc_file_type eq 'm3u' or $item.doc_file_type eq 'ogg'}	
+						<a href="{$item.link}" class="btn btn-light" target="_blank" title="{$item.doc_title}">
+							<span class="la la-file-audio-o"></span>
+							{$item.doc_title|default:$LANG.label_view_prd_document_audio|escape}
+						</a>
+					{else}
+						<a href="{$item.link}" class="btn btn-light" target="_blank" title="{$item.doc_title}">
+							<span class="la la-file-pdf-o"></span>
+							{$item.doc_title|default:$LANG.label_view_prd_document_default|escape}
+						</a>
+					{/if}
+				{/foreach}
+			</div>
+			{/if}
+
+			{include file='share_buttons.html'}
+		{/if}	
+	</div>
+	{* col1 end *}
+	
+	{* col2 *}
+	<div class="prd_view_item">
+		<h1 class="contentHeader prdHeader">
+			{if $row.prd_top_title}<sup class="top_title">{$row.prd_top_title}</sup>{/if}
+			{$row.prd_name}
+			{if $row.prd_sub_title}<sub class="sub_title">{$row.prd_sub_title}</sub>{/if}
+			<a id="ButtonFav" class="button_fav" title="{$LANG.tooltip_favorite_product}" rel="nofollow" href="#" onclick="$(this).addClass('active');$('.fav_result_container').load('{create_link p=Favorites add=$row.prd_id fav_type=prd popup=1 no_common=1}','{$LANG.label_add_to_favorites}');return false;">
+				<i class="la la-bookmark"></i>
+			</a>
+		</h1>
+
+		<div class="fav_result_container"></div>
+
+		{if $config.cfg_enable_comments}{include file="stars.html"}{/if}
+
+		<div class="prd_brand_box">
+			{if $row.writers}
+        <div class="writers">
+        {foreach from=$row.writers item=item name=wrt_loop}
+          <a class="writer" href="{$item.link}"><span>{$item.wrt_name}{if !$smarty.foreach.wrt_loop.last}, {/if}</span></a>					
+        {/foreach}
+      	</div>
+			{/if}
+			
+			{if $row.pub_name and $config.cfg_show_brand_on_lists}
+			<a class="publisher" href="{$row.pub_link}"><span>{$row.pub_name}</span></a>
+			{/if}      
+      
+      {if $row.writer_types}
+      <div class="writer_types">
+			{foreach from=$row.writer_types item=wtp_item}
+        {if $wtp_item.wtp_name and $wtp_item.wtp_id gt 1}
+         <div class="writer_type_item">
+          <label>{$wtp_item.wtp_name}:</label>
+          {if $wtp_item.writers}
+            {foreach from=$wtp_item.writers item=item name=wrt_loop}
+              <a class="writer" href="{$item.link}">
+              	<span>{$item.wrt_name}{if !$smarty.foreach.wrt_loop.last}, {/if}</span>
+              </a>					
+            {/foreach}
+          {/if}
+         </div> 
+        {/if}  
+			{/foreach}
+      </div>
+			{/if}
+		</div>
+
+		{if $tech_details and ($custom_fields or $smarty.const.BOOK_MODE)}
+		<div class="prd_fields">
+			{if $custom_fields}					
+				{foreach from=$custom_fields item=item}
+				{if $item.value and $item.fld_show_prd_view}
+				<div class="prd_fields_item">
+					<div class="prd_fields_label">{$item.fld_label}:</div>
+					<div class="prd_fields_text">
+						{if is_array($item.value)}
+						{foreach from=$item.value item=item1 name=arrx}
+							{$item1}
+							{if !$smarty.foreach.arrx.last}, {/if}
+						{/foreach}
+						{else}
+							{$item.value}
+						{/if}
+					</div>
+				</div>
+				{/if}
+				{/foreach}
+			{/if}
+			
+			{if $smarty.const.BOOK_MODE}
+				{if $row.prd_barcode}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_barcode}:</div>
+						<div class="prd_fields_text">{$row.prd_barcode|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_isbn}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_isbn}:</div>
+						<div class="prd_fields_text">{$row.prd_isbn|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_size}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_size}:</div>
+						<div class="prd_fields_text">{$row.prd_size|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_page_count}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_page_count}:</div>
+						<div class="prd_fields_text">{$row.prd_page_count|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_press_loc}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_press_loc}:</div>
+						<div class="prd_fields_text">{$row.prd_press_loc|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_press_count}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_press_count}:</div>
+						<div class="prd_fields_text">{$row.prd_press_count|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_press_date}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_press_date}:</div>
+						<div class="prd_fields_text">{$row.prd_press_date|display_text}</div>
+					</div>
+				{/if}		
+				{if $row.prd_translator}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_translator}:</div>
+						<div class="prd_fields_text">{$row.prd_translator|display_text}</div>
+					</div>
+				{/if}				
+				{if $row.prd_illustrator}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_illustrator}:</div>
+						<div class="prd_fields_text">{$row.prd_illustrator|display_text}</div>
+					</div>
+				{/if}				
+				{if $row.prd_cover_type}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_cover_type}:</div>
+						<div class="prd_fields_text">{$row.prd_cover_type|display_text}</div>
+					</div>
+				{/if}				
+				{if $row.prd_paper_type}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_paper_type}:</div>
+						<div class="prd_fields_text">{$row.prd_paper_type|display_text}</div>
+					</div>
+				{/if}				
+				{if $row.prd_language}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_language}:</div>
+						<div class="prd_fields_text">{$row.prd_language|display_text}</div>
+					</div>
+				{/if}
+				{if $row.prd_origname}
+					<div class="prd_fields_item">
+						<div class="prd_fields_label">{$LANG.label_prd_origname}:</div>
+						<div class="prd_fields_text">{$row.prd_origname|display_text}</div>
+					</div>
+				{/if}
+			{/if}		
+		</div>
+		{/if}
+
+		<!--
+		{if $row.icons}
+		<div class="prd_icons">
+			{foreach from=$row.icons item=icon_item key=icon_key}
+				<div class="prd_icon prd_icon_{$icon_item.position}"><img src="{$icon_item.icon_url}" width="64" height="64" alt="{$icon_item.position}"/></div>
+			{/foreach}
+		</div>
+		{/if}
+		-->
+    {if !$config.hide_prices_for_guests or isUserLogin()}	
+      <div class="pricebox"> 
+        {if $config.show_list_price and $row.prd_discount>0}
+          <div class="discount" title="{$LANG.tooltip_discount|sprintf:$row.prd_discount_rate}">
+            <span class="discount_number">%{$row.prd_discount|intval}</span>
+            <span class="discount_text">{$LANG.discount_prd}</span>
+          </div>
+        {/if}
+      
+        <div class="pricebox_content">
+          {if $row.prd_discount_rate>0}
+            {if $config.show_list_price}
+            <div class="prd_view_price_row list_price_row">
+              <span class="prd_view_price_value price_cancelled">
+                <span id="prd_price_display">{$row.prd_price|price_format4:$row.cur_code}</span>
+              </span>
+            </div>
+            {else}
+            <div class="prd_view_price_row discount_price_row">
+            	<span>{$LANG.discount_prd}</span>
+            </div>
+            {/if}
+            <div class="prd_view_price_row sale_price_row">
+              <span class="prd_view_price_value final_price">
+                <span id="prd_final_price_display">{$row.prd_final_price|price_format4:$row.cur_code}</span>
+              </span>
+            </div>
+          {else}
+            <div class="prd_view_price_row sale_price_row">
+              <span class="prd_view_price_value final_price">
+                <span id="prd_final_price_display">{$row.prd_final_price|price_format4:$row.cur_code}</span>
+              </span>
+            </div>
+          {/if}
+        </div>
+
+        {if $row.prd_discount>0 && $row.discount_row}
+        <div class="prd_view_temp_discount_box">
+          <div class="temp_discount" data-end-date="{$row.discount_row.dsc_end_date}">
+            <div class="discount_continue">
+              <span class="temp_discount_h">{$row.discount_row.time_left.h}</span>&nbsp;:&nbsp;
+              <span class="temp_discount_m">{$row.discount_row.time_left.m}</span>&nbsp;:&nbsp;
+              <span class="temp_discount_s">{$row.discount_row.time_left.s}</span>&nbsp;
+              <span>sn sonra indirim bitecek</span>
+            </div>
+            <div class="discount_ended">{$LANG.label_discount_ended}</div>
+          </div>
+        </div>
+        {/if}
+      </div>
+      
+      
+      {if $row.min_inst_price}
+        <div class="prd_view_price_row sale_price_inst_row">
+          <span class="prd_view_price_value">
+            {$LANG.min_inst_price}:
+            {$row.max_inst} x <span id="min_inst_price_display">{$row.min_inst_price|price_format4:$row.cur_code}</span>
+          </span>
+        </div>
+      {/if}
+
+      {if $row.prd_eft_price}
+        <div class="prd_view_price_row sale_price_eft_row">
+          <span class="prd_view_price_value">
+            {$LANG.prd_eft_price}: 
+            <span id="prd_eft_price_display">{$row.prd_eft_price|price_format4:$row.cur_code}</span>
+          </span>
+        </div>
+      {/if}
+            
+      {if $row.prd_special_price}
+        <div class="prd_view_price_row special_price_row">
+          <span class="prd_view_price_value special_price"><span id="prd_special_price_display">{$row.prd_special_price|price_format4:$row.cur_code}</span></span> 
+        </div>
+      {/if}	
+      
+      {if $row.quantity_discounts}
+      <div>{$LANG.label_quantity_discount_header}</div>
+      {foreach from=$row.quantity_discounts item=item}			
+        <div class="prd_view_price_row special_price_row">
+          <span class="prd_view_price_label">{$item.pqd_min_quantity}-{$item.pqd_max_quantity}</span> : 
+          <span class="prd_view_price_value">%<span>{$item.pqd_discount_rate|intval}</span></span> 
+        </div>
+      {/foreach}
+      {/if}
+    {/if}
+
+		{if $config.sale_count_on_prd_view and $row.sale_count gt 0}
+			<div class="prd_view_price_row prd_view_sale_count_row">
+				<span class="prd_view_price_value">
+					{$LANG.label_sale_count|sprintf:$row.sale_count}
+				</span>
+			</div>
+		{/if}
+
+		{if $row.cargo_paying eq 1}
+		<div class="cargo_paying">
+			<span>{$LANG.label_cargo_paying_product}</span>
+		</div>
+		{/if}
+    
+		<!--{if $row.prd_info}<div class="prd_info">{$row.prd_info}</div>{/if}
+		
+		<div class="banner_prd_view">{banner name="prd_view"}</div>-->
+		
+		{if !$config.cfg_catalog_mode}
+    {if !$config.hide_prices_for_guests or isUserLogin()}
+			{if $row.prd_sell eq 'n'}
+				<div class="prd_button">
+					<a class="btn btn-dark button_no_sell" href="{create_link p=Favorites add=$row.prd_id fav_type=psl}" onclick="AjaxDialogWindow('{create_link p=Favorites add=$row.prd_id fav_type=psl popup=1}','{$LANG.label_inform_when_put_to_sell}');return false;">
+						<span>{$LANG.label_inform_when_put_to_sell}</span>
+					</a>
+				</div>
+			{elseif !$config.cfg_order_out_of_stock and $row.prd_stock lte $row.prd_min_stock}
+				<div class="prd_button">
+					<a class="btn btn-dark button_no_sell" href="{create_link p=Favorites add=$row.prd_id fav_type=pst}" onclick="AjaxDialogWindow('{create_link p=Favorites add=$row.prd_id fav_type=psl popup=1}','{$LANG.label_inform_when_put_to_sell}');return false;">
+						<span>{$LANG.label_alert_when_in_stock}</span>
+					</a>
+				</div>
+			{else}
+					
+				{if $row.prd_preorder}
+					<div class="prd_supply_time prd_preorder">{$LANG.label_pre_order_desc|sprintf:$row.prd_preorder_date_str}</div>
+				{elseif $row.prd_sahaf eq 2 and $row.prd_stock gt $row.prd_min_stock}
+					<div class="prd_supply_time in_stock">{$LANG.prd_in_stock}</div>
+				{elseif $row.prd_sahaf eq 1}
+					<div class="prd_supply_time stock_count">{$LANG.label_prd_stock_count|sprintf:$row.prd_stock}</div>
+				{elseif $row.prd_sahaf eq 0 and $row.prd_supply_time>0}
+					<div class="prd_supply_time supply_time">{$LANG.label_prd_supply_time_desc|sprintf:$row.prd_supply_time}</div>
+				{elseif $row.prd_sahaf eq 0 and $row.prd_supply_time!="" and $row.prd_supply_time eq 0}
+					<div class="prd_supply_time fast_delivery">{$LANG.label_zero_supply_time}</div>	
+				{/if}
+		
+    
+    
+        
+    
+				<div class="actions">
+        
+          {include file="products_view_custom_inputs.html"}
+        
+					{if $row.options}
+					<div class="options_box">
+						<div id="price_format_template" style="display: none;">{'0.12'|price_format4:$row.cur_code}</div>
+						<input type="hidden" id="prd_final_price" value="{$row.prd_final_price}" />
+						<input type="hidden" id="prd_price" value="{$row.prd_price}" />							
+						<input type="hidden" id="min_inst_price" value="{$row.min_inst_price}" />
+						<input type="hidden" id="max_inst" value="{$row.max_inst}" />
+						<input type="hidden" id="eft_discount" value="{$row.eft_discount}" />
+						<input type="hidden" id="prd_no_stock" value="{$LANG.label_prd_no_stock}" />
+						<input type="hidden" id="prd_in_stock" value="{$LANG.prd_in_stock}" />
+						<input type="hidden" id="option_unavailable" value="{$LANG.option_unavailable}" />
+						<div class="prd_options">
+							{foreach from=$row.options.groups item=item key=group_id}
+							<div class="prd_options_item">
+								<span>{$item.group}</span>
+								<div class="form-group">
+									<select onchange="$(this).updatePrdView();" id="opg_id{$group_id}" class="prd_opts form-control form-control-sm">
+										{html_options options=$item.options selected=$item.selected}
+									</select>
+								</div>
+							</div>
+							{/foreach}
+						</div>
+						{if $config.prd_options_fix_price_stock}
+						{foreach from=$row.options.list item=item}								
+							<input type="hidden" id="pro_id_{$item.str}" name="pro_id[{$item.pro_id}]" title="{$item.pro_stock}:{$item.pro_price}" data-stock="{$item.pro_stock}" data-price="{$item.pro_price}" data-id="{$item.pro_id}" data-decimal-sep="{$config.decimal_sep|default:'.'}" value="{$item.pro_id}" />																	
+						{/foreach}
+						{else}						
+						{foreach from=$row.options.list item=item}								
+							<input type="hidden" id="pro_id_{$item.str}" name="pro_id[{$item.pro_id}]" title="{$item.pro_stock}:{$item.pro_price}" data-stock="{$item.pro_stock}" data-price="{$item.pro_price}" data-id="{$item.pro_id}" data-decimal-sep="{$config.decimal_sep|default:'.'}" value="{$item.pro_id}" />
+							<div class="data_pro_id_{$item.pro_id}" style="display: none">
+								<div class="data-prd-final-price">{$item.prd_final_price|price_format4:$row.cur_code}</div>
+								<div class="data-prd-special-price">{$item.prd_special_price|price_format4:$row.cur_code}</div>
+								<div class="data-prd-price">{$item.prd_price|price_format4:$row.cur_code}</div>
+								<div class="data-prd-eft-price">{$item.prd_eft_price|price_format4:$row.cur_code}</div>
+								<div class="data-prd-min-inst-price">{$item.min_inst_price|price_format4:$row.cur_code}</div>
+							</div>									
+						{/foreach}
+						{/if}
+					</div>	
+					{/if} {* row.options*}
+          
+          {if $row.variants}
+            {include file="product_view_variants.html"}
+          {/if}
+          {if $row.cart_enabled}
+					<div class="add_cart">
+						{if $config.cfg_cart_multiple_add}
+							<div class="form-group">
+								<input class="form-control prd-quantity" size="1" min="{$row.prd_min_quantity}" {if $row.prd_max_quantity gt 0}max="{$row.prd_max_quantity}"{/if} type="number" name="quantity" value="{$row.prd_min_quantity}">
+							</div>
+						{/if}
+						
+						{if $row.unit_options}
+							<div class="form-group">
+								<select class="form-control prd-units" name="unit">
+									{html_options options=$row.unit_options}
+								</select>
+							</div>
+						{/if}
+						
+						<a data-prd-id="{$row.prd_id}" class="btn btn-orange button_add_to_cart">
+							<span class="button-text">{$LANG.label_add_to_cart}</span>
+						</a>
+					</div>
+          {/if}
+				</div>
+		
+			{/if}	{* sell stock if *}
+      {/if}	{* hide_prices_for_guests *}
+		{else} {* catalog_mode *}
+			<div class="catalog_mode">
+				{if $row.prd_discount_rate>0}
+				<div class="prd_view_price_row sale_price_row">
+					<span class="prd_view_price_label">{$LANG.label_prd_discount_price}</span> :
+					<span class="prd_view_price_value final_price"><span id="prd_final_price_display">{$row.prd_final_price|price_format}</span> {$row.cur_code}</span>
+				</div>
+				{/if}
+						
+				{if $config.buynow_url}		
+				<script>
+					var buynowurl={$row.buynow_url_script_string}
+				</script>	
+				<a id="buynowurl" class="button button_add_to_cart button_prd_view_add_to_cart" href="#"><span class="">{$LANG.label_add_to_cart}</span></a>
+				{/if}
+			</div>	
+		{/if}	{* catalog_mode *}
+
+		{if $product_links}
+		<div class="product_links">
+			<div class="prl_title">{$LANG.product_links_header}</div>
+			{foreach from=$product_links item=item name=links_loop}
+			{if $item.image}
+			<a href="{$item.prl_link}" title="{$item.prl_title}" target="_blank" rel="nofollow"><img src="{$item.image}" alt="{$item.prl_title}" width="auto" height="auto"/></a>
+			{else}		
+			<a href="{$item.prl_link}" title="{$item.prl_title}" target="_blank" rel="nofollow">{$item.prl_title}</a>
+			{if !$smarty.foreach.links_loop.last}&nbsp;|&nbsp;{/if}
+			{/if}			
+			{/foreach}
+		</div>
+		{/if}
+
+		{include file='product_view_actions.html'}
+	</div>
+	{* col2 end *}
+</div>
+
+{include file="products_view_rich_snippets.html"}

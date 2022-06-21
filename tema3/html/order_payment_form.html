@@ -1,0 +1,58 @@
+{if $payment3d}
+<form id="three_d_form" action="{$vpos3d.vposurl}" method="post" class="edit_form">
+	{foreach from=$vpos3d item=vpos3d_item key=vpos3d_key}
+	{if $vpos3d_key ne "vposurl"}
+	<input type="hidden" name="{$vpos3d_key}" value="{$vpos3d_item}" />
+	{/if}
+	{/foreach}
+	
+
+	{foreach from=$smarty.post item=item key=key}	
+		{if is_array($item)}
+			{foreach from=$item item=item2 key=key2}	
+			<input type="hidden" name="{$key}[{$key2}]" value="{$item2}" />	
+			{/foreach}	
+		{else}
+			<input type="hidden" name="{$key}" value="{$item}" />
+		{/if}	
+	{/foreach}	
+	
+	<input type="submit" value="Submit">
+	<script>document.getElementById("three_d_form").submit();</script>
+</form>	
+{else}	
+
+<div class="   frm orders_form">
+<h1 class="contentHeader paymentHeader">{$contentHeader|display_text}</h1>
+
+
+<div style="padding: 1em 0">
+<div>{$LANG.label_ord_code}: <a href="{create_link p=Orders view=$order_row.ord_id}" target="_blank">{$order_row.ord_code}</a></div>
+<div>{$LANG.label_ord_grand_total}: {$order_row.ord_grand_total} {$order_row.ord_currency_code}</div>
+</div>
+
+<form action="{create_link transfer=get}" method="post" id="order_payment_form">
+<div class="error">{$error.ord_payment_type}</div>
+<input type="hidden" id="total_amount" value="{$order_row.ord_grand_total}" />
+{foreach from=$payment_options item=item}
+
+	
+
+	{if $item.enabled}
+		<input type="radio" id="ord_payment_type{$item.pop_code}" name="ord_payment_type" value="{$item.pop_code}" {if $order_row.ord_payment_type eq $item.pop_code}checked{/if} onclick="$('#pop_container').payOptions('{create_link p=PaymentOptions payment=$smarty.get.payment type=''}'+this.value,this)" /><label for="ord_payment_type{$item.pop_code}">&nbsp;<b>{$item.pop_name}</b>
+		{if $item.pop_discount>0}<span class="red">({$LANG.label_pop_discount_desc|sprintf:$item.pop_discount})</span>{/if}</label>
+		<br />
+		{if $item.pop_desc}<div style="padding-left:20px;font-style:italic;">{$item.pop_desc}</div>{/if}
+	{else}
+		<div style="padding-left:20px;"><b>{$item.pop_name}</b></div>		
+		{if $item.pop_desc}<div style="padding-left:20px;font-style:italic;">{$item.pop_desc}</div>{/if} 
+	{/if}
+{/foreach}
+
+<div id="pop_container">{if $pop_template}{include file=$pop_template}{/if}</div>
+
+
+<input class="     button button_payment" type="submit" id="payment" name="payment" value="{$LANG.label_payment}" />
+</form>
+</div>
+{/if}

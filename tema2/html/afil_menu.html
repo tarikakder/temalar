@@ -1,0 +1,23 @@
+<div class="afil_menu">
+  <ul class="nav justify-content-center">
+    {if $config.cfg_afil_show_products}
+    <li class="nav-item" {if $afil_selected_menu eq 'AfilTypes'}class="active"{/if}>
+      <a class="nav-link" href="{create_link p=AfilTypes}">{$LANG.label_products}</a>
+    </li>
+    {/if}
+    {*
+    <li class="nav-item" {if $afil_selected_menu eq 'AfilBanners'}class="active"{/if}>
+      <a class="nav-link" href="{create_link p=AfilMembers banners=1}">{$LANG.label_afil_banners}</a>
+    </li>
+    *}
+    <li class="nav-item" {if $afil_selected_menu eq 'AfilData'}class="active"{/if}>
+      <a class="nav-link" href="{create_link p=AfilData}">{$LANG.label_afil_reports}</a>
+    </li>
+    <li class="nav-item" {if $afil_selected_menu eq 'AfilMembers'}class="active"{/if}>
+      <a class="nav-link" href="{create_link p=AfilMembers}">{$LANG.label_afil_account}</a>
+    </li>
+    <li class="nav-item" {if $afil_selected_menu eq 'AfilPayments'}class="active"{/if}>
+      <a class="nav-link" href="{create_link p=AfilPayments}">{$LANG.label_afil_payments}</a>
+    </li>
+  </ul>
+</div>

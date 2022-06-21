@@ -1,0 +1,693 @@
+@charset "UTF-8";
+/* line 8, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+body {
+  font-family: Montserrat,sans-serif !important;
+}
+
+/* line 13, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.hakkimizda table img {
+  width: 20% !important;
+}
+
+/* line 18, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.ubtn-data {
+  padding: 12px;
+  background: #0078ff;
+  border: 2px solid #0078ff;
+}
+
+/* line 24, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+header {
+  height: 93px !important;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 30, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  header {
+    height: auto !important;
+  }
+  /* line 34, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  #qsearch {
+    margin: 0px -22%;
+  }
+}
+
+/* line 39, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#usd, #eur {
+  font-weight: 500 !important;
+  padding-left: 3px;
+}
+
+/*hakkımızda başlangıç*/
+/* line 47, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.div-left {
+  display: block !important;
+  float: left !important;
+  padding: 10px !important;
+}
+
+/* line 53, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.padding-center {
+  padding: 8% 0px !important;
+}
+
+/* line 57, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.padding-center-2 {
+  padding: 10% 0px !important;
+}
+
+/* line 62, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.div-left img, .div-left iframe {
+  border: 1px solid #0465ac !important;
+  box-shadow: 0px 0px 3px #003861 !important;
+}
+
+/* line 67, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.hakkimizda-zemin {
+  background: url(/u/mecer/docs/h/a/hakkimizda-back-fuar-3-1630564683.png) top no-repeat !important;
+  background-size: contain !important;
+}
+
+/* line 71, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.hakkimizda-zemin-bottom {
+  background: url(/u/mecer/docs/h/a/hakkimizda-back-bottom-1630567023.png) bottom no-repeat !important;
+  background-size: contain !important;
+}
+
+/* line 76, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.hakkimizda-title {
+  color: #0465ac !important;
+  border-bottom: 1px dotted #0465ac !important;
+}
+
+/* line 81, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.text-left {
+  border-left: 5px dotted #286c9e17 !important;
+  padding-left: 20px !important;
+}
+
+/* line 87, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.text-right {
+  border-right: 5px dotted #286c9e17;
+  padding-right: 20px;
+  text-align: left !important;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 94, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .hkm-video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*hakkımızda bitiş*/
+/*logo başlangıç*/
+/* line 105, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-logo {
+  position: sticky;
+  z-index: 999;
+  padding: 40px 20px 0px 20px !important;
+  background: #fff;
+  margin-top: -35px;
+  margin-left: -41px;
+}
+
+/* line 114, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-top {
+  background: #e0efff !important;
+  height: 32px;
+}
+
+/*logo bitiş*/
+/*menu başlangıç*/
+/* line 123, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.d-block {
+  display: block !important;
+}
+
+/* line 127, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.cd-dropdown h2, .cd-dropdown-content a, .cd-dropdown-content ul a, .cd-dropdown-content .cd-divider {
+  padding: 0 9px !important;
+  font-size: 14px !important;
+}
+
+/* line 132, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.has-children > a::before, .has-children > a::after, .go-back a::before, .go-back a::after {
+  right: 7px !important;
+}
+
+/* line 136, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#mod_container_108 {
+  position: relative;
+  top: -32px !important;
+  margin-left: 20px;
+}
+
+/* line 142, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#mod_container_108 .Header-logo {
+  margin-top: -81px;
+  padding: 22px 20px 14px 20px !important;
+  margin-left: -20px;
+  position: fixed;
+}
+
+/* line 150, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.cd-dropdown-trigger {
+  width: 178px !important;
+}
+
+/* line 155, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#mod_container_108 .list-group-item {
+  width: 177px;
+  padding: 0 !important;
+}
+
+@media only screen and (min-width: 1024px) {
+  /* line 162, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .cd-dropdown-content a, .cd-dropdown-content ul a {
+    height: 32px !important;
+    line-height: 32px !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    font-size: 1.2rem !important;
+  }
+  /* line 169, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .cd-dropdown-content ul {
+    width: 75% !important;
+  }
+  /* line 172, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .cd-dropdown-content {
+    width: 300px !important;
+  }
+}
+
+/* line 178, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.cd-dropdown-wrapper {
+  margin: 32px 0 0 -9% !important;
+}
+
+/* line 182, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.list-group-item {
+  border: none !important;
+}
+
+/* line 186, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.cd-dropdown-content > .has-children > a.is-active::before, .cd-dropdown-content > .has-children > a.is-active::after {
+  background: #0078ff !important;
+}
+
+/* line 189, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.cd-dropdown-content > .has-children > a.is-active {
+  box-shadow: inset 2px 0 0 #0078ff !important;
+}
+
+@media screen and (max-width: 1024px) {
+  /* line 194, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  #mod_container_108 {
+    display: none;
+  }
+}
+
+/*menu bitiş*/
+/*arama başlangıç*/
+/* line 205, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Search {
+  padding: 0px 0px 0 117px !important;
+  width: 59% !important;
+}
+
+/* line 210, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Search-content .form-control {
+  border: 3px solid #0078ff;
+  height: 45px;
+}
+
+/* line 215, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.la-search:before {
+  font-size: 25px;
+  position: relative;
+  top: 5px;
+  color: #0179ff;
+}
+
+/*arama bitiş*/
+/*nav menü başlangıç*/
+/* line 226, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-menu {
+  background-color: #ffffff !important;
+  color: #0078ff !important;
+  box-shadow: 0px 2px 2px 0px #0000001f;
+  border-bottom: 2px solid #0078ff;
+  margin-top: -28px;
+}
+
+/* line 234, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#HeaderMenuClose {
+  z-index: 99999;
+  position: absolute;
+  top: 38%;
+}
+
+/* line 240, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-menu ul {
+  margin-left: 230px !important;
+  margin-top: 9px;
+}
+
+/* line 245, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-container {
+  padding-top: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 251, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .Header-menu ul {
+    margin-left: 0px !important;
+  }
+  /* line 255, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .Header-right .btn {
+    height: 28.76px !important;
+  }
+}
+
+/* line 263, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-menu ul li a {
+  color: #0078ff !important;
+  font-size: .7em !important;
+}
+
+/* line 268, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-menu ul li a:hover {
+  color: #fff !important;
+  background-color: #0078ff !important;
+}
+
+/* line 273, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#ctg_level1 {
+  left: 178px !important;
+}
+
+/* line 276, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#ctg_level2 {
+  left: 177px !important;
+}
+
+/*nav menü bitiş*/
+/*header top başlangıç*/
+/* line 283, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.btn-light {
+  color: #ff3d00 !important;
+  background-color: #fff2ef !important;
+  border-color: #ffdacf !important;
+}
+
+/* line 291, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.user_menu ul li:nth-child(2) {
+  display: none;
+}
+
+/* line 297, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-top-menu {
+  display: none;
+}
+
+/* line 302, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-right span {
+  font-weight: 700 !important;
+}
+
+/* line 305, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-right i {
+  color: #ff3d00 !important;
+}
+
+/*header top bitiş*/
+/*content başlangıç*/
+/* line 313, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.tabs_view .nav {
+  padding: 0 !important;
+}
+
+/* line 316, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Content {
+  padding: 14px 0 !important;
+  background: #f5f5f5;
+}
+
+/* line 321, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.layout_111 .main_content {
+  padding: 0 !important;
+}
+
+/* line 324, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.page_home .Content .mod_container, .page_prdview .Content .mod_container {
+  margin: 0 !important;
+}
+
+/* line 328, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Product-content {
+  height: calc(87% - 210px) !important;
+}
+
+/* line 332, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Product {
+  border: 1px solid #0000002b;
+}
+
+/* line 336, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.box_prd .slick-slide {
+  margin: 0px -.7px !important;
+}
+
+/* line 340, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.box_prd_slide .Carousel .slick-list {
+  padding: 0 !important;
+}
+
+/* line 346, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.right_column .box_prd .slick-slide {
+  padding: 2px;
+}
+
+/* line 350, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.right_column .Box-header {
+  border-bottom: 1px solid #0179ff73;
+  padding-bottom: 5px !important;
+  font-size: 20px !important;
+  margin-bottom: 10px !important;
+  margin-top: -5px !important;
+}
+
+/* line 357, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.right_column #mod_container_12 {
+  margin-top: -12px !important;
+}
+
+/* line 362, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Product-content .price_box .price_sale {
+  color: #6c6c6c !important;
+}
+
+/* line 366, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Product_list_img .Product-image:before {
+  background: transparent !important;
+}
+
+/* line 370, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.breadcrumb {
+  margin-bottom: 8px !important;
+  margin-top: 20px !important;
+}
+
+/* line 375, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_img, .image_a:hover,
+.prd_img:hover, .Product-image:hover {
+  background: transparent !important;
+}
+
+/* line 379, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.la-shopping-cart:before {
+  font-size: 38px;
+}
+
+/* line 383, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Header-right .btn {
+  height: 46.76px !important;
+}
+
+/* line 387, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.btn-dark {
+  background-color: #ff3d00 !important;
+  border-color: #ff764b !important;
+}
+
+/* line 392, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.left52, .is-hidden {
+  margin-left: 77px;
+}
+
+/* line 396, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Carousel .slick-dots li {
+  height: 15px !important;
+  width: 15px !important;
+  border: 2px solid #ff3d00 !important;
+  background-color: transparent !important;
+}
+
+/* line 403, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Carousel .slick-dots li.slick-active {
+  background-color: #ff3d00 !important;
+}
+
+/* line 407, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#ctg_level0 ul, #ctg_level1 ul, #ctg_level2 ul {
+  width: 177px !important;
+}
+
+/* line 411, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.grid {
+  grid-gap: 3px !important;
+}
+
+/* line 415, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view h1.contentHeader {
+  font-size: 1.2em !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+}
+
+/* line 421, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.side_column .Box-header a {
+  font-weight: 700 !important;
+  color: #0078ff !important;
+}
+
+/* line 425, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Box-header {
+  margin-top: 20px !important;
+  margin-bottom: 0px !important;
+}
+
+/* line 430, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Box-header a {
+  font-weight: 700 !important;
+  color: #0179ff !important;
+}
+
+/* line 435, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_brand_box a {
+  color: #a1a1a1 !important;
+}
+
+/* line 439, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view h1.contentHeader {
+  margin-bottom: 0px !important;
+}
+
+/* line 442, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.is-hidden {
+  position: relative !important;
+  left: -280px !important;
+}
+
+/* line 447, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#allCtg {
+  pointer-events: none !important;
+}
+
+/* line 451, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer {
+  background: #00244c !important;
+}
+
+/* line 453, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer .container {
+  padding: 32px 0px 0px 32px !important;
+}
+
+/* line 458, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer-email {
+  display: none !important;
+}
+
+/* line 462, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer-content-info {
+  line-height: 18px;
+}
+
+/* line 464, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer-content-info a {
+  color: #FFFFFF !important;
+}
+
+/* line 468, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.Footer-content-logo img {
+  max-width: 273px !important;
+  max-height: 200px !important;
+}
+
+/* line 473, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.user_menu a {
+  color: #0078ff !important;
+}
+
+/* line 478, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.doviz-bilgileri .Box-header {
+  display: none;
+}
+
+/* line 481, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.doviz-bilgileri .Box-content {
+  border-radius: 0px;
+  padding: 10px;
+  border: 1px solid #ffdacf !important;
+  color: #ff3d00 !important;
+  font-weight: 700;
+  background: #fff2ef;
+}
+
+/* line 489, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.doviz-bilgileri .box_currencies {
+  padding-top: 13px !important;
+}
+
+/* line 494, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.dovizHeader {
+  color: #ff3d00 !important;
+  font-weight: 700;
+  font-size: .9em !important;
+}
+
+/* line 499, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.dovizMobil {
+  margin-top: -50%;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 503, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .dovizMobil {
+    color: #ff3d00 !important;
+    font-weight: 700;
+    font-size: .9em !important;
+    margin-top: 0;
+  }
+}
+
+/* line 513, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.kdvInc, .glbPrice {
+  color: #6c6c6c;
+  font-size: 19px !important;
+  line-height: 19px !important;
+  font-weight: 500;
+}
+
+/* line 520, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#prd_final_price, #prd_price {
+  font-size: 19px !important;
+  line-height: 19px !important;
+}
+
+/* line 525, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view .actions .add_cart .prd-quantity {
+  border-radius: 5px;
+}
+
+/* line 529, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.stock_count {
+  float: left;
+  padding: 7px;
+  margin-right: 10px;
+  background: #fff2ef;
+  border: 1px solid #ffdacf;
+  color: #ff3d00;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+/* line 540, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+#prd_final_price_display {
+  font-weight: 700 !important;
+  color: #ff3d00 !important;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 547, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  #prd_final_price_display {
+    font-size: 23px;
+  }
+  /* line 553, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  #prd_final_price, #prd_price, .kdvInc, .glbPrice {
+    font-size: 12px !important;
+    line-height: 12px !important;
+  }
+  /* line 558, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+  .prd_view_item .btn {
+    width: 62% !important;
+    line-height: 24.8px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+  }
+}
+
+/* line 568, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.discount {
+  background: #ff3d00 !important;
+  font-weight: 700;
+  padding: 14px 10px !important;
+}
+
+/* line 573, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.btn-orange:focus, .btn-orange:hover {
+  background-color: #ff3d00 !important;
+  border-color: #ff3d00 !important;
+}
+
+/* line 578, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view_actions {
+  display: none !important;
+}
+
+/* line 582, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view .pricebox {
+  border-top: 1px solid #ffdacf;
+  padding: 17px 0px;
+  border-bottom: 1px solid #ffdacf;
+  border-radius: 10px;
+}
+
+/* line 590, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view_item .btn {
+  width: 85%;
+}
+
+/* line 595, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_view .pricebox .discount_text {
+  margin-top: 0px !important;
+}
+
+/* line 599, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_fields_text {
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+}
+
+/* line 604, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.prd_fields_label {
+  font-weight: 600 !important;
+}
+
+/* line 608, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.kdvVal {
+  font-size: 12px !important;
+  font-weight: 500;
+}
+
+/* line 612, ../kanmazteknoloji/kartekiletisim/sccs/hakkimizda.scss */
+.rsp-hide-538 {
+  text-align: right !important;
+}
+
+/*content bitiş*/
+
+/*# sourceMappingURL=hakkimizda.css.map */

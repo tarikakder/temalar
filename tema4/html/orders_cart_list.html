@@ -1,0 +1,97 @@
+<input id="cart_total" name="cart_total" type="hidden" value="{$cart_contents.total_amount}">
+<input id="total_amount" name="total_amount" type="hidden" value="{$row.ord_grand_total-$row.ord_payment_price}">
+
+{if $coupon_msg}
+<div id="msg_box">{$coupon_msg}</div>
+{/if}
+
+<table class="table table-bordered mt-2 order_cart_list_table">
+	<thead class="rsp-hide-538">
+		<th>
+			{$LANG.label_prd_name}
+		</th>
+		<th>
+			{$LANG.label_crt_price}
+		</th>	
+		<th>
+			{$LANG.label_crt_quantity}
+		</th>
+		<th>
+			{$LANG.label_total_price}
+		</th>	
+	</thead>
+	<tbody>
+		{foreach from=$cart_contents.products item=item key=k}
+		<tr>
+			<td>
+				{$item.prd_name|display_text}
+				{if $item.prd_discount_rate>0}<span class="dsc_applied">{$LANG.label_prd_discount_applied|sprintf:$item.prd_discount_rate}</span>{/if}
+				{if $item.crt_pro_id>0}<br><div class="prd_opt_list">{$item.opt_string|nl2br}</div>{/if}
+        {if $item.variant_string}<br/><div class="prd_opt_list">{$item.variant_string|nl2br}</div>{/if}
+			</td>
+
+			{if $item.crt_point eq 'y'}
+			<td class="rsp-hide-538">{$item.prd_point_price} {$LANG.label_point}</td>				
+			{else}
+			<td class="rsp-hide-538">{$item.prd_final_price|price_format4:$cart_contents.cur_code}</td>			
+			{/if}	
+					
+			<td>
+				<span class="rsp-show-538">{$LANG.label_crt_quantity} : </span>
+				{if $item.crt_unit_id gt 0}{$item.crt_unit_quantity|escape}{else}{$item.crt_quantity|escape}{/if}{if $item.crt_unit.unt_name} {$item.crt_unit.unt_name}{/if}
+			</td>
+
+			{if $item.crt_point eq 'y'}
+			<td>{$item.total_points} {$LANG.label_point}</td>		
+			{else}
+			<td>
+				<span class="rsp-show-538">{$LANG.label_total_price} : </span> {$item.total_price|price_format4:$cart_contents.cur_code}
+			</td>	
+			{/if}	
+		</tr>
+		{/foreach}
+	</tbody>
+</table>
+
+<div class="ord_cart_total_info">
+	<div class="ord_cart_total_info_item">
+		<span>{$LANG.label_total_products} : </span>
+		<span>{$cart_contents.total_amount|price_format4:$cart_contents.cur_code}</span>
+	</div>
+	{if $row.ord_shipping_total>0}
+	<div class="ord_cart_total_info_item">
+		<span>{$LANG.label_shipping_cost} : </span>
+		<span>{$row.ord_shipping_total|price_format4:$cart_contents.cur_code}</span>
+	</div>
+	{/if}
+	{if $row.ord_gift_wrap_price>0}
+	<div class="ord_cart_total_info_item">
+		<span>{$LANG.label_ord_gift_wrap_price} : </span>
+		<span>{$row.ord_gift_wrap_price|price_format4:$cart_contents.cur_code}</span>
+	</div>
+	{/if}
+	{if $row.ord_mo_discount>0}
+	<div class="ord_cart_total_info_item">
+		<span>{if $row.pop_name}{$LANG.label_generic_discount|sprintf:$row.pop_name}{else}{$LANG.label_ord_mo_discount}{/if} : </span>
+		<span>-{$row.ord_mo_discount|price_format4:$cart_contents.cur_code}</span>
+	</div>
+	{/if}
+	{if $row.ord_payment_price>0}	
+	<div class="ord_cart_total_info_item">
+		<span>{$LANG.label_total_amount_inst} ({$row.ord_installment}) : </span>
+		<span>{$row.ord_payment_price|price_format4:$cart_contents.cur_code}</span>
+	</div>
+	{/if}
+	<div class="ord_cart_total_info_item ord-total-amount ord_cart_total_amount">
+		<span>{$LANG.label_total_amount} : </span>
+		<span>{$row.ord_grand_total|price_format4:$cart_contents.cur_code}</span>
+	</div>
+		
+	{if $cart_contents.point_shop_exists}
+	<div class="ord_cart_total_info_item ord-total-amount">
+		<span>{$LANG.label_total_point_amount} : </span>
+		<span><span>{$cart_contents.total_point_amount}</span> {$LANG.label_point}</span>
+	</div>
+	
+	{/if}	
+</div>

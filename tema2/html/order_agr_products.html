@@ -1,0 +1,18 @@
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="100%">	
+<tr>
+<th>{$LANG.label_prd_barcode}</th>
+<th>{$LANG.label_orp_prd_name}</th>
+<th>{$LANG.label_pub_name}</th>
+<th>{$LANG.label_orp_quantity}</th>
+<th>{$LANG.label_orp_final_price} {$ord_row.ord_currency_code}</th>
+</tr>	
+{foreach from=$order_products item=item}					
+<tr>
+<td>{$item.orp_barcode}</td>
+<td>{$item.orp_prd_name}</td>
+<td>{$item.pub_name}&nbsp;</td>
+<td>{$item.orp_quantity}</td>
+<td>{$item.orp_final_price} {$ord_row.ord_currency_code}</td>
+</tr>
+{/foreach}
+</table>

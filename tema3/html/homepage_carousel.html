@@ -1,0 +1,14 @@
+<div id="homepage_carousel_container">
+
+{if $products}
+
+  <ul id="mycarousel" class="jcarousel-skin-tango">
+	{foreach from=$products item=item key=k}
+    <li title="{$item.prd_name|display_text}" class="tooltip-ajax" rel="{create_link p=Products view=$item.prd_id popup=1 no_common=1}" ><a href="{$item.link}"><img src="{$item.images.b}" width="{$item.image_size.b.w}" height="{$item.image_size.b.h}" title="{$item.prd_name|display_text}" border="0"  alt="{$item.prd_name|display_text}" /></a></li>
+	{/foreach}	
+  </ul>
+
+{/if}
+
+
+</div>

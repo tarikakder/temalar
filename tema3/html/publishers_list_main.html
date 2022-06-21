@@ -1,0 +1,30 @@
+<div class="pub_list">
+	<h1 class="contentHeader pubListHeader">{$contentHeader|display_text}</h1>
+
+	{if !$config.cfg_hide_letters}
+	<div class="letter_bar">
+		<form action="{create_link}">
+			<input type="hidden" name="p" value="{$smarty.get.p}">
+			<span class="letter_items">
+				{foreach from=$arr_letters item=item key=k}
+					{if $smarty.get.letter eq $item}
+					<a class="letter_link dy_selected" href="{$LANG.link_publihers_letter|sprintf:$item}">{$item}</a>
+					{else}
+					<a class="letter_link" href="{$LANG.link_publihers_letter|sprintf:$item}">{$item}</a>
+					{/if}
+				{/foreach}
+			</span>
+			<span class="form_items">
+				<div class="form-group">
+					<input type="text" class="form-control" value="{$smarty.get.pq|escape}" name="pq" id="pq">
+				</div>
+				<input class="btn btn-dark button_publisher_search" type="submit" value="{$LANG.button_search}">
+			</span>
+		</form>
+	</div>
+	{/if}
+
+	<div class="pub_list_wrapper">
+	{include_html file="publishers_list_main_cache.html"}
+	</div>
+</div>

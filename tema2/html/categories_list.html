@@ -1,0 +1,30 @@
+<div class="list categories_list">
+	<h1 class="contentHeader ctgListHeader">{$contentHeader|display_text}</h1>
+	
+	<div class="categories_list_items">
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column"></div>
+		<div class="column-hide">
+			{foreach from=$categories item=item key=k}
+				<div class="card">
+				  <div class="card-body">
+				    <a href="{$item.link}">
+				    	<h3 class="card-title">{$item.ctg_name|escape}</h3>
+				    </a>
+				  </div>
+				  <ul class="list-group list-group-flush">
+				    {foreach from=$item.subs item=sub key=ki}
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+				    	<a href="{$sub.link}">
+				    		{$sub.ctg_name|escape}
+				    	</a>
+				    </li>
+						{/foreach}
+				  </ul>
+				</div>
+			{/foreach}
+		</div>
+	</div>
+</div>

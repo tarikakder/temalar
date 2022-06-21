@@ -1,0 +1,23 @@
+<html>
+	<head>		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
+	</head>
+	<body>
+{fetch file=$file}
+<script type="text/javascript">
+var mgktp_url="{$afil_click_url}";
+{literal}
+var ancs=document.getElementsByTagName('a');
+var n=ancs.length;
+for(var i=0; i<n; i++){
+  var a = ancs[i];	  
+  a.setAttribute("href",mgktp_url+ a.href);  
+  a.setAttribute("target","_blank");
+}	
+</script> 
+{/literal}   
+<style type="text/css">
+	{$css}
+</style>
+</body>
+</html>

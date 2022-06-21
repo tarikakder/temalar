@@ -1,0 +1,15 @@
+{foreach from=$category_chunks item=categories}
+<ul>
+{foreach from=$categories item=item key=k}
+	<li><a href="{$item.link}"><b>{$item.ctg_name|display_text}</b></a>
+		{if $item.subs}
+			<ul>
+			{foreach from=$item.subs item=sub key=ki}				
+				<li><a href="{$sub.link}">{$sub.ctg_name|display_text}</a></li>
+			{/foreach}
+			</ul>
+		{/if}
+	</li>		
+{/foreach}
+</ul>
+{/foreach}

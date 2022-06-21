@@ -1,0 +1,68 @@
+<div class="ord_form_box ord_payment_cc_form">	
+	<div class="ord_form_box_header">
+		<span>{$LANG.label_cc_info}</span>
+	</div>
+  
+  {if $payment_type eq 'cct' or $payment_type eq 'cct3d'}
+  <div class="form-group">
+    <label>{$LANG.label_ord_bank_id}</label>
+    <select required="required" class="form-control" name="ord_bank_id" id="ord_bank_id{$item.bnk_id}" onchange="$('#div_intsallments').loadPage('{create_link p=Installments payment=$smarty.get.payment https=1}&bank_id='+$(this).val()+'&amount='+$('#total_amount').val());">
+    <option value="">{$LANG.label_please_select}</option>
+    {foreach from=$inst_banks item=item key=key}
+      <option value="{$item.bnk_id}"
+      {if $row.ord_bank_id eq $item.bnk_id or ($smarty.get.bank_id eq $item.bnk_id)}selected="selected"{/if}>
+      {$item.vps_name}
+      </option>
+    {/foreach}
+    </select>
+  </div>  
+  {/if}    
+  
+	<div class="form_table">
+		<div class="error">{$error.ord_ccowner}</div>
+		<div class="form-group">
+			<label for="ord_ccowner">
+				<span id="label_ord_ccowner">{$LANG.label_ord_ccowner}</span>
+			</label>	
+			<input  required="required" autocomplete="off" class="form-control" type="text" name="ord_ccowner" id="ord_ccowner" maxlength="64" value="{$smarty.post.ord_ccowner|escape}"  />
+		</div>
+
+		<div class="error">{$error.ord_ccno}</div>
+		<div class="form-group">
+			<label for="ord_ccno">
+				<span id="label_ord_ccno">{$LANG.label_ord_ccno}</span>
+			</label>	
+			<input  required="required" autocomplete="off" class="form-control" type="text" name="ord_ccno" id="ord_ccno" maxlength="16" onkeypress="return Only_Integer(event);" value="{$smarty.post.ord_ccno|display_text}"  />
+		</div>
+
+		<div class="error">{$error.ord_ccexpdate}</div>
+		<div class="form-group">
+			<label for="ord_ccexpdate_m">
+				<span id="label_ord_ccexpdate">{$LANG.label_ord_ccexpdate}</span>
+			</label>	
+			<div class="d-flex">
+        <div class="flex-fill">
+				<select  required="required" class="form-control" name="ord_ccexpdate[m]" id="ord_ccexpdate_m">
+					{html_options options=$select_options.months selected=$smarty.post.ord_ccexpdate.m|display_text}
+				</select>
+        </div>
+        <div class="flex-fill">
+				<select  required="required" class="form-control" name="ord_ccexpdate[y]" id="ord_ccexpdate_y">
+					{html_options options=$select_options.years selected=$smarty.post.ord_ccexpdate.y|display_text}
+				</select>
+        </div>
+			</div>
+		</div>
+			
+		<div class="error">{$error.ord_cvc}</div>
+		<div class="form-group">
+			<label for="ord_cvc">
+				<span id="label_ord_cvc">{$LANG.label_ord_cvc}</span>
+			</label>	
+			<input  required="required" autocomplete="off" class="form-control" type="text" name="ord_cvc" id="ord_cvc" maxlength="4" size="3"  onkeypress="return Only_Integer(event);" value="{$smarty.post.ord_cvc|display_text}"  />
+			<small id="ord_cvc_help" class="form-text text-muted">
+				{$LANG.label_cvc_desc}
+			</small>
+		</div>
+	</div>
+</div>

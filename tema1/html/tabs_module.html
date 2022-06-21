@@ -1,0 +1,65 @@
+{if $tabs_module_list}
+	{if $mod_row.tab_modul eq "column"}
+	<style>
+	@media only screen and (min-width: 768px) {
+		#mod_container_{$mod_row.mod_id} .tabs_view_splitter.tabs_view_splitter_{$tabs_module_count} .tabs_view_splitter_nav{literal}{{/literal}
+			grid-template-columns: {foreach from=$mod_row.column_widths item=item key=k}{if $item neq 100}0.{$item}{else}1{/if}fr {/foreach};
+		{literal}}{/literal}
+	}
+	</style>
+	<div class="Box tabs_view_splitter tabs_view_splitter_{$tabs_module_count}">
+		<div class="tabs_view_splitter_nav">
+			{foreach from=$tabs_module_list item=item key=k}
+			{if $item.mod_dynamic}{$item.dynamic_if_text}{/if}
+			<div class="tabs_view_splitter_col{$k+1}">
+				<div class="{$item.mod_css_class}">{$item.html}</div>
+			</div>
+			{if $item.mod_dynamic}{literal}{/if}{/literal}{/if}
+			{/foreach}
+		</div>
+	</div>
+	{else}
+		<div class="Box tabs_view">
+			<nav class="Box-header">
+			  <div class="nav nav-tabs" role="tablist">
+			  	{foreach from=$tabs_module_list item=item key=k}
+					{if $item.mod_dynamic}{$item.dynamic_if_text}{/if}
+			    <a{if $item.image.a} style="background-image:url({$item.image.a})"{/if} class="nav-link" id="nav-tab-{$item.mod_id}_{$key}" data-toggle="tab" href="#tab_{$item.mod_id}{if $mod_group_id}_{$mod_group_id}{/if}" role="tab" aria-controls="nav-{$item.mod_id}_{$key}" aria-selected="true">
+			    	{$item.mod_name}
+			  	</a>
+
+					{if $item.mod_dynamic}{literal}{/if}{/literal}{/if}
+					{/foreach}
+			  </div>
+			</nav>
+
+			<div class="Box-content tab-content" id="tabsModuleContent">
+				{if $custom_fields}
+				{foreach from=$custom_fields item=item}
+				{if $item.value and $item.fld_show_prd_view}
+				<div class="prd_fields_item">
+					<div class="prd_fields_label">{$item.fld_label}:</div>
+					<div class="prd_fields_text">
+						{if is_array($item.value)}
+						{foreach from=$item.value item=item1 name=arrx}
+						{$item1}
+						{if !$smarty.foreach.arrx.last}, {/if}
+						{/foreach}
+						{else}
+						{$item.value}
+						{/if}
+					</div>
+				</div>
+				{/if}
+				{/foreach}
+				{/if}
+				
+				{foreach from=$tabs_module_list item=item key=k}
+				{if $item.mod_dynamic}{$item.dynamic_if_text}{/if}
+					<div class="tab-pane fade {$item.mod_css_class}" id="tab_{$item.mod_id}{if $mod_group_id}_{$mod_group_id}{/if}" role="tabpanel" aria-labelledby="nav-tab-{$item.mod_id}_{$key}">{$item.html}</div>
+				{if $item.mod_dynamic}{literal}{/if}{/literal}{/if}
+				{/foreach}
+			</div>
+		</div>
+	{/if}
+{/if}

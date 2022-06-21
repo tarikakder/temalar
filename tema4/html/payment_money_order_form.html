@@ -1,0 +1,18 @@
+<div class="ord_form_box">	
+	<div class="ord_form_box_header"><span>{$LANG.label_money_order_info}</span></div>
+	<div>
+		<div class="error">{$error.ord_bank_account_id}</div>
+		<div class="ord_form_box_wrapper">
+			<div>{$LANG.label_select_bank_account}</div>
+			{foreach from=$select_options.bank_accounts item=item key=key}
+			<div class="ord_form_box_item">
+				<input type="radio" id="ord_bank_account_id{$item.bac_id}" name="ord_bank_account_id" value="{$item.bac_id}" {if $row.ord_bank_account_id eq $item.bac_id or $select_options.bank_accounts|@count eq 1 or (!$row.ord_bank_account_id and $key eq 0)}checked{/if} />
+				<label for="ord_bank_account_id{$item.bac_id}">
+					<img src="{$item.bnk_image_a}" alt="" class="mx-2" />
+					<span>{$item.bnk_name} {$item.bac_account_type} <small>{$LANG.iban_is_shown_next_page}</small></span>
+				</label>
+			</div>
+			{/foreach}
+		</div>
+	</div>
+</div>

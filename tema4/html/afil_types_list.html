@@ -1,0 +1,60 @@
+<div class="list">
+
+	{include file="afil_menu.html"}
+	<div class="clear"></div>
+
+
+	<div>
+		<form action="{create_link}" class="afil_prd_filter_form">
+		<input type="hidden" name="p" value="{$smarty.get.p|escape}" />
+		
+		<select name="order" id="order" class="inp_select" onchange="$('.afil_prd_filter_form').submit()">
+			<option value="">{$LANG.label_sort}</option>
+			{html_options options=$select_options.afil_prd_sort_options selected=$smarty.get.order|escape}
+		</select>
+		<input class="inp_text" type="text" name="q" id="qa" value="{$smarty.get.q|escape}" />
+		<input type="submit" class="button" value="{$LANG.button_search}" />
+ 		</form>	
+	</div>
+
+{if $pager.data_count>0}
+<div class="afil_prd_list">
+{foreach from=$recordset item=item key=k}
+<div class="prd_item">	
+	<div class="prd_image">{if $item.image_list}<a target="_blank" href="{$item.image_list.0.c|escape}"><img src="{$item.image_list.0.c|escape}" alt="{$item.prd_name|escape}"/></a>{/if}</div>
+	<div class="prd_info">	
+		<div class="prd_name"><a href="{$item.link}">{$item.prd_barcode}<br/>{$item.prd_name|escape}</a></div>
+		<div class="prd_price">{$LANG.label_prd_final_price}: {$item.prd_final_price|price_format4:$item.cur_code}</div>			
+		<div class="aft_ratio">{$LANG.label_aft_ratio}: %{$item.aft_row.aft_ratio}</div>
+		<div class="aft_commission">{$LANG.label_aft_commision}: {$item.aft_row.aft_commission|price_format4:$item.cur_code}</div>
+		
+		{if $item.image_list|@count gt 1}
+		<div class="prd_image_extra">
+		{foreach from=$item.image_list item=img_item key=img_key}
+		<a target="_blank" href="{$img_item.c|escape}"><img src="{$img_item.c|escape}" alt="{$item.prd_name|escape}"/></a>
+		{/foreach}
+		</div>	
+		{/if}
+		
+		{if $item.custom_fields_display}
+		{foreach from=$item.custom_fields_display item=cf_item key=cf_k}
+			<a href="javascript:void(0);" onclick="$(this).next('.aft_custom_fields').toggle()">{$cf_item.fld_label}</a>
+			<div class="aft_custom_fields" onclick="selectElementContents(this)">
+				<i class="fa fa-copy"></i>						
+			
+			{$cf_item.value|nl2br}<br/>
+			
+			</div>
+		{/foreach}	
+		{/if}
+	</div>
+	<div class="clear"></div>
+</div>
+{/foreach}
+</div>
+{/if}
+
+
+{include file='pager.html'}
+
+</div>

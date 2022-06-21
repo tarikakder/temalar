@@ -1,0 +1,17 @@
+{if $products}
+<div class="Box box_mid">
+<div class="Box-header"><a title="{$mod_item.mod_name|display_text}"  href="{$mod_item.link}">{$mod_item.mod_name}</a></div>
+<div class="Box-content">
+
+<ul class="ctg_module">
+	<li class="ctg_module_banner">{fetch file=$smarty.const.DIR_GENERATED_FILES|cat:'banner_ctg_mod1.html'}</li>
+	<li class="ctg_module_banner">{fetch file=$smarty.const.DIR_GENERATED_FILES|cat:'banner_ctg_mod2.html'}</li>
+	<li class="ctg_module_banner">{fetch file=$smarty.const.DIR_GENERATED_FILES|cat:'banner_ctg_mod3.html'}</li>	
+	{fetch file=$smarty.const.DIR_GENERATED_FILES|cat:'menu_ctg_mod.html'}
+</ul>
+
+<div class="clear"></div>
+</div>
+<div class="Box-footer"></div>
+</div>
+{/if}

@@ -1,0 +1,180 @@
+<div class="Contact">
+
+	<h1 class="contentHeader crmHeader">{$contentHeader|escape}</h1>
+
+	<div class="Contact-wrapper {if $smarty.get.f}custom-form{/if}">
+    {if !$smarty.get.f}
+		<div class="Contact-item">
+			
+
+				<div class="contact_info">
+					<div class="box_p">
+						{if $config.cfg_firm_name}<div class="cfg_firm_name">{$config.cfg_firm_name|escape}</div>
+						{elseif $config.cfg_firm_title}<div class="cfg_firm_title">{$config.cfg_firm_title|escape}</div>{/if}
+						{if !$address_list.data}
+						{if $config.cfg_address}<div class="cfg_firm_address"><b>{$LANG.label_cfg_address}</b>: {$config.cfg_address|escape}</div>{/if}
+						{if $config.cfg_phone1}<div class="cfg_firm_phone1"><b>{$LANG.label_cfg_phone}</b>: <a href="tel:{$config.cfg_phone1}">{$config.cfg_phone1|escape}</a></div>{/if}
+						{if $config.cfg_phone2}<div class="cfg_firm_phone2"><b>{$LANG.label_cfg_phone}</b>: <a href="tel:{$config.cfg_phone2}">{$config.cfg_phone2|escape}</a></div>{/if}
+						{if $config.cfg_phone3}<div class="cfg_firm_phone2"><b>{$LANG.label_cfg_phone}</b>: <a href="tel:{$config.cfg_phone3}">{$config.cfg_phone3|escape}</a></div>{/if}
+						{if $config.cfg_fax}<div class="cfg_firm_fax"><b>{$LANG.label_cfg_fax}</b>: {$config.cfg_fax|escape}</div>{/if}
+						{if $config.cfg_email}<div class="cfg_firm_email"><b>{$LANG.label_cfg_email}</b>: {$config.cfg_email|escape}</div>{/if}
+						{if $config.cfg_kep_email}<div class="cfg_kep_email"><b>{$LANG.cfg_kep_email}</b>: {$config.cfg_kep_email|escape}</div>{/if}
+						{if $config.cfg_mersis}<div class="cfg_mersis"><b>{$LANG.cfg_mersis}</b>: {$config.cfg_mersis|escape}</div>{/if}
+						{if $config.cfg_sicilno}<div class="cfg_firm_email"><b>{$LANG.cfg_sicilno}</b>: {$config.cfg_sicilno|escape}</div>{/if}
+						
+						{/if}
+					</div>
+
+					{if $address_list.data}
+					<div class="crm_adr_list">
+					{foreach from=$address_list.data item=item}
+						<h3>{$item.adr_title}</h3>
+						{if $item.adr_address}<div><b>{$LANG.label_cfg_address}</b>: {$item.adr_address|escape} {$item.twn_name|escape}/{$item.cty_name|escape}</div>{/if}
+						{if $item.adr_phone}<div><b>{$LANG.label_cfg_phone}</b>: {$item.adr_phone|escape}</div>{/if}
+						{if $item.adr_phone2}<div><b>{$LANG.label_cfg_phone}</b>: {$item.adr_phone2|escape}</div>{/if}	
+						<br/>
+					{/foreach}
+					</div>
+					{/if}
+				</div>
+        
+        
+        {if $LANG.label_crm_text}
+        <div class="crm_text">
+        {$LANG.label_crm_text}
+        </div>
+        {/if}
+
+				{if $config.cfg_gmap_enable}
+				<div class="google_map mt-4">
+					{include file="google_map.html"}
+				</div>
+				{/if}
+
+				{if $LANG.label_crm_text}
+				<div class="crm_text">
+				{$LANG.label_crm_text}
+				</div>
+				{/if}
+
+			
+		</div>
+    {/if}
+
+		<div class="Contact-item">
+			<div class="frm">
+				{if $error}
+					<div class="error" style="margin:10px;">{$LANG.validation_general}</div>
+				{/if}
+				{if $success}
+				{* bu satir google adwords ve analyticste kullaniliyor*}
+				<div class="crm-form-completed"></div>
+				{else}
+
+				<form action="{create_link transfer=get}" method="post">
+          <input type="hidden" name="csrf_token" class="csrf_token" value=""  />
+					<div class="form_table contact_form_table">
+						{if $select_options.crm_categories}
+						<div class="error">{$error.crm_crc_id}</div>
+						<div class="form-group crm_crc_id">
+							<label for="crm_crc_id">{$LANG.label_crm_crc_id}</label>
+							<select id="crm_crc_id" class="form-control" name="crm_crc_id">
+								<option value="">{$LANG.label_please_select}</option>
+								{html_options options=$select_options.crm_categories selected=$row.crm_crc_id|default:$smarty.get.crm_crc_id}
+							</select>
+						</div>
+						{/if}
+
+						<div class="error">{$error.crm_name}</div>
+						<div class="form-group">
+							<label for="crm_name">{$LANG.label_crm_name}</label>
+							<input class="form-control" type="text" required="required" placeholder="{$LANG.label_crm_name}" name="crm_name" id="crm_name" value="{$row.crm_name|default:$smarty.session.userFullName|escape}">
+						</div>
+
+						<div class="error">{$error.crm_email}</div>
+						<div class="form-group">
+							<label for="crm_email">{$LANG.label_crm_email}</label>
+							<input class="form-control" type="email" required="required" placeholder="{$LANG.label_crm_email}" name="crm_email" id="crm_email" value="{$row.crm_email|default:$smarty.session.userEmail|escape}">
+						</div>
+
+						<div class="error">{$error.crm_phone}</div>
+						<div class="form-group">
+							<label for="crm_phone">{$LANG.label_crm_phone}</label>
+							<input class="form-control phone-format" type="text" placeholder="{$LANG.label_crm_phone}" name="crm_phone" id="crm_phone" value="{$row.crm_phone|escape}">
+						</div>
+
+						<div class="error">{$error.crm_subject}</div>
+						<div class="form-group crm_subject">
+							<label for="crm_subject">{$LANG.label_crm_subject}</label>
+							<input class="form-control" type="text" required="required" placeholder="{$LANG.label_crm_subject}" name="crm_subject" id="crm_subject" value="{$row.crm_subject|default:$smarty.get.title|escape}">
+						</div>
+
+						<div class="error">{$error.crm_message}</div>
+						<div class="form-group crm_message">
+							<label for="crm_message">{$LANG.label_crm_message}</label>
+							<textarea class="form-control" required="required" placeholder="{$LANG.label_crm_message}" rows="6" name="crm_message" id="crm_message">{$row.crm_message|escape}</textarea>
+						</div>
+
+						{if $config.cfg_enable_crm_captha}
+							{if $config.captcha_lib eq "recaptchav3"}
+							<!-- google recaptcha v3 -->
+							{elseif $config.captcha_lib!="recaptcha"}
+							<div class="form_row form_row_captcha_image">
+								<label>
+									<a class="btn btn-orange" href="javascript:void(0);" onclick="$('#captcha_image').attr('src','{$smarty.const.CAPTCHA_URL}?v='+Math.random())">
+										<i class="la la-sync"></i>
+									</a>
+								</label>
+								<img width="{$config.captcha_width|default:150}" height="{$config.captcha_height|default:30}" id="captcha_image" src="{$smarty.const.CAPTCHA_URL}?v={$smarty.now}" alt="" />
+							</div>
+							<div class="error">{$error.captcha_string}</div>
+							<div class="form-group form_row form_row_captcha">
+								<label>{$LANG.label_captcha_string}</label>
+								<input placeholder="{$LANG.label_captcha}" required="required" class="form-control" type="text" name="captcha_string" id="captcha_string" value="" />
+							</div>
+							{else}
+							<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+							<div class="error">{$error.captcha_string}</div>
+							<div class="g-recaptcha" data-sitekey="{$config.recaptcha_site_key}"></div>
+							{/if}
+						{/if}
+            
+            
+          
+            {if $row.terms}       
+              {if $error.cfg_terms_and_conds}<div class="invalid-feedback">{$error.cfg_terms_and_conds}</div>{/if}
+              {foreach from=$row.terms item=term_item key=k}
+              <div class="form-group form-check cfg_terms_and_conds">
+                <input required="required" class="form-check-input" type="checkbox" name="cfg_terms_and_conds[{$term_item.pag_id}]" id="cfg_terms_and_conds{$term_item.pag_id}" {if $smarty.post.cfg_terms_and_conds}checked="checked"{/if} value="1" />
+                <label class="form-check-label myPopupModal1ButtonM" data-toggle="modal" data-target="#termsPopupModal{$k}" style="text-align: left; cursor:pointer">						
+                  {$LANG.label_confirm_terms_and_conds|sprintf:$term_item.pag_name}
+                </label>
+              </div>    
+              {/foreach}
+            {/if}
+				
+
+						<input type="hidden" id="token" name="token">
+						<input class="btn btn-dark mt-2 button_send button_crm_send" type="submit" name="save" id="crm_save" value="{$LANG.button_send}"/>
+					</div>
+				</form>
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+
+{if $config.cfg_enable_crm_captha && $config.captcha_lib eq "recaptchav3"}
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy"></script>
+{literal}
+<script type="text/javascript">
+	grecaptcha.ready(function() {
+    grecaptcha.execute('6Ldegb0ZAAAAAALUmS0cEdEweah9WcXve5yXP4oy', {action: 'homepage'}).then(function(token) {
+      document.getElementById("token").value = token;
+    });
+  });
+</script>
+{/literal}
+{/if}
+
+{include file="terms_popup.html"}

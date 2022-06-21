@@ -1,0 +1,84 @@
+<div class="frm prd_request_form">
+
+	<h1 class="contentHeader cartListHeader">{$contentHeader|display_text}</h1>
+
+
+
+
+{if $error}
+<div class="error_header">{$LANG.validation_general}</div>
+{/if}
+
+<form action="{create_link transfer=get}" method="post" class="edit_form validate_form" id="product_requests_form">
+<input type="hidden" id="prq_id" name="prq_id" value="{$row.prq_id}" />
+<table cellpadding="0" cellspacing="0" class="frm_table">
+
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_email">{$LANG.label_prq_email}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_email}</div>
+	<div><input class="email inp_text" type="text" name="prq_email" id="prq_email" maxlength="255" size="30" value="{$row.prq_email|default:$smarty.session.userEmail}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_name">{$LANG.label_prq_name}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_name}</div>
+	<div><input class="inp_text" type="text" name="prq_name" id="prq_name" maxlength="100" size="30" value="{$row.prq_name|default:$smarty.session.userFullName}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_phone">{$LANG.label_prq_phone}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_phone}</div>
+	<div><input class="inp_text" type="text" name="prq_phone" id="prq_phone" maxlength="15" size="15" value="{$row.prq_phone}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_subject">{$LANG.label_prq_subject}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_subject}</div>
+	<div><input class="inp_text" type="text" name="prq_subject" id="prq_subject" maxlength="255" size="30" value="{$row.prq_subject}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_publisher">{$LANG.label_prq_publisher}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_publisher}</div>
+	<div><input class="inp_text" type="text" name="prq_publisher" id="prq_publisher" maxlength="100" size="30" value="{$row.prq_publisher}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_writer">{$LANG.label_prq_writer}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_writer}</div>
+	<div><input class="inp_text" type="text" name="prq_writer" id="prq_writer" maxlength="100" size="30" value="{$row.prq_writer}"  /></div>
+	</td>
+</tr>
+	
+<tr class="frm_row">
+	<th width="35%"><span id="label_prq_message">{$LANG.label_prq_message}</span></th>
+	<td width="65%">
+	<div class="error">{$error.prq_message}</div>
+	<div><textarea class="inp_textarea" cols="30" rows="3" name="prq_message" id="prq_message">{$row.prq_message}</textarea></div>
+	</td>
+</tr>
+	
+
+
+
+<tr class="frm_last_row">
+	<td>&nbsp;</td>
+	<td><input class="button button_send button_req_send" type="submit" name="save" id="save" value="{$LANG.button_send}"/>&nbsp;	
+	
+	</td>
+</tr>
+
+</table>
+</form>
+</div>

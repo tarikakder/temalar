@@ -1,0 +1,37 @@
+{if $inst_options}
+<div class="inst_table_payment">
+	<table class="table list_table">
+		<thead>
+			<th></th>
+			<th>{$LANG.label_ord_installment}</th>
+			<th>{$LANG.label_ord_installment_amount}</th>
+			<th>{$LANG.label_ord_grand_total}</th>
+		</thead>
+
+		<tbody>
+			{foreach from=$inst_options item=item key=key name=inst_loop}
+			<tr class="{if $item.ins_ratio eq 1}dy_selected{/if} calc-data" data-number="{$item.ins_number}" data-amount="{$item.ins_amount}" data-ratio="{$item.ins_ratio}">
+				<td>
+					{if $item|is_array and $item.ins_number>0}
+						{if $input_name eq 'installment_str'}{* sadece Payment showForm dan geliyor. payment_form.html icinde *}
+						<input type="radio" name="installment_str" id="installment-{$item.installment_str}" value="{$item.installment_str}" {if $smarty.post.installment_str eq $item.installment_str or $item.checked} checked="checked"{/if}/>
+						{else}
+						<input title="{$item.total}" type="radio" name="ord_installment" id="installment-{$item.installment_str}" value="{$key}" {if $smarty.get.ord_installment eq $key or (!$smarty.get.ord_installment and $smarty.foreach.inst_loop.first )}checked="checked"{/if}>
+						{/if}
+					{else}
+					<input type="radio" disabled="disabled">
+					{/if}
+				</td>
+				<td><label for="installment-{$item.installment_str}">{$item.ins_label}</label></div>
+				<td class="calc-data-inst">
+					<label for="installment-{$item.installment_str}">{$item.ins_amount|price_format}</label>&nbsp;&nbsp;&nbsp;
+				</div>
+				<td class="calc-data-total">
+					<label for="installment-{$item.installment_str}">{$item.total|price_format}</label>&nbsp;&nbsp;&nbsp;
+				</div>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+</div>
+{/if}

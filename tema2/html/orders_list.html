@@ -1,0 +1,64 @@
+<div class="list Account orders_list">
+
+	<div class="Account-wrapper">
+		<div class="Account-menu">
+		{include file='members_menu.html'}
+		</div>
+		
+		<div class="Account-content">
+			<h1 class="contentHeader ordListHeader">{$contentHeader|display_text}</h1>
+
+			{if $pager.data_count>0}
+			<table class="table table-bordered">
+				<thead>
+					<th>
+						{$LANG.label_ord_code}
+					</th>
+					
+					<th class="rsp-hide-538">
+						{$LANG.label_ord_date}
+					</th>
+					
+					<th class="rsp-hide-538">
+						{$LANG.label_ord_status}
+					</th>	
+					
+					<th class="rsp-hide-538">
+						{$LANG.label_ord_grand_total}
+					</th>
+					
+					<th></th>
+				</thead>
+				<tbody>
+					{foreach from=$recordset item=item key=k}
+					<tr>
+						<td>
+							<a href="{create_link p=Orders view=$item.ord_id}">{$item.ord_code|display_text}</a>
+							<div class="show-mobile">
+								{$item.ord_date|dt_format}<br>
+								{$item.status.ors_name}<br>
+								{$item.ord_grand_total|price_format4:$item.ord_currency_code}
+							</div>
+						</td>
+						<td class="rsp-hide-538">
+							{$item.ord_date|dt_format}	
+						</td>
+						<td class="rsp-hide-538">
+							{$item.status.ors_name}
+						</td>		
+						<td class="rsp-hide-538">
+							{$item.ord_grand_total|price_format4:$item.ord_currency_code}
+						</td>
+						<td>
+							<a class="button_view" href="{create_link p=Orders view=$item.ord_id}">{$LANG.label_view}</a>
+						</td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+			{/if}
+
+			{include file='pager.html'}
+		</div>
+	</div>
+</div>

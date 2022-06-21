@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='http://rss.feedsportal.com/xsl/eng/rss.xsl'?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <atom:link href="{$page_link}" rel="self" type="application/rss+xml" />
+		<title>{$contentHeader}</title>
+        <link>{$page_link}</link>
+        <description>{$contentHeader}</description>
+        <language>tr</language>
+        <pubDate>{$rfc_date}</pubDate>
+        <lastBuildDate>{$rfc_date}</lastBuildDate>
+        <ttl>2</ttl>
+        <image>
+            <title>{$contentHeader}</title>
+            <url>{$smarty.const.HTTP_HOST}{$config.logo_url|trim:'/'}</url>
+            <link>{$page_link}</link>
+        </image>
+		{foreach from=$recordset item=item}
+        <item>
+            <title>{if $item.prd_top_title|display_text}{$item.prd_top_title|display_text} {/if}{$item.prd_name|display_text}{if $item.prd_sub_title|display_text} {$item.prd_sub_title|display_text}{/if}</title>
+            <link>{$item.link}</link>
+            <description>{if $item.images.a}&lt;a href="{$item.link}"&gt;&lt;img src="{$item.images.a}" alt="{$item.prd_name|display_text}" align="left" style="padding-right:5px;" border="0" width="65" height="100" /&gt;&lt;/a&gt;{/if}
+			{$item.prd_spot|display_text}</description>
+            {if $item.prd_insert_date_rfc}<pubDate>{$item.prd_insert_date_rfc}</pubDate>{/if}   
+            {if $item.categories}<category>{$item.categories.0.ctg_name}</category>{/if}            
+            <guid>{$item.link}</guid>
+            {if $item.images.a}<enclosure url="{$item.images.a}" length="12216320" type="image/jpeg" />{/if}        
+        </item>
+		{/foreach}        
+        
+    </channel>
+</rss>

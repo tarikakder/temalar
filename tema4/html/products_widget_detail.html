@@ -1,0 +1,91 @@
+{if $products}
+<div class="Box box_prd box_prd_{$mod_item.mod_display_type}">
+	{if $mod_item.show_title}
+		<div class="Box-header">
+			<a href="{$mod_item.link|default:'javascript:void(0);'}">
+			{if $mod_item.image.a}
+				<img src="{$mod_item.image.a}" alt="{$mod_item.mod_name|escape}" width="100" height="20">
+			{else}
+				{$mod_item.mod_name}
+			{/if}
+			</a>
+		</div>
+	{/if}
+	<div class="Box-content">
+		{assign var=image_size value="b"}
+		<ul class="grid grid-{$col_count}">
+			{foreach from=$products item=item key=k name="prd_loop"}
+			<li>
+				<div class="Product Product_{$image_size}">
+					<div class="Product-image-wrapper">
+						<div class="Product-image image_{$image_size}">
+							<div class="prd_img_items">
+								{if $item.new}<div class="new_icon"><span>{$LANG.label_new}</span></div>{/if}
+								{if $config.show_list_price and $item.prd_discount_rate>0}
+								<div class="discount"><sub>%</sub>{$item.prd_discount_rate|intval}</div>
+								{/if}
+							</div>
+
+							{if $item.images}
+								<a title="{$item.prd_name|escape}" class="tooltip-ajax" href="{$item.link}">
+									<img class="prd_img" src="{$item.images.$image_size}" alt="{$item.prd_name|escape}" title="{$item.prd_name|escape}">
+								</a>
+							{/if}
+
+							{if $config.cfg_show_cart_button and !$config.cfg_catalog_mode}
+							<div class="actions">
+							
+								{if !$config.cfg_order_out_of_stock and $item.prd_stock lte $item.prd_min_stock}			
+								<span class="btn btn-dark btn-sm prd_no_sell_list disabled" href="{$item.link}">{$LANG.label_prd_no_stock}</span>
+								{elseif $item.prd_sell eq 'n'}
+								<span class="btn btn-dark btn-sm prd_no_sell_list disabled">{$LANG.label_prd_no_sell_desc}</span>
+								{else}
+							
+									{if $item.prd_option_count>0}
+									<a class="btn btn-dark btn-sm button_add_to_cart" href="{$item.link}">{$LANG.label_add_to_cart}</a>
+									{else}
+										<a data-prd-id="{$item.prd_id}" class="btn btn-dark btn-sm button_add_to_cart">
+											<span class="button-text">{$LANG.label_add_to_cart}</span>
+										</a>
+									{/if}		
+								{/if}	
+							</div>	
+							{/if}
+						</div>
+					</div>
+					<div class="Product-content">
+						<div class="name"><a href="{$item.link}">{if $item.prd_top_title}<sup class="top_title">{$item.prd_top_title}</sup>{/if}{$item.prd_name|truncate:75|escape}{if $item.prd_sub_title}<sub class="sub_title">{$item.prd_sub_title}</sub>{/if}</a></div>
+						{if $item.writers}<div class="writer"><a href="{$item.writers.0.link}">{$item.writers.0.wrt_name|escape}</a></div>{/if}		
+						{if $config.cfg_show_brand_on_lists}
+						<div class="publisher"><a href="{$item.pub_link}">{$item.pub_name|escape}</a></div>
+						{/if}	
+												
+						<div class="prd_spot">{$item.prd_spot|truncate:300:escape} <span class="more">...<a href="{$item.link}">{$LANG.click_for_more}</a></span></div>
+
+						<div class="price_box">
+							{if $config.show_list_price and $item.prd_discount_rate>0}
+							<div class="discount">
+								<span>%{$item.prd_discount_rate|intval}</span>
+								<div class="discount_text">{$LANG.label_product_discount}</div>
+							</div>
+							{/if}
+							<div class="price_box_wrapper">
+								<span class="price price_list convert_cur" data-price="{$item.prd_price}" data-cur-code="{$item.cur_code}">{if $config.show_list_price and $item.prd_discount_rate>0}{$item.prd_price|price_format4:$item.cur_code}{/if}</span>
+								<span class="price price_sale convert_cur" data-price="{$item.prd_final_price}" data-cur-code="{$item.cur_code}">{$item.prd_final_price|price_format4:$item.cur_code}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+	</div>
+	<div class="Box-footer">
+		{if $mod_item.link}
+		<div class="Box-footer-more">
+			<a class="btn btn-orange" href="{$mod_item.link|default:'javascript:void(0);'}">{$LANG.label_click_for_more}</a>
+		</div>
+		{/if}
+	</div>
+</div>
+{/if}

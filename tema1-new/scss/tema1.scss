@@ -2,6 +2,7 @@ $textColor: #626262;
 $bgColor: #e8e8e8;
 $bgColorSub: #e8e8e8;
 $userBtnColor: #59cee8;
+$secondColor:#32717e;
 
 body{
     font-family: 'Source Sans Pro', sans-serif !important;
@@ -16,6 +17,10 @@ body{
 
 .Header-menu ul li a{
     color: $textColor !important;
+}
+
+.Header-menu span,.Header-menu ul,.Header-menu li,.Header-menu a{
+    background-color: transparent !important;
 }
 
 .Header-menu ul li a:hover{
@@ -114,6 +119,90 @@ body{
     border-color: #197488;
 }
 
+.carousel-control{
+    top:20%;
+}
+
+.carousel-control.right {
+    background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,#59cee8 100%) !important;
+}
+
+.prd_view .pricebox_content .sale_price_row {
+    font-size: 3em !important;
+    color: $secondColor !important;
+    font-weight: 700 !important;
+    letter-spacing: -2px !important;
+}
+
+.prd_view h1.contentHeader{
+    color: $secondColor !important;
+}
+
+.vote_section .vote_items.dy_selected .la{
+    color: $secondColor !important;
+}
+
+.btn-orange{
+    height: calc(1.5em + .75rem + 27px) !important;
+    line-height: 43px !important;
+    text-shadow: 1px 1px 1px #0000003d !important;
+}
+
+
+.button-text{
+    line-height: 45px !important;
+    text-shadow: 1px 0px 2px #00000059 !important;
+}
+
+.carousel-control.left{
+background-image:linear-gradient(to right,#59cee8 0,rgba(0,0,0,.0001) 100%)
+
+}
+
+.Product-content .price_box .price_sale, .Product-content .publisher a{
+    color:$secondColor !important;
+}
+
+.vote_section .vote_items .la{
+    color:$bgColor !important;
+}
+
+.fullWidth{
+    width: 100% !important;
+}
+
+.fullWidth img{
+    width: 100% !important;
+    height: 500px !important;
+}
+
+.side_column .Box{
+    border-radius: 0 !important;
+    padding: 1px 2px !important;
+}
+
+.left_column .Box-header{
+    margin-bottom: 0px;
+    border-bottom: 1px solid #557;
+    padding: 1px 9px;
+    background-image: linear-gradient(90deg, #ffffff, #f7f7f7);
+}
+
+.breadcrumb{
+    margin-bottom: 5px !important;
+}
+
+.Content {
+    padding: 6px 0 !important;
+}
+
+.layout_110 .main_content {
+    margin-top: -7px !important;
+}
+
+.Box.categories_box .Box-content{
+    max-height: 439px !important;
+}
 
 
 

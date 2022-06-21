@@ -1,0 +1,86 @@
+{if $pub_row.pub_email or 
+$pub_row.pub_website or 
+$pub_row.pub_phone or 
+$pub_row.pub_phone2 or 
+$pub_row.pub_fax or 
+$pub_row.pub_address or 	
+$pub_row.pub_contact_name or 
+$pub_row.pub_town or 
+$pub_row.pub_city
+}
+<div class="sub_prd_list" style="background-color:#fff; min-height:60px;">
+
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr><td>
+
+{if $pub_row.pub_discount>0}<div id="discount_rate">%{$pub_row.pub_discount|intval}</div>{/if}	
+<table cellpadding="2" cellspacing="0" border="0" style="text-align:left;" width="100%">
+<tr>
+	<th colspan="3" style="text-decoration:underline">{$pub_row.pub_name}</th>	
+</tr>
+
+
+{if $pub_row.pub_email}	
+<tr>
+	<th width="20%">{$LANG.label_pub_email}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_email|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_website}		
+<tr>
+	<th width="20%">{$LANG.label_pub_website}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_website|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_phone}		
+<tr>
+	<th width="20%">{$LANG.label_pub_phone}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_phone|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_phone2}		
+<tr>
+	<th width="20%">{$LANG.label_pub_phone2}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_phone2|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_fax}		
+<tr>
+	<th width="20%">{$LANG.label_pub_fax}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_fax|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_address}		
+<tr>
+	<th width="20%">{$LANG.label_pub_address}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_address|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_contact_name}		
+<tr>
+	<th width="20%">{$LANG.label_pub_contact_name}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_contact_name|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_town}		
+<tr>
+	<th width="20%">{$LANG.label_pub_town}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_town|display_text}</td>
+</tr>
+{/if}
+{if $pub_row.pub_city}		
+<tr>
+	<th width="20%">{$LANG.label_pub_city}</th><td>:</td>
+	<td width="80%">{$pub_row.pub_city|display_text}</td>
+</tr>
+{/if}
+
+</table>
+</td><td align="right">
+{if $pub_row.image}
+<img src="{$pub_row.image.a}" />
+{/if}
+</td></tr></table>
+
+</div>
+{/if}

@@ -1,0 +1,56 @@
+{if $banks}
+<div class="Box box_installments">
+	{if !$mod_item.mod_parent_id and $mod_item.mod_name}
+		<div class="Box-header">
+			<a href="{$mod_item.link|default:'javascript:void(0);'}">{$mod_item.mod_name}</a>
+		</div>
+	{/if}
+	
+	<div class="Box-content">
+		<div class="inst-wrapper">
+			{assign var="col_count" value=2}
+			{foreach from=$banks item=bank_row key=bnk_key name=banks_loop}
+			{if $bank_row.inst_list}
+			<div class="inst">
+				<div class="inst-header">
+					<span>{$bank_row.vps_name}</span>
+				</div>
+				
+				<table class="table inst-table">
+					<thead class="inst-header2">
+						<th class="inst_num">
+							{$LANG.label_ord_installment}
+						</th>
+						<th class="inst_cell">
+							{$LANG.label_ord_installment_amount}
+						</th>
+						<th class="inst_cell">
+							{$LANG.label_ord_grand_total}
+						</th>
+					</thead>
+					
+					<tbody>
+						{foreach from=$inst_list item=item_i key=key}
+						{assign var="bcolor" value=$bank_row.bnk_color2}
+						{assign var="item" value=$bank_row.inst_list.$item_i}
+						<tr class="{if $item.ins_ratio eq 1}dy_selected{/if}">
+							<td class="inst_num">
+								{if $item.ins_label}{$item.ins_label}{else}{$item_i}{/if}
+							</td>
+							<td class="inst_cell">
+								{if $item}{$item.ins_amount|price_format}{else}-{/if}&nbsp;&nbsp;&nbsp;
+							</td>
+							<td class="inst_cell">
+								{if $item}{$item.total|price_format}{else}-{/if}&nbsp;&nbsp;&nbsp;
+							</td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+			</div>
+			{/if}
+			{/foreach}
+		</div>
+	</div>
+</div>
+{/if}

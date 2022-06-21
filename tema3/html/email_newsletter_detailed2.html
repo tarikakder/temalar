@@ -1,0 +1,111 @@
+<div style=" width:600px;background-color:#efefef; border:1px solid #a2c6e0;padding:10px;">
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+<td>
+
+<table cellpadding="3" cellspacing="5" border="0" width="100%" style="background-color:#5d9dcc">
+	<tr>
+		<td><div id="logo"><a href="{$smarty.const.MAIN_URL}" target="_blank"><img border="0" src="{$config.email_logo_url}" /></a></div></td>
+		<td></td>
+	</tr>
+</table>
+
+</td>
+</tr>
+<tr>
+<td>
+
+<div style="margin:10px 0px;">{$eml_row.eml_body}</div>
+
+<div>
+	{assign var=item value=$products.0}
+<table cellpadding="3" cellspacing="5" border="0" width="100%" style="font-family:Arial, Helvetica, sans-serif; border:1px solid #a2c6e0;">
+	<tr>
+		<td valign="top">
+			<div>{if $item.images}<a href="{$item.link}"><img border="0" src="{$item.images.0.images.b}" alt="{$item.prd_name|display_text}" title="{$item.prd_name|display_text}" /></a>{/if}</div>
+			<div>
+<br/>
+				<table cellspacing="0" cellpadding="2" border="0" style="font-size: 11px;">
+					  
+				{if $item.prd_barcode}<tr><td style="border-top:1px solid #a2c6e0;border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_barcode}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-top:1px solid #a2c6e0;border-bottom:1px solid #a2c6e0;">{$item.prd_barcode|display_text}</td></tr>{/if}
+				{if $item.prd_isbn}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_isbn}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_isbn|display_text}</td></tr>{/if}
+				{if $item.prd_size}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_size}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_size|display_text}</td></tr>{/if}
+				{if $item.prd_page_count}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_page_count}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_page_count|display_text}</td></tr>{/if}
+				{if $item.prd_press_loc}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_press_loc}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_press_loc|display_text}</td></tr>{/if}
+				{if $item.prd_press_date}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_press_date}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_press_date|display_text}</td></tr>{/if}		
+				
+				{if $item.prd_translator}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_translator}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_translator|display_text}</td></tr>{/if}				
+				{if $item.prd_illustrator}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_illustrator}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_illustrator|display_text}</td></tr>{/if}				
+				{if $item.prd_cover_type}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_cover_type}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_cover_type|display_text}</td></tr>{/if}				
+				{if $item.prd_paper_type}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_paper_type}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_paper_type|display_text}</td></tr>{/if}				
+				{if $item.prd_language}<tr><td style="border-bottom:1px solid #a2c6e0;">{$LANG.label_prd_language}</td><td style="border-bottom:1px solid #a2c6e0;">:</td><td style="border-bottom:1px solid #a2c6e0;">{$item.prd_language|display_text}</td></tr>{/if}										
+				</table>				
+				
+			</div>
+		</td>
+		<td valign="top">
+			
+			<div style="margin:5px;"><a style="font-size:12px; color:#333;text-decoration:none;" href="{$smarty.const.MAIN_URL}{$item.pub_name|create_file_name}-pb{$item.pub_id}.html">{$item.pub_name}</a></div>
+			
+			<div style="margin:5px;"><a style="font-size:14px; color:#333; text-decoration:none; margin:5px;margin-left:0px; font-weight:bold;" href="{$item.link}">{$item.prd_name|display_text}</a></div>
+			<div style="margin:5px;font-size:12px; color:#333;text-decoration:none;" >{foreach from=$item.writers_list item=wrt_item name=wrt}{$wrt_item.wrt_name} {/foreach}</div>
+			<div style="font-size:16px; color:#FF0000; margin:5px;font-weight:bold;">
+			{if $item.prd_discount_rate>0}
+			<span style="text-decoration:line-through; color:#000000;">{$item.prd_price|price_format} {$item.cur_code}</span>		
+			{/if}		
+			{$item.prd_final_price|price_format} {$item.cur_code}</div>
+			<div style="margin:5px;font-size:12px;line-height:16px;">{$item.prd_description}</div>		
+		</td>
+	</tr>
+	
+</table>
+	<br/>
+<table cellpadding="3" cellspacing="5" border="0" width="100%" style="table-layout:fixed;font-family:Arial, Helvetica, sans-serif; border:1px solid #a2c6e0;"> 
+{foreach from=$products key=k item=item}
+
+{if $k>0}
+
+{if ($k-1) is div by 2}<tr>{/if}
+<td valign="top" align="center" style="border:1px solid #a2c6e0;">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+		<tr>
+		
+		<td align="center" valign="middle" width="80" height="120"> {if $item.images}<a href="{$item.link}"><img border="0" src="{$item.images.0.images.b}" alt="{$item.prd_name|display_text}" title="{$item.prd_name|display_text}" /></a>{/if}</td>
+		
+		</tr>
+		<tr>
+			<td align="center" height="40" valign="top"><a href="{$item.link}" style="font-size: 11px; color:#222;font-weight:bold;text-decoration:none;">{$item.prd_name}</a></td>
+		</tr>
+		<tr>
+			<td align="center" valign="middle"><a href="{$item.link}" style="font-size: 11px; color:#148b13;text-decoration:none;">{$item.pub_name}</a></td>
+		</tr>
+		<tr>
+			<td align="center" valign="middle"><a href="{$item.link}" style="font-size: 11px; color:#f36e1f;text-decoration:none;">{foreach from=$item.writers_list item=wrt_item name=wrt}{if $smarty.foreach.wrt.first}{$wrt_item.wrt_name}{/if}{/foreach}</a></td>
+		</tr>
+		<tr>
+			<td align="center" valign="middle" style="font-size: 11px; color:#4286c6;">
+			<div style="font-size:12px; color:#FF0000; margin:5px;font-weight:bold;">
+			{if $item.prd_discount_rate>0}
+			<span style="text-decoration:line-through; color:#000000;">{$item.prd_price|price_format} {$item.cur_code}</span>		
+			{/if}		
+			{$item.prd_final_price|price_format} {$item.cur_code}</div>
+			</td>
+		</tr>						
+	</table>
+	<br />
+</td>
+{if $k is div by 2}</tr>{/if}
+	
+	{/if}
+
+{/foreach}
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+
+</div>

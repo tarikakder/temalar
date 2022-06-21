@@ -1,0 +1,33 @@
+{* rich snippets *}
+	<div class="search_query" data-query="{$smarty.get.q|escape}"></div>
+  <div itemscope itemtype="https://schema.org/ItemList" class="rich-snippets">
+    <link itemprop="url" href="{$canonical_url|default:$smarty.const.CURRENT_URL}">
+    <span itemprop="numberOfItems">{if $recordset}{$recordset|@count}{else}0{/if}</span>
+    
+    {foreach from=$recordset item=item key=k name="prd_loop"}
+  	{* google analytics criteo gibi scriptler burdan data aliyor*}		  
+  	<div class="script_prd_items_list" data-prd-id="{$item.prd_id}" data-prd-name="{$item.prd_name|escape}" data-prd-price="{$item.prd_final_price|escape}"></div>
+    <div itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">	      	      
+    	<span itemprop="position" content="{$k+1}"></span>
+    	<a itemprop="url" href="{$item.link}"><span itemprop="name">{$item.prd_name|escape}</span></a>
+    	{*
+    	<div itemprop="item" itemscope itemtype="https://schema.org/Product">
+        {if $item.images.b}<img alt="{$item.prd_name|escape}" itemprop="image" src="{$item.images.b}" />{/if}
+        <a itemprop="url" href="{$item.link}"><span itemprop="name">{$item.prd_name|escape}</span></a>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <span itemprop="price">{$item.prd_final_price}</span>
+          <span itemprop="priceCurrency" content="{$item.cur_code|cur_format}"></span>	          
+		      {if !$config.cfg_order_out_of_stock and $item.prd_stock lte $item.prd_min_stock}				
+				  <span itemprop="availability" content="https://schema.org/OutOfStock"></span>
+				  {elseif $item.prd_sell eq 'n'}				
+				  <span itemprop="availability" content="https://schema.org/OutOfStock"></span>
+				  {else}
+				  <span itemprop="availability" content="https://schema.org/InStock"></span>				
+				  {/if}
+        </div>
+      </div>
+      *}
+    </div>
+    {/foreach}
+  </div>
+	{* rich snippets *}    

@@ -1,0 +1,25 @@
+<div class="   bank_accounts_list">
+<h1 class="contentHeader bnkAccListHeader">{$contentHeader|display_text}</h1>
+
+<div class="box_p">
+<h3>{$config.cfg_firm_title}</h3>
+
+{foreach from=$bank_accounts item=item}
+<p class="bnk_accounts_item">
+	{if $item.bnk_image_a}<div class="bac_image"><img src="{$item.bnk_image_a}" alt="{$item.bnk_name|escape}" /></div>
+	{else}<h3>{$item.bnk_name}</h3>
+	{/if}
+	<div>
+		{if $item.bac_owner}<div class="bac_owner">{$LANG.label_bac_owner}: {$item.bac_owner}</div>{/if}
+		{if $item.bac_branch}<div class="bac_branch">{$LANG.label_bac_branch}: {$item.bac_branch} {$item.bac_branch_no}</div>{/if}		
+		{if $item.bac_account_no}<div class="bac_account_no">{$LANG.label_bac_account_no}: {$item.bac_account_no}</div>{/if}
+		{if $item.bac_iban}<div class="bac_iban">{$LANG.label_bac_iban}: {$item.bac_iban}</div>{/if}
+    {if $item.bac_account_type}<div class="bac_account_type">{$LANG.label_bac_account_type}: {$item.bac_account_type}</div>{/if}
+	</div>
+  {if $item.qr.a}
+    <div class="bac_image"><img src="{$item.qr.a}" alt="{$item.bac_iban|escape}" /></div>
+  {/if}
+</p>
+{/foreach}
+</div>
+</div>

@@ -1,0 +1,84 @@
+<div class="list pub_list">
+
+	<h1 class="contentHeader pubListHeader">{$contentHeader|display_text}</h1>
+
+	{if !$config.cfg_hide_letters}
+	<div class="letter_bar">
+		<form action="{create_link}">
+			<input type="hidden" name="p" value="{$smarty.get.p}">
+			{if !$config.pub_list_all}
+			<span class="letter_items">	
+			{foreach from=$arr_letters item=item key=k}
+				{if $smarty.get.letter eq $item}
+				<a class="letter_link dy_selected" href="{$LANG.link_publihers_letter|sprintf:$item}">{$item}</a>
+				{else}
+				<a class="letter_link" href="{$LANG.link_publihers_letter|sprintf:$item}">{$item}</a>
+				{/if}
+			{/foreach}	
+			</span>
+			{/if}
+			<span class="form_items">
+				<div class="form-group">
+					<input type="text" class="form-control" value="{$smarty.get.pq|escape}" name="pq" id="pq">
+				</div>
+				<input class="btn btn-dark button_publisher_search" type="submit" value="{$LANG.button_search}">
+			</span>
+		</form>
+	</div>
+	{/if}
+
+	{if $popular_items and $default_pub_page}
+	<div class="popular_items popular_publishers">
+		<h3>{$LANG.label_publishers_popular}</h3>
+		{foreach from=$popular_items item=item key=k}
+		<div class="pub_item{if ($k+1) is div by 3} pub_item_last{/if} pub_item_popular">
+
+			{if $item.image.a}
+				<div><a href="{$item.link}"><img alt="{$item.pub_name}" title="{$item.pub_name}" src="{$item.image.a}" /></a></div>	
+			{/if}	
+			<a href="{$item.link}">	
+				<span class="pub_item_title">{$item.pub_name|truncate:26|display_text}</span>	
+				{if $item.pub_prd_count>0}<span class="count">({$item.pub_prd_count})</span>{/if}
+				{if $config.show_list_price and $item.pub_discount>0}<span class="discount">%{$item.pub_discount|intval}</span>{/if}
+			</a>
+			</div>
+		{/foreach}
+	</div>
+	<br/>
+	<br/>
+	{/if}
+
+	{if $cargo_discount_list && $config.show_cargo_discounts}
+	<div class="table-block cargo_discount_table">
+		{foreach from=$cargo_discount_list item=item}
+		<div class="table-row">
+			{if $item.crd_discount eq 100}
+			<div class="table-cell cargo_free">{$LANG.cargo_discount_text_free|sprintf:$item.crd_amount:$item.crd_discount}</div>
+			{else}
+			<div class="table-cell cargo_discount">{$LANG.cargo_discount_text|sprintf:$item.crd_amount:$item.crd_discount}</div>
+			{/if}
+		</div>
+		{/foreach}
+	</div>
+	{/if}
+
+	{if $recordset}
+	<div class="pub_items">
+		{foreach from=$recordset item=item key=k}
+			<div class="pub_item">
+			<a href="{$item.link}" class="d-flex align-items-center">
+				<span class="pub_item_title">{$item.pub_name|truncate:22|display_text}</span>
+				<div class="ml-auto d-flex">
+					{if $config.show_list_price and $item.pub_discount>0}<span class="badge badge-danger badge-pill">%<span>{$item.pub_discount|intval}</span></span>{/if}
+					{if $item.pub_prd_count>0}<span class="badge badge-secondary badge-pill">{$item.pub_prd_count|intval}</span>{/if}
+				</div>
+			</a>
+			</div>
+		{/foreach}
+	</div>
+	{else}
+	<div class="alert alert-orange">{$LANG.message_no_product_found_filter}</div>
+	{/if}
+	
+	{include file='pager.html'}
+</div>

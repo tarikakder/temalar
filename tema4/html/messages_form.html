@@ -1,0 +1,48 @@
+<div class="frm">
+
+
+
+{if $error}
+<div class="error_header">{$LANG.validation_general}</div>
+{/if}
+
+<form action="{create_link transfer=get}" method="post" class="edit_form validate_form" id="messages_form">
+<input type="hidden" name="msg_to_mmb_id" id="msg_to_mmb_id" value="{$row.msg_to_mmb_id|default:$smarty.get.to}"  />
+<input type="hidden" name="msg_parent_id" id="msg_parent_id" value="{$row.msg_parent_id}" />
+<input type="hidden" name="msg_item_id" id="msg_item_id" value="{$row.msg_item_id|default:$smarty.get.item_id}" />
+<input type="hidden" name="msg_item_class" id="msg_item_class" value="{$row.msg_item_class|default:$smarty.get.item_class}" />
+
+
+
+
+<div class="form-group form_row">
+	<div class="error">{$error.msg_from_name}</div>
+	<div><input placeholder="{$LANG.label_msg_from_name}" required="required" class="form-control inp_text" type="text" name="msg_from_name" id="msg_from_name" maxlength="50"  value="{$row.msg_from_name|default:$smarty.session.userFullName}"  /></div>
+</div>
+
+<div class="form-group form_row">
+	<div class="error">{$error.msg_from_phone}</div>
+	<div><input placeholder="{$LANG.label_msg_from_phone}" required="required" class="form-control inp_text" type="text" name="msg_from_phone" id="msg_from_phone" maxlength="15"  value="{$row.msg_from_phone}"  /></div>
+</div>
+
+<div class="form-group form_row">
+	<div class="error">{$error.msg_from_email}</div>
+	<div><input placeholder="{$LANG.label_eml_email}" required="required" class="form-control inp_text" type="text" name="msg_from_email" id="msg_from_email" maxlength="255"  value="{$row.msg_from_email|default:$smarty.session.userEmail}"  /></div>
+</div>
+
+<div class="form-group form_row">
+	<div class="error">{$error.msg_subject}</div>
+	<div><input placeholder="{$LANG.label_msg_subject}" required="required" class="form-control inp_text" type="text" name="msg_subject" id="msg_subject" maxlength="255" value="{$row.msg_subject}"  /></div>
+</div>
+
+<div class="form-group form_row">
+	<div class="error">{$error.msg_message}</div>
+	<div><textarea cols="30" rows="10" placeholder="{$LANG.label_msg_message}" required="required" class="form-control inp_textarea" name="msg_message" id="msg_message">{$row.msg_message}</textarea></div>
+</div>
+
+<div class="form-group form_row mt-3">
+	<input class="btn btn-orange button_save button_save_message" type="submit" name="save" id="save" value="{$LANG.button_send}"/>	
+</div>
+
+</form>
+</div>

@@ -1,0 +1,108 @@
+/* line 4, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.Cart-icon {
+  position: relative;
+}
+
+/* line 7, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.Cart-icon a {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+/* line 13, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.Cart-icon i {
+  color: #777;
+  font-size: 2em;
+  margin-right: 5px;
+}
+
+/* line 19, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.Cart-icon .dy_cart_prd_count {
+  width: 15px;
+  height: 15px;
+  font-size: 0.8em;
+  background-color: #FF3D00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: -5px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+/* line 36, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.coupon_box {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+/* line 41, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.coupon_box .form-group {
+  margin-bottom: 0;
+}
+
+/* cart list*/
+/* line 48, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_table .prd_name {
+  font-size: 0.9em;
+}
+
+/* line 52, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_table .prd_image {
+  max-height: 80px;
+}
+
+/* line 55, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list .quantity {
+  width: 60px;
+}
+
+/* line 58, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list .quantity_total {
+  margin: 1em 0;
+  line-height: 2em;
+}
+
+/* line 62, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list .buttons .button {
+  background: none;
+  padding: 0;
+  margin-right: 10px;
+  color: #343a40;
+}
+
+/* line 69, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_small {
+  font-size: 0.8em;
+}
+
+/* line 72, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_small_item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 5px;
+}
+
+/* line 80, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_small_bottom {
+  font-weight: 600;
+}
+
+/* line 84, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_list_small .btn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* line 90, ../kanmazteknoloji/temalar/tema1/scss/cart.scss */
+.cart_box_container {
+  display: none;
+}
+
+/*# sourceMappingURL=cart.css.map */
